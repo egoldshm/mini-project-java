@@ -19,5 +19,10 @@ public class Point2D {
 		{
 			_y = y;
 		}
+		@Override
+		public String toString()
+		{
+			return _x.toString() + ", " + _y.toString();
+		}
 	}
 

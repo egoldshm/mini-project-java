@@ -13,6 +13,7 @@ public class Vector
 		_head.setY(p.getY());
 		_head.setZ(p.getZ());
 	}
+	
 	@Override
 	public String toString()
 	{

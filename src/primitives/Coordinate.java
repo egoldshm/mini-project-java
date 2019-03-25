@@ -13,4 +13,10 @@ public class Coordinate {
 	{
 		_num = num;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return Double.toString(getNum());
+	}
 }
