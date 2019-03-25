@@ -1,4 +1,8 @@
 package primitives;
+/**
+ * class for 3D point
+ * @author egoldshm and sarieldov
+ */
 public class Point3D extends Point2D {
 	
 	public Point3D()
@@ -6,17 +10,20 @@ public class Point3D extends Point2D {
 		_z = new Coordinate(0);
 	}
 	
-	@Override
-	public String toString() {
-		return "("+ getX() + "," + getY() + "," + getZ()+")";
-	}
 	private Coordinate _z;
-		public Coordinate getZ()
-		{
-			return _z;
-		}
-		public void setZ(Coordinate z)
-		{
-			_z = z;
-		}
+	public Coordinate getZ()
+	{
+		return _z;
+	}
+	
+	public void setZ(Coordinate z)
+	{
+		_z = z;
+	}
+	
+	@Override
+	public String toString() 
+	{
+		return super.toString() + ", " +_z.toString();
+	}
 }
