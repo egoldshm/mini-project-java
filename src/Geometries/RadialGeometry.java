@@ -29,6 +29,7 @@ public abstract class RadialGeometry
 	        return false;
   	   return Objects.equals(_radius,((RadialGeometry)r)._radius);
 	}
+	@Override
 	public String toString()
 	{
 		return Double.toString(_radius);

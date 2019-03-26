@@ -32,6 +32,8 @@ public class Sphere extends RadialGeometry
 	        return false;
   	   return Objects.equals(_radius,((RadialGeometry)s)._radius)&&_center.equals(((Sphere)s)._center);
 	}
+
+	@Override
 	public String toString()
 	{
 		return _center.toString() + " " + Double.toString(_radius);
