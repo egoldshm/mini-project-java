@@ -4,7 +4,7 @@ package primitives;
  * @author egoldshm and sarieldov
  */
 public class Point3D extends Point2D {
-	
+	public static Point3D ZERO = new Point3D(Coordinate.ZERO,Coordinate.ZERO,Coordinate.ZERO);
 	public Point3D()
 	{
 		_z = new Coordinate(0);
@@ -39,6 +39,12 @@ public class Point3D extends Point2D {
 	{
 		return new Point3D(_x.add(v.getHead()._x), _y.add(v.getHead()._y), _z.add(v.getHead()._z));
 	}
+	
+	public Point3D multiply(double num)
+	{
+		return new Point3D(this._x.multiply(num),this._y.multiply(num),this._z.multiply(num));
+	}
+	
 	public double squaredDistance(Point3D p)
 	{
 		Point3D ptemp = this.subtract(p).getHead();

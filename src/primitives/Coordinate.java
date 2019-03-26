@@ -63,4 +63,8 @@ public class Coordinate {
 	public Coordinate multiply(Coordinate other) {
 		return new Coordinate(uscale(_num, other._num));
 	}
+	
+	public Coordinate multiply(double other) {
+		return new Coordinate(this.getNum()*other);
+	}
 }
