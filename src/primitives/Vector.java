@@ -40,6 +40,8 @@ public class Vector
 	        return false;
   	   return _head.equals(((Vector)v)._head);
 	}
+	
+	@Override
 	public String toString()
 	{
 		return _head.toString();
