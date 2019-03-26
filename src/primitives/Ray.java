@@ -1,5 +1,9 @@
 package primitives;
 
+/**
+ * @author sasegal
+ *Class to represent a ray (a vector with a source)
+ */
 public class Ray 
 {
 	private Point3D _POO;
@@ -47,6 +51,7 @@ public class Ray
 		        return false;
 	  	   return _POO.equals(((Ray)r)._POO)&&_direction.equals(((Ray)r)._direction);
 		}
+	 @Override
 	 public String toString()
 	 {
 		 return _POO.toString()+" "+_direction.toString();
