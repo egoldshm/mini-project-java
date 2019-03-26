@@ -2,6 +2,7 @@ package primitives;
 
 public class Vector
 {
+	
 	private Point3D _head;
 	public Vector(Point3D p)
 	{
