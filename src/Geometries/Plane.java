@@ -72,6 +72,8 @@ public class Plane {
 			return false;
 		return _p1.equals(((Plane)p)._p1)&&_p2.equals(((Plane)p)._p2)&&_p3.equals(((Plane)p)._p3);
 	}
+
+	@Override
 	public String toString()
 	{
 		return _p1.toString()+" "+_p2.toString()+" "+_p3.toString();
