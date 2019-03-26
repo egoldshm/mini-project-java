@@ -18,10 +18,13 @@ public class Point2D {
 		{
 			return _y;
 		}
+		
 		public void setY(Coordinate y)
 		{
 			_y = y;
 		}
+		
+		
 		@Override
 		public boolean equals(Object p)
 		{
