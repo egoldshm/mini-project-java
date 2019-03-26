@@ -62,6 +62,7 @@ public class Point3D extends Point2D {
 	        return false;
   	   return _x.equals((((Point3D)p)._x))&&_y.equals((((Point3D)p)._y))&&_z.equals((((Point3D)p)._z));
 	}
+	@Override
 	public String toString() 
 	{
 		return super.toString() + ", " +_z.toString();

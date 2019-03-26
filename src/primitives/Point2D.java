@@ -2,6 +2,10 @@ package primitives;
 
 import java.util.Objects;
 
+/**
+ * @author sasegal
+ *Class to represent a 2 dimensional point
+ */
 public class Point2D {
 		protected Coordinate _x;
 		protected Coordinate _y;
@@ -36,6 +40,7 @@ public class Point2D {
 		        return false;
 	  	   return _x.equals((((Point2D)p)._x))&&_y.equals((((Point2D)p)._y));
 		}
+		@Override
 		public String toString()
 		{
 			return _x.toString() + ", " + _y.toString();

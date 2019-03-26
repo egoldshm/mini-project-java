@@ -2,6 +2,11 @@ package primitives;
 import static primitives.Util.*;
 import java.util.Objects;
 
+/**
+ * @author sasegal
+ *Class to represent a single coordinate
+ *Contains one double and basic operations
+ */
 public class Coordinate {
 	public Coordinate(double num) {
 		_num = num;
@@ -19,21 +24,11 @@ public class Coordinate {
 	{
 		_num = num;
 	}
-	public Coordinate add(Coordinate c)
-	{
-		return new Coordinate(Util.uadd(this._num, c._num));
-	}
-	public Coordinate subtract(Coordinate c)
-	{
-		return new Coordinate(Util.usubtract(this._num, c._num));
-	}
-	public Coordinate scale(double num) {
-		return new Coordinate(uscale(_num, num));
-	}
 	
-	public Coordinate multiply(Coordinate other) {
-		return new Coordinate(uscale(_num, other._num));
-	}
+	/**
+	  * 
+	  */
+
 	@Override
 	public boolean equals(Object c)
 	{
@@ -48,8 +43,24 @@ public class Coordinate {
 	        return false;
   	 return usubtract(_num, ((Coordinate)c)._num) == 0.0;
 	}
+	@Override
 	public String toString()
 	{
 		return Double.toString(getNum());
+	}
+	public Coordinate add(Coordinate c)
+	{
+		return new Coordinate(Util.uadd(this._num, c._num));
+	}
+	public Coordinate subtract(Coordinate c)
+	{
+		return new Coordinate(Util.usubtract(this._num, c._num));
+	}
+	public Coordinate scale(double num) {
+		return new Coordinate(uscale(_num, num));
+	}
+	
+	public Coordinate multiply(Coordinate other) {
+		return new Coordinate(uscale(_num, other._num));
 	}
 }
