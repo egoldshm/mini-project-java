@@ -26,7 +26,7 @@ public class Coordinate {
 	}
 	
 	/**
-	  * 
+	  * to check if two coordinates are equal
 	  */
 
 	@Override
@@ -43,23 +43,40 @@ public class Coordinate {
 	        return false;
   	 return usubtract(_num, ((Coordinate)c)._num) == 0.0;
 	}
+	/**
+	 * returns the double as a string
+	 */
 	@Override
 	public String toString()
 	{
 		return Double.toString(getNum());
 	}
+	/*
+	 * operation to add two coordinates
+	 * uses add function from util
+	 */
 	public Coordinate add(Coordinate c)
 	{
 		return new Coordinate(Util.uadd(this._num, c._num));
 	}
+	/*
+	 * operation to subtract two coordinates
+	 * uses subtract function from Util
+	 */
 	public Coordinate subtract(Coordinate c)
 	{
 		return new Coordinate(Util.usubtract(this._num, c._num));
 	}
+	/*
+	 * operation to scale a coordinate
+	 * uses scale function from Util
+	 */
 	public Coordinate scale(double num) {
 		return new Coordinate(uscale(_num, num));
 	}
-	
+	/*
+	 *operation to multiply coordinates 
+	 */
 	public Coordinate multiply(Coordinate other) {
 		return new Coordinate(uscale(_num, other._num));
 	}
