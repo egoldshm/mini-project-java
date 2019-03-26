@@ -72,5 +72,8 @@ public class Triangle {
 	        return false;
   	   return _p1.equals(((Triangle)t)._p1)&&_p2.equals(((Triangle)t)._p2)&&_p3.equals(((Triangle)t)._p3);
 	}
-
+	public String toString()
+	{
+		return _p1.toString()+" "+_p2.toString()+" "+_p3.toString();
+	}
 }
