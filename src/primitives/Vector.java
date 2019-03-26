@@ -62,6 +62,17 @@ public class Vector
 		return new Vector(new Point3D(this._head.getX().scale(number), this._head.getY().scale(number),this._head.getZ().scale(number)));
 	}
 	
+	/**
+	 * Multiplicate 2 Vectors scalar Multiplication
+	 * 
+	 * @param v the vector to Multiplicate
+	 * @return new vector of the result
+	 */
+	public Vector scalarMultiplication(Vector v)
+	{
+		return new Vector(new Point3D(v.getHead().getX().multiply(this._head.getX()), v.getHead().getY().multiply(this._head.getY()),v.getHead().getZ().multiply(this._head.getZ())));
+	}
+	
 	@Override
 	public boolean equals(Object v)
 	{
