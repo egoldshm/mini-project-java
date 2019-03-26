@@ -5,6 +5,16 @@ public class Ray
 	private Point3D _POO;
 	private Vector _direction;
 	
+	public Ray(Point3D POO, Vector direction)
+	{
+		_POO=POO;
+		_direction=direction;
+	}
+	public Ray(Ray r)
+	{
+		_POO = r._POO;
+		_direction=r._direction;
+	}
 	public Point3D getPOO()
 	{
 		return _POO;

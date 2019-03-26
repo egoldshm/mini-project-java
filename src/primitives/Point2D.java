@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Point2D {
 		protected Coordinate _x;
 		protected Coordinate _y;
+		
 		public Coordinate getX()
 		{
 			return _x;

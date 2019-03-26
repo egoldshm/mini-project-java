@@ -6,6 +6,9 @@ public class Coordinate {
 	public Coordinate(double num) {
 		_num = num;
 	}
+	public Coordinate(Coordinate c) {
+		_num = c._num;
+	}
 	private double _num;
 	public double getNum()
 	{
@@ -15,7 +18,14 @@ public class Coordinate {
 	{
 		_num = num;
 	}
-	
+	public Coordinate add(Coordinate c)
+	{
+		return new Coordinate(_num+c._num);
+	}
+	public Coordinate subtract(Coordinate c)
+	{
+		return new Coordinate(_num-c._num);
+	}
 	@Override
 	public boolean equals(Object c)
 	{

@@ -3,6 +3,14 @@ package primitives;
 public class Vector
 {
 	private Point3D _head;
+	public Vector(Point3D p)
+	{
+		_head=p;
+	}
+	public Vector(Vector v)
+	{
+		_head = v._head;
+	}
 	public Point3D getHead()
 	{
 		return _head;
