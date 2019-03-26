@@ -1,5 +1,7 @@
 package primitives;
 
+import java.util.Objects;
+
 public class Coordinate {
 	public Coordinate(double num) {
 		_num = num;
@@ -15,6 +17,19 @@ public class Coordinate {
 	}
 	
 	@Override
+	public boolean equals(Object c)
+	{
+		//self check
+		if (this == c)
+			return true;
+		// null check
+	    if (c == null)
+	        return false;
+	    // type check and cast
+  	   if (getClass() != c.getClass())
+	        return false;
+  	   return Objects.equals(_num,((Coordinate)c)._num);
+	}
 	public String toString()
 	{
 		return Double.toString(getNum());

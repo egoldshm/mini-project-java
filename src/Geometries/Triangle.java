@@ -58,5 +58,19 @@ public class Triangle {
 	{
 		_p3 = newPoint;
 	}
+	@Override
+	public boolean equals(Object t)
+	{
+		//self check
+		if (this == t)
+			return true;
+		// null check
+	    if (t == null)
+	        return false;
+	    // type check and cast
+  	   if (getClass() != t.getClass())
+	        return false;
+  	   return _p1.equals(((Triangle)t)._p1)&&_p2.equals(((Triangle)t)._p2)&&_p3.equals(((Triangle)t)._p3);
+	}
 
 }

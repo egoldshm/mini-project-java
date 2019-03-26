@@ -3,6 +3,9 @@
  */
 package Geometries;
 import primitives.Vector;
+
+import java.util.Objects;
+
 import primitives.Point3D;
 /**
  * @author sasegal
@@ -34,6 +37,19 @@ public class Cylinder extends RadialGeometry
 	}
 	
 	@Override
+	public boolean equals(Object c)
+	{
+		//self check
+		if (this == c)
+			return true;
+		// null check
+	    if (c == null)
+	        return false;
+	    // type check and cast
+  	   if (getClass() != c.getClass())
+	        return false;
+  	   return Objects.equals(_radius,((RadialGeometry)c)._radius)&&_axisPoint.equals(((Cylinder)c)._axisPoint)&&_axisDirection.equals(((Cylinder)c)._axisDirection);
+	}
 	public String toString()
 	{
 		return _axisPoint.toString() +" "+ _axisDirection.toString()+" "+Double.toString(_radius);

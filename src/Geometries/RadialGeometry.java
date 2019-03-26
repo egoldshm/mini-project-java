@@ -1,5 +1,9 @@
 package Geometries;
 
+import java.util.Objects;
+
+
+
 public abstract class RadialGeometry
 {
 	protected double _radius;
@@ -12,6 +16,19 @@ public abstract class RadialGeometry
 		_radius = r;
 	}
 	@Override
+	public boolean equals(Object r)
+	{
+		//self check
+		if (this == r)
+			return true;
+		// null check
+	    if (r == null)
+	        return false;
+	    // type check and cast
+  	   if (getClass() != r.getClass())
+	        return false;
+  	   return Objects.equals(_radius,((RadialGeometry)r)._radius);
+	}
 	public String toString()
 	{
 		return Double.toString(_radius);

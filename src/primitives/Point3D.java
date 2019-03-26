@@ -22,6 +22,19 @@ public class Point3D extends Point2D {
 	}
 	
 	@Override
+	public boolean equals(Object p)
+	{
+		//self check
+		if (this == p)
+			return true;
+		// null check
+	    if (p == null)
+	        return false;
+	    // type check and cast
+  	   if (getClass() != p.getClass())
+	        return false;
+  	   return _x.equals((((Point3D)p)._x))&&_y.equals((((Point3D)p)._y))&&_z.equals((((Point3D)p)._z));
+	}
 	public String toString() 
 	{
 		return super.toString() + ", " +_z.toString();

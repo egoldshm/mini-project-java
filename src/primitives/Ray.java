@@ -24,6 +24,19 @@ public class Ray
 		_direction.setHead(v.getHead());
 	}
 	 @Override
+	 public boolean equals(Object r)
+		{
+			//self check
+			if (this == r)
+				return true;
+			// null check
+		    if (r == null)
+		        return false;
+		    // type check and cast
+	  	   if (getClass() != r.getClass())
+		        return false;
+	  	   return _POO.equals(((Ray)r)._POO)&&_direction.equals(((Ray)r)._direction);
+		}
 	 public String toString()
 	 {
 		 return _POO.toString()+" "+_direction.toString();

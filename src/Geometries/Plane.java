@@ -58,5 +58,18 @@ public class Plane {
 	{
 		_p3 = newPoint;
 	}
-
+@Override
+public boolean equals(Object p)
+{
+	//self check
+	if (this == p)
+		return true;
+	// null check
+    if (p == null)
+        return false;
+    // type check and cast
+	   if (getClass() != p.getClass())
+        return false;
+	   return _p1.equals(((Plane)p)._p1)&&_p2.equals(((Plane)p)._p2)&&_p3.equals(((Plane)p)._p3);
+}
 }
