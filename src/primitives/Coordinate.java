@@ -1,5 +1,5 @@
 package primitives;
-
+import static primitives.Util.*;
 import java.util.Objects;
 
 public class Coordinate {
@@ -7,9 +7,10 @@ public class Coordinate {
 		_num = num;
 	}
 	public Coordinate(Coordinate c) {
-		_num = c._num;
+		_num =alignZero(c._num);
 	}
 	private double _num;
+	public static Coordinate ZERO = new Coordinate(0.0);
 	public double getNum()
 	{
 		return _num;
@@ -20,11 +21,18 @@ public class Coordinate {
 	}
 	public Coordinate add(Coordinate c)
 	{
-		return new Coordinate(_num+c._num);
+		return new Coordinate(Util.uadd(this._num, c._num));
 	}
 	public Coordinate subtract(Coordinate c)
 	{
-		return new Coordinate(_num-c._num);
+		return new Coordinate(Util.usubtract(this._num, c._num));
+	}
+	public Coordinate scale(double num) {
+		return new Coordinate(uscale(_num, num));
+	}
+	
+	public Coordinate multiply(Coordinate other) {
+		return new Coordinate(uscale(_num, other._num));
 	}
 	@Override
 	public boolean equals(Object c)
@@ -38,7 +46,7 @@ public class Coordinate {
 	    // type check and cast
   	   if (getClass() != c.getClass())
 	        return false;
-  	   return Objects.equals(_num,((Coordinate)c)._num);
+  	 return usubtract(_num, ((Coordinate)c)._num) == 0.0;
 	}
 	public String toString()
 	{

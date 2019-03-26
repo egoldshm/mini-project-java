@@ -21,7 +21,10 @@ public class Vector
 		_head.setY(p.getY());
 		_head.setZ(p.getZ());
 	}
-	
+	public Vector addVector(Vector v)
+	{
+		return new Vector(new Point3D(v.getHead().getX().add(this._head.getX()), v.getHead().getY().add(this._head.getY()),v.getHead().getZ().add(this._head.getZ())));
+	}
 	@Override
 	public boolean equals(Object v)
 	{
