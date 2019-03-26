@@ -68,7 +68,7 @@ public class Vector
 	 * @param v the vector to Multiplicate
 	 * @return new vector of the result
 	 */
-	public Vector scalarMultiplication(Vector v)
+	public Vector Crossproduct(Vector v)
 	{
 		return new Vector(new Point3D(v.getHead().getX().multiply(this._head.getX()), v.getHead().getY().multiply(this._head.getY()),v.getHead().getZ().multiply(this._head.getZ())));
 	}
