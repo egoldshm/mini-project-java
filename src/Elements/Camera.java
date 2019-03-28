@@ -49,6 +49,7 @@ public class Camera {
 	}
 	public Camera(Camera c)
 	{
+		
 		_PO=c.getPO();
 		_vUp=c.getVUp();
 		_vTo=c.getVTo();
