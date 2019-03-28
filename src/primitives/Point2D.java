@@ -4,6 +4,7 @@ import java.util.Objects;
 
 /**
  * @author sasegal
+ * @info
  *Class to represent a 2 dimensional point
  */
 public class Point2D {
