@@ -74,5 +74,15 @@ public class Camera {
 		return _PO.toString()+" "+_vUp.toString()+" "+_vTo.toString()+" "+_vRight.toString();
 	}
 	
+	public Ray constructRayThroughPixel(int Nx, int Ny, double x, double y, double screenDistance, double screenWidth, double screenHeight)
+	{
+		Point3D Pc = _PO.add(_vTo.scalarMultiplication(screenDistance));
+		_vRight = _vTo.CrossProductVector(_vUp);
+		double Rx=(screenWidth/Nx);
+		double Ry=(screenHeight/Ny);
+		Point3D P;
+		P = Pc.add(_vRight.scalarMultiplication((x-(Nx/2))*Rx+(Rx/2)).subtractVector(_vUp.scalarMultiplication(Ry*(y-Ny/2)+Ry/2)));
+		return new Ray(Point3D.ZERO, P.subtract(Point3D.ZERO));
+	}
 	
 }
