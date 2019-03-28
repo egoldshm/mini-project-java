@@ -1,21 +1,43 @@
 package primitives;
 
+/**
+ * @author egoldshm
+ * @info
+ * Vector representation class
+ */
 public class Vector
 {
 	
 	private Point3D _head;
+	
+	/**
+	 * Constructor with parameters
+	 */
 	public Vector(Point3D p)
 	{
 		_head=p;
 	}
+	
+	/**
+	 * copy parameters
+	 */
 	public Vector(Vector v)
 	{
 		_head = v._head;
 	}
+	
+	
+	/**
+	 * @return The point of the vector end (beginning at the beginning of the contractions)
+	 */
 	public Point3D getHead()
 	{
 		return _head;
 	}
+	
+	/**
+	 * @param p The point of the vector end (beginning at the beginning of the contractions)
+	 */
 	public void setHead(Point3D p)
 	{
 		_head.setX(p.getX());
@@ -25,7 +47,9 @@ public class Vector
 	
 	
 
-	
+	/**
+	  * to check if two vectors are equal
+	  */
 	@Override
 	public boolean equals(Object v)
 	{
@@ -41,6 +65,9 @@ public class Vector
   	   return _head.equals(((Vector)v)._head);
 	}
 	
+	/**
+	* returns the ray as a string
+	*/
 	@Override
 	public String toString()
 	{
@@ -48,6 +75,9 @@ public class Vector
 	}
 	
 	
+	/**
+	 * Connects two vectors by connecting their two points
+	 */
 	public Vector addVector(Vector v)
 	{
 		return new Vector(new Point3D(v.getHead().getX().add(this._head.getX()), v.getHead().getY().add(this._head.getY()),v.getHead().getZ().add(this._head.getZ())));

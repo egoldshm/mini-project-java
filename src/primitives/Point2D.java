@@ -10,25 +10,44 @@ public class Point2D {
 		protected Coordinate _x;
 		protected Coordinate _y;
 		
+		/**
+		 * Returns the X-axis for the point
+		 * @return X x-axis
+		 */
 		public Coordinate getX()
 		{
 			return _x;
 		}
+		
+		/**
+		 * Sets the X-axis for the point
+		 * @param x X-axis
+		 */
 		public void setX(Coordinate x)
 		{
 			_x = x;
 		}
+		/**
+		 * Returns the Y-axis for the point
+		 * @return Y Y-axis
+		 */
 		public Coordinate getY()
 		{
 			return _y;
 		}
 		
+		/**
+		 * Sets the Y-axis for the point
+		 * @param x Y-axis
+		 */
 		public void setY(Coordinate y)
 		{
 			_y = y;
 		}
 		
-		
+		/**
+		  * to check if two Point2D are equal
+		  */
 		@Override
 		public boolean equals(Object p)
 		{
@@ -43,6 +62,10 @@ public class Point2D {
 		        return false;
 	  	   return _x.equals((((Point2D)p)._x))&&_y.equals((((Point2D)p)._y));
 		}
+		
+		/**
+		 * returns the Point2D as a string
+		 */
 		@Override
 		public String toString()
 		{
