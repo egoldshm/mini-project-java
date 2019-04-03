@@ -48,11 +48,11 @@ public class VectorTest
 	{
 		Vector v1 = new Vector(1, 2, 3), v2 = new Vector(-3, -2, -1);
 		assertEquals(v1.subtractVector(v2), new Vector(4, 4, 4));
-		assertEquals(v2.subtractVector(v1), new Vector(4, 4, 4));
+		assertEquals(v2.subtractVector(v1), new Vector(-4, -4, -4));
 		v1 = new Vector(-1, -2, -3);
 		v2 = new Vector(-3, -2, -1);
-		assertEquals(v1.subtractVector(v2), new Vector(-4, -4, -4));
-		assertEquals(v2.subtractVector(v1), new Vector(-4, -4, -4));
+		assertEquals(v1.subtractVector(v2), new Vector(2, 0, -2));
+		assertEquals(v2.subtractVector(v1), new Vector(-2, 0, 2));
 	}
 	
 	@Test

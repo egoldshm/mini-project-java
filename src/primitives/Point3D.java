@@ -31,7 +31,19 @@ public class Point3D extends Point2D {
 		_y.setNum(y.getNum());
 		_z.setNum(z.getNum());
 	}
-	
+	/**
+	 * Constructor with parameters
+	 * 
+	 * @param x For the X axis
+	 * @param y For the Y axis
+	 * @param z For the Z axis
+	 */
+	public Point3D(double x, double y, double z)
+	{
+		_x.setNum(x);
+		_y.setNum(y);
+		_z.setNum(z);
+	}
 	/**
 	 * copy constructor
 	 */
