@@ -15,7 +15,22 @@ public class Vector
 	 */
 	public Vector(Point3D p)
 	{
+		if(p.equals(Point3D.ZERO))
+		{
+			throw new ArithmeticException("A vector cannot have the value of (0, 0, 0).");
+		}
 		_head=p;
+	}
+	/**
+	 * Constructor with double parameters
+	 */
+	public Vector(double x, double y, double z)
+	{
+		if(Util.isZero(x)&&Util.isZero(y)&&Util.isZero(z))
+		{
+			throw new ArithmeticException("A vector cannot have the value of (0, 0, 0).");
+		}
+		_head = new Point3D(new Coordinate(x), new Coordinate(y), new Coordinate(z));
 	}
 	
 	/**
@@ -23,6 +38,10 @@ public class Vector
 	 */
 	public Vector(Vector v)
 	{
+		if(v._head.equals(Point3D.ZERO))
+		{
+			throw new ArithmeticException("A vector cannot have the value of (0, 0, 0).");
+		}
 		_head = v._head;
 	}
 	
