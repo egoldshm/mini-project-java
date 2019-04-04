@@ -82,9 +82,9 @@ public class Plane implements Geometry{
 		return _p1.toString()+" "+_p2.toString()+" "+_p3.toString();
 	}
 	
+	@Override
 	//TODO:Prepare this function
-	public ArrayList<Point3D> findIntersections(Ray ray);
-
+	public ArrayList<Point3D> findIntersections(Ray r);
 	{
 		
 	}

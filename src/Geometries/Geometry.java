@@ -20,5 +20,5 @@ public interface Geometry {
  * @param ray The ray with which we are looking for Intersection points
  * @return Cutting points with the beam
  */
-ArrayList<Point3D> findIntersections(Ray ray);
+ArrayList<Point3D> findIntersections(Ray r);
 }
