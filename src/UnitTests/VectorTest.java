@@ -78,6 +78,7 @@ public class VectorTest
 		assertEquals(v2.scalarMultiplication(v1), -6, 0.01);
 	}
 	
+
 	@Test
 	public void testCrossProductMultiplication()
 	{
