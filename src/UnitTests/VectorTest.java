@@ -55,6 +55,7 @@ public class VectorTest
 		assertEquals(v2.subtractVector(v1), new Vector(-2, 0, 2));
 	}
 	
+	
 	@Test
 	public void testScaleVector()
 	{
