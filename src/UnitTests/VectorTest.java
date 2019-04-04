@@ -13,10 +13,10 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({})
 public class VectorTest 
 {
-	
 	@Test
 	public void testNormalize()
 	{
+		assertEquals(1,0);
 		Vector v = new Vector(5, 2, 3);
 		assertEquals(1, v.normalizationOfVector().length(), 0.01);		
 		try {
@@ -90,5 +90,7 @@ public class VectorTest
 		assertEquals(v1.CrossProductVector(v2), new Vector(1, -1, 1));
 		assertEquals(v2.CrossProductVector(v1), new Vector(-1, 1, -1));
 	}
+	
+	
 
 }
