@@ -1,7 +1,7 @@
 package Geometries;
 import java.util.Objects;
 
-import primitives.Point3D;;;
+import primitives.Point3D;
 
 public class Sphere extends RadialGeometry
 {
