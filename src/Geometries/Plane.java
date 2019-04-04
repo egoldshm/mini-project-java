@@ -2,12 +2,15 @@
  * 
  */
 package Geometries;
+import java.util.ArrayList;
+import java.util.List;
+
 import primitives.*;
 /**
  * @author egoldshm and sarieldov
  *
  */
-public class Plane {
+public class Plane implements Geometry{
 
 	/**
 	 * 
@@ -78,5 +81,13 @@ public class Plane {
 	{
 		return _p1.toString()+" "+_p2.toString()+" "+_p3.toString();
 	}
+	
+	//TODO:Prepare this function
+	public ArrayList<Point3D> findIntersections(Ray ray);
+
+	{
+		
+	}
+
 	
 }
