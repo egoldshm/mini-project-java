@@ -5,7 +5,6 @@ import java.util.Objects;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
-import primitives.Util;
 
 public class Sphere extends RadialGeometry implements Geometry
 {

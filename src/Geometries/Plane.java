@@ -3,7 +3,6 @@
  */
 package Geometries;
 import java.util.ArrayList;
-import java.util.List;
 
 import primitives.*;
 /**
@@ -15,52 +14,46 @@ public class Plane implements Geometry{
 	/**
 	 * 
 	 */
-	Point3D _p1;
-	Point3D _p2;
-	Point3D _p3;
+	Vector _N;
+	Point3D _Q;
 	
 	public Plane() {
 		
 	}
 	
+	public Plane(Vector v, Point3D p)
+	{
+		_N = v;
+		_Q = p;
+	}
+	
 	public Plane(Plane temp) 
 	{
-		_p1 = temp._p1;
-		_p2 = temp._p2;
-		_p3 = temp._p3;
+		_N = temp._N;
+		_Q = temp._Q;
 	}
 	
-	public Point3D getP1()
+	public Vector getN()
 	{
-		return _p1;
+		return _N;
 	}
 	
-	public void setP1(Point3D newPoint)
+	public void setN(Vector N)
 	{
-		_p1 = newPoint;
-	}
-	
-
-	public Point3D getP2()
-	{
-		return _p2;
-	}
-	
-	public void setP2(Point3D newPoint)
-	{
-		_p2 = newPoint;
+		_N = N;
 	}
 	
 
-	public Point3D getP3()
+	public Point3D getQ()
 	{
-		return _p3;
+		return _Q;
 	}
 	
-	public void setP3(Point3D newPoint)
+	public void setQ(Point3D newPoint)
 	{
-		_p3 = newPoint;
+		_Q = newPoint;
 	}
+	
 	@Override
 	public boolean equals(Object p)
 	{
@@ -73,19 +66,26 @@ public class Plane implements Geometry{
 		// type check and cast
 		if (getClass() != p.getClass())
 			return false;
-		return _p1.equals(((Plane)p)._p1)&&_p2.equals(((Plane)p)._p2)&&_p3.equals(((Plane)p)._p3);
+		return _N.equals(((Plane)p)._N)&&_Q.equals(((Plane)p)._Q);
 	}
 
 	@Override
 	public String toString()
 	{
-		return _p1.toString()+" "+_p2.toString()+" "+_p3.toString();
+		return _N.toString()+" "+_Q.toString();
 	}
 	
 	@Override
 	//TODO:Prepare this function
-	public ArrayList<Point3D> findIntersections(Ray r);
+	public ArrayList<Point3D> findIntersections(Ray r)
 	{
+		ArrayList<Point3D> returnList = new ArrayList<Point3D>();
+		double t = -1 * (_N.scalarMultiplication(r.getPOO().subtract(_Q)))/(_N.scalarMultiplication(r.getDirection()));
+		if(_N.scalarMultiplication(r.getPOO().add(r.getDirection().scalarMultiplication(t)).subtract(_Q))==0)			
+		{
+			returnList.add(r.getPOO().add(r.getDirection().scalarMultiplication(t)));
+		}
+		return returnList;
 		
 	}
 
