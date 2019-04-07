@@ -4,14 +4,16 @@
 package Geometries;
 import primitives.Vector;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import primitives.Point3D;
+import primitives.Ray;
 /**
  * @author sasegal
  *
  */
-public class Cylinder extends RadialGeometry
+public class Cylinder extends RadialGeometry implements Geometry
 {
 	private Point3D _axisPoint;
 	private Vector _axisDirection;
@@ -54,5 +56,10 @@ public class Cylinder extends RadialGeometry
 	public String toString()
 	{
 		return _axisPoint.toString() +" "+ _axisDirection.toString()+" "+Double.toString(_radius);
+	}
+	@Override
+	public ArrayList<Point3D> findIntersections(Ray r) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

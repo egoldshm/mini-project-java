@@ -2,12 +2,14 @@
  * 
  */
 package Geometries;
+import java.util.ArrayList;
+
 import primitives.*;
 /**
  * @author egoldshm and sarieldov
  *
  */
-public class Triangle {
+public class Triangle implements Geometry{
 
 	/**
 	 * 
@@ -77,5 +79,33 @@ public class Triangle {
 	public String toString()
 	{
 		return _p1.toString()+" "+_p2.toString()+" "+_p3.toString();
+	}
+
+	@Override
+	public ArrayList<Point3D> findIntersections(Ray r) {
+		ArrayList<Point3D> returnList = new ArrayList<Point3D>();
+		//to check if there is a point of intersection on the plane the triangle is on
+		returnList.addAll(new Plane(_p1.subtract(_p2).CrossProductVector(_p1.subtract(_p3)), _p1).findIntersections(r));
+		//if there isn't, then there is definitely no intersection in the triangle
+		if(returnList.isEmpty())
+		{
+			return returnList;
+		}
+		//if there is a point of intersection, we need to see if it is also on the triangle
+		Vector N1 = (this._p2.subtract(r.getPOO()).CrossProductVector(this._p3.subtract(r.getPOO())).normalizationOfVector());
+		Vector N2 = (this._p1.subtract(r.getPOO()).CrossProductVector(this._p3.subtract(r.getPOO())).normalizationOfVector());
+		Vector N3 = (this._p1.subtract(r.getPOO()).CrossProductVector(this._p2.subtract(r.getPOO())).normalizationOfVector());
+		Vector v = returnList.get(0).subtract(r.getPOO());
+		//the point is in the same position relative to the "triangles" built by the vectors N1, N2, N3 (three triangles - the sides of a tetrahedron with base "this" and head of P0), meaning it must be on the triangle 
+		if(Math.signum(v.scalarMultiplication(N1)) == Math.signum(v.scalarMultiplication(N2)) && Math.signum(v.scalarMultiplication(N2)) == Math.signum(v.scalarMultiplication(N3)))
+		{
+			return returnList;
+		}
+		//no intersection points
+		else
+		{
+			returnList.clear();
+			return returnList;
+		}
 	}
 }
