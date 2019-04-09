@@ -6,21 +6,34 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
+/**
+ * @author eitan
+ * A class to represent Sphere. realizes Geometry and inherits from RadialGeometry
+ */
 public class Sphere extends RadialGeometry implements Geometry
 {
 	private Point3D _center;
 	
+	/**
+	 * @return the center point of the Sphere
+	 */
 	public Point3D getCenter()
 	{
 		return _center;
 	}
 	
+	/**
+	 * @param p center point of the Sphere
+	 */
 	public void setCenter(Point3D p)
 	{
 		_center.setX(p.getX());
 		_center.setY(p.getX());
 		_center.setZ(p.getZ());
 	}
+	/* (non-Javadoc)
+	 * @see Geometries.RadialGeometry#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object s)
 	{
@@ -36,28 +49,46 @@ public class Sphere extends RadialGeometry implements Geometry
   	   return Objects.equals(_radius,((RadialGeometry)s)._radius)&&_center.equals(((Sphere)s)._center);
 	}
 
+	/* (non-Javadoc)
+	 * @see Geometries.RadialGeometry#toString()
+	 */
 	@Override
 	public String toString()
 	{
 		return _center.toString() + " " + Double.toString(_radius);
 	}
 
+	/* (non-Javadoc)
+	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
+	 */
 	@Override
 	public ArrayList<Point3D> findIntersections(Ray r) {
+		//L = vector from the camera to center of the sphere
 		Vector L = new Vector(_center.subtract(r.getPOO()));
+		//Because the vector from the camera is the unit vector.
+		//The result is the length of the projection of the L vector on the projection vector.
+		//That is, the length between the point of the camera and the point that is the middle between the two cuts.
 		double tm = L.scalarMultiplication(r.getDirection());
+		//Finds the distance between the beginning of the sphere
+		//and the point that is the center of the string of the ray that crosses the circle
+		//Using the Pythagoras theorem in a straight triangle, and the law that the radius is perpendicular to the string and crosses it.
 		double d = Math.sqrt(_center.squaredDistance(r.getPOO()) - tm * tm);
 		ArrayList<Point3D> returnList = new ArrayList<Point3D>();
+		//If the distance is greater than the sphere radius, there are no cutting points.
 		if(d > this._radius)
 		{
 			return returnList;
 		}
+		//If the distance is equal - there is one cut point
 		if(d==this._radius)
 		{
+			//The point is the tm distance and the direction of the beam.
 			returnList.add(r.getPOO().add(r.getDirection().scalarMultiplication(tm)));
 			return returnList;
 		}
+		//The distance between the cut points and the middle of the string
 		double th = Math.sqrt(this._radius * this._radius - d * d );
+		//The distance from the starting point of each cut point (existing 2)
 		double t1 = tm - th, t2= tm + th;
 		if(t1 > 0)
 		{

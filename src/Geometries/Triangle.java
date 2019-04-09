@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import primitives.*;
 /**
  * @author egoldshm and sarieldov
- *
+ * A class to represent Triangle. realizes Geometry.
  */
 public class Triangle implements Geometry{
 
@@ -18,10 +18,16 @@ public class Triangle implements Geometry{
 	Point3D _p2;
 	Point3D _p3;
 	
+	/**
+	 * default ctor
+	 */
 	public Triangle() {
 		
 	}
 	
+	/**
+	 * copy ctor
+	 */
 	public Triangle(Triangle temp) 
 	{
 		_p1 = temp._p1;
@@ -29,37 +35,58 @@ public class Triangle implements Geometry{
 		_p3 = temp._p3;
 	}
 	
+	/**
+	 * @return One point of triangle
+	 */
 	public Point3D getP1()
 	{
 		return _p1;
 	}
 	
+	/**
+	 * @param newPoint One point of triangle
+	 */
 	public void setP1(Point3D newPoint)
 	{
 		_p1 = newPoint;
 	}
 	
 
+	/**
+	 * @return A second point of the triangle
+	 */
 	public Point3D getP2()
 	{
 		return _p2;
 	}
 	
+	/**
+	 * @param newPoint A second point of the triangle
+	 */
 	public void setP2(Point3D newPoint)
 	{
 		_p2 = newPoint;
 	}
 	
 
+	/**
+	 * @return Third point of triangle
+	 */
 	public Point3D getP3()
 	{
 		return _p3;
 	}
 	
+	/**
+	 * @param newPoint Third point of triangle
+	 */
 	public void setP3(Point3D newPoint)
 	{
 		_p3 = newPoint;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object t)
 	{
@@ -75,12 +102,18 @@ public class Triangle implements Geometry{
   	   return _p1.equals(((Triangle)t)._p1)&&_p2.equals(((Triangle)t)._p2)&&_p3.equals(((Triangle)t)._p3);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString()
 	{
 		return _p1.toString()+" "+_p2.toString()+" "+_p3.toString();
 	}
 
+	/* (non-Javadoc)
+	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
+	 */
 	@Override
 	public ArrayList<Point3D> findIntersections(Ray r) {
 		ArrayList<Point3D> returnList = new ArrayList<Point3D>();

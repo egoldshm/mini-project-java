@@ -11,7 +11,7 @@ import primitives.Point3D;
 import primitives.Ray;
 /**
  * @author sasegal
- * A class represented by Cylinder. realizes Geometry and inherits from RadialGeometry
+ * A class to represent Cylinder. realizes Geometry and inherits from RadialGeometry
  */
 public class Cylinder extends RadialGeometry implements Geometry
 {
