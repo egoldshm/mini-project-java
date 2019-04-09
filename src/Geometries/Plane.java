@@ -7,53 +7,77 @@ import java.util.ArrayList;
 import primitives.*;
 /**
  * @author egoldshm and sarieldov
- *
+ * A class represented by plane. realizes Geometry.
  */
 public class Plane implements Geometry{
 
-	/**
-	 * 
-	 */
 	Vector _N;
 	Point3D _Q;
 	
+	/**
+	 * defualt ctor
+	 */
 	public Plane() {
 		
 	}
 	
+	/**
+	 * ctor with params for plane
+	 * @param v Vertical vector to surface
+	 * @param p point on the plane
+	 */
 	public Plane(Vector v, Point3D p)
 	{
 		_N = v;
 		_Q = p;
 	}
 	
+	/**
+	 * copy ctor
+	 * @param temp
+	 */
 	public Plane(Plane temp) 
 	{
 		_N = temp._N;
 		_Q = temp._Q;
 	}
 	
+	/**
+	 * @return Vertical vector to surface
+	 */
 	public Vector getN()
 	{
 		return _N;
 	}
 	
+	/**
+	 * @param N Vertical vector to surface
+	 */
 	public void setN(Vector N)
 	{
 		_N = N;
 	}
 	
 
+	/**
+	 * @return point on the plane
+	 */
 	public Point3D getQ()
 	{
 		return _Q;
 	}
 	
+	/**
+	 * @param newPoint point on the plane
+	 */
 	public void setQ(Point3D newPoint)
 	{
 		_Q = newPoint;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object p)
 	{
@@ -69,14 +93,20 @@ public class Plane implements Geometry{
 		return _N.equals(((Plane)p)._N)&&_Q.equals(((Plane)p)._Q);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString()
 	{
 		return _N.toString()+" "+_Q.toString();
 	}
 	
+	/* (non-Javadoc)
+	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
+	 */
 	@Override
-	//TODO:Prepare this function
+	//TODO:Prepare this function (done?)
 	public ArrayList<Point3D> findIntersections(Ray r)
 	{
 		ArrayList<Point3D> returnList = new ArrayList<Point3D>();

@@ -4,6 +4,10 @@ import java.util.Objects;
 
 
 
+/**
+ * @author eitan
+ *
+ */
 public abstract class RadialGeometry
 {
 	protected double _radius;
