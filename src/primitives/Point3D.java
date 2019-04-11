@@ -153,5 +153,6 @@ public class Point3D extends Point2D {
 	public String toString() 
 	{
 		return super.toString() + ", " +_z.toString();
+	
 	}
 }
