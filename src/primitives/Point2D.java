@@ -9,7 +9,12 @@ package primitives;
 public class Point2D {
 		protected Coordinate _x;
 		protected Coordinate _y;
-		
+		public Point2D()
+		{
+			_x = new Coordinate(0);
+			_y = new Coordinate(0);
+
+		}
 		/**
 		 * Returns the X-axis for the point
 		 * @return X x-axis
