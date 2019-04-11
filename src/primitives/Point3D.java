@@ -1,7 +1,7 @@
 package primitives;
 /**
  * class for 3D point
- * @author egoldshm and sarieldov
+ * @author egoldshm and sarieldv
  */
 public class Point3D extends Point2D {
 	
@@ -82,7 +82,7 @@ public class Point3D extends Point2D {
 	 */
 	public Vector subtract(Point3D p)
 	{
-		return new Vector(new Point3D(_x.subtract(p._x), _y.subtract(_y),_z.subtract(p._z)));
+		return new Vector(new Point3D(_x.subtract(p._x), _y.subtract(p._y),_z.subtract(p._z)));
 	}
 	
 	
@@ -114,8 +114,8 @@ public class Point3D extends Point2D {
 	 */
 	public double squaredDistance(Point3D p)
 	{
-		Point3D ptemp = this.subtract(p).getHead();
-		return ptemp._x.getNum()*ptemp._x.getNum()+ptemp._y.getNum()*ptemp._y.getNum()+ptemp._z.getNum()*ptemp._z.getNum();
+		Point3D ptemp = new Point3D(p._x.subtract(_x), p._y.subtract(_y), p._z.subtract(_z));
+		return (ptemp._x.getNum()*ptemp._x.getNum())+(ptemp._y.getNum()*ptemp._y.getNum())+(ptemp._z.getNum()*ptemp._z.getNum());
 	}
 	
 	/**

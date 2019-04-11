@@ -17,7 +17,6 @@ public class VectorTest
 	@Test
 	public void testNormalize()
 	{
-		assertEquals(1,0);
 		Vector v = new Vector(5, 2, 3);
 		assertEquals(1, v.normalizationOfVector().length(), 0.01);		
 		try {

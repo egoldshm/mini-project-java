@@ -26,13 +26,17 @@ public class Vector
 	 */
 	public Vector(double x, double y, double z)
 	{
-		if(Util.isZero(x)&&Util.isZero(y)&&Util.isZero(z))
+		if(x==0 && y==0 && z==0)
 		{
 			throw new ArithmeticException("A vector cannot have the value of (0, 0, 0).");
 		}
 		_head = new Point3D(new Coordinate(x), new Coordinate(y), new Coordinate(z));
 	}
 	
+	public Vector()
+	{
+		this._head = new Point3D(1, 1, 1);
+	}
 	/**
 	 * copy parameters
 	 */
