@@ -17,7 +17,7 @@ public class Camera {
 	 */
 	public Point3D getPO()
 	{
-		return _PO;
+		return new Point3D(_PO);
 	}
 	/**
 	 * @param p PO point, where the camera is positioned in space
