@@ -13,7 +13,12 @@ import primitives.Vector;
 public class Sphere extends RadialGeometry implements Geometry
 {
 	private Point3D _center;
-	
+
+	public Sphere(Point3D p, double r)
+	{
+		this._center = p;
+		this._radius = r;
+	}
 	/**
 	 * @return the center point of the Sphere
 	 */

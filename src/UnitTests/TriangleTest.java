@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 import primitives.*;
+import primitives.Point3D;
 import Geometries.*;
 public class TriangleTest {
 
