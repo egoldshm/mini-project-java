@@ -3,17 +3,16 @@ import primitives.*;
 import Geometries.*;
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
-@RunWith(Suite.class)
-@SuiteClasses({ Point3DTest.class, VectorTest.class })
-
+/**
+ * test cases for sphere
+ */
 public class SphereTest {
 
+	/**
+	 * TC for RayIntersections
+	 */
 	@Test
 	public void  testRayIntersections() {
 	Sphere testSphere=new Sphere(new Point3D(0,0,400),200)	;

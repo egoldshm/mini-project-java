@@ -5,14 +5,15 @@ import primitives.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
-@SuiteClasses({})
+/**
+ * test cases for vector 
+ */
 public class VectorTest 
 {
+	/**
+	 * TC for normalize of vector
+	 */
 	@Test
 	public void testNormalize()
 	{
@@ -32,6 +33,9 @@ public class VectorTest
 		assertEquals(1, v.normalizationOfVector().length(), 0.01);	
 	}
 	
+	/**
+	 * TC for add between 2 vectors
+	 */
 	@Test
 	public void testAddVector() {
 		Vector v1 = new Vector(1, 2, 3), v2 = new Vector(3, 2, 1);
@@ -43,6 +47,9 @@ public class VectorTest
 		assertEquals(v2.addVector(v1), new Vector(-4, -4, -4));
 	}
 	
+	/**
+	 * TC for subtract between 2 vectors
+	 */
 	@Test
 	public void testSubtractVector()
 	{
@@ -56,6 +63,9 @@ public class VectorTest
 	}
 	
 	
+	/**
+	 * TC for scalar Multiplication of vector with number
+	 */
 	@Test
 	public void testScaleVector()
 	{
@@ -67,6 +77,9 @@ public class VectorTest
 		assertEquals(v.scalarMultiplication(-2), new Vector(2, 2, 2));
 	}
 	
+	/**
+	 * TC for scalar Multiplication of vector with vector
+	 */
 	@Test
 	public void testScalarMultiplication()
 	{
@@ -79,6 +92,9 @@ public class VectorTest
 	}
 	
 
+	/**
+	 * TC for Cross Product Multiplication of 2 vectors
+	 */
 	@Test
 	public void testCrossProductMultiplication()
 	{

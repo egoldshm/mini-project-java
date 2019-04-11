@@ -5,14 +5,17 @@ import primitives.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
-@SuiteClasses({ VectorTest.class })
+/**
+ * @author eitan
+ * @info 
+ *  Test cases for class Point3D
+ */
 public class Point3DTest
 {
+	/**
+	 * Test case for subtract 2 point3D
+	 */
 	@Test
 	public void testSubtract()
 	{
@@ -25,6 +28,9 @@ public class Point3DTest
 		assertEquals(p2.subtract(p1), new Vector(-2, 0, 2));
 	}
 	
+	/**
+	 * TC for add 2 point3D
+	 */
 	@Test
 	public void testAdd()
 	{
@@ -38,6 +44,9 @@ public class Point3DTest
 		assertEquals(p.add(v), new Point3D(-2, -2, -2));
 	}
 	
+	/**
+	 * TC for test multiply 2 point3D
+	 */
 	@Test
 	public void testMultiply()
 	{
@@ -48,6 +57,9 @@ public class Point3DTest
 		assertEquals(p.multiply(-1), new Point3D(-1, -1, -1));
 	}
 	
+	/**
+	 * TC for Squared Distance for point3D
+	 */
 	@Test
 	public void testSquaredDistance()
 	{
@@ -59,6 +71,9 @@ public class Point3DTest
 		assertEquals(p1.squaredDistance(p2), 12, 0.01);
 	}
 	
+	/**
+	 * TC for distance between 2 point3D
+	 */
 	@Test
 	public void testDistance()
 	{

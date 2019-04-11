@@ -4,14 +4,17 @@ import primitives.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
 import Elements.Camera;
-@RunWith(Suite.class)
-@SuiteClasses({ Point3DTest.class, VectorTest.class })
+/**
+ * @author eitan
+ * @info
+ * Test cases for camera
+ */
 public class CameraTest
 {
+	/**
+	 * TC for ConstructRayThroughPixel
+	 */
 	@Test
 	public void testConstructRayThroughPixel()
 	{
