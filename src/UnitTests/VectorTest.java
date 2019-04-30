@@ -98,8 +98,8 @@ public class VectorTest
 	public void testCrossProductMultiplication()
 	{
 		Vector v1 = new Vector(0, 0, 1), v2 = new Vector(0, 1, 0);
-		assertEquals(v1.CrossProductVector(v2), new Vector(1, 0, 0));
-		assertEquals(v2.CrossProductVector(v1), new Vector(-1, 0, 0));
+		assertEquals(v1.CrossProductVector(v2), new Vector(-1, 0, 0));
+		assertEquals(v2.CrossProductVector(v1), new Vector(1, 0, 0));
 		v1 = new Vector(1, 1, 0);
 		v2 = new Vector(0, 1, 1);
 		assertEquals(v1.CrossProductVector(v2), new Vector(1, -1, 1));

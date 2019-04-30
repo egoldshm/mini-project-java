@@ -19,7 +19,7 @@ public class Vector
 		{
 			throw new ArithmeticException("A vector cannot have the value of (0, 0, 0).");
 		}
-		_head=p;
+		_head=new Point3D(p);
 	}
 	/**
 	 * Constructor with double parameters
@@ -46,7 +46,7 @@ public class Vector
 		{
 			throw new ArithmeticException("A vector cannot have the value of (0, 0, 0).");
 		}
-		_head = v._head;
+		_head = new Point3D(v._head);
 	}
 	
 	

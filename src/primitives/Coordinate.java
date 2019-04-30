@@ -47,7 +47,7 @@ public class Coordinate {
 	 */
 	public void setNum(double num)
 	{
-		_num = num;
+		this._num = num;
 	}
 	
 	/**
@@ -65,7 +65,9 @@ public class Coordinate {
 	    // type check and cast
   	   if (getClass() != c.getClass())
 	        return false;
-  	 return usubtract(_num, ((Coordinate)c)._num) == 0.0;
+  	 //return usubtract(_num, ((Coordinate)c)._num) == 0.0;
+  	 return _num == ((Coordinate)c)._num;
+
 	}
 	
 	/**
@@ -84,7 +86,8 @@ public class Coordinate {
 	 */
 	public Coordinate add(Coordinate c)
 	{
-		return new Coordinate(Util.uadd(this._num, c._num));
+		//return new Coordinate(Util.uadd(this._num, c._num));
+		return new Coordinate(this._num + c._num);
 	}
 	
 	
@@ -94,7 +97,8 @@ public class Coordinate {
 	 */
 	public Coordinate subtract(Coordinate c)
 	{
-		return new Coordinate(Util.usubtract(this._num, c._num));
+		//return new Coordinate(Util.usubtract(this._num, c._num));
+		return new Coordinate(this._num - c._num);
 	}
 	
 	
@@ -103,7 +107,8 @@ public class Coordinate {
 	 * uses scale function from Util
 	 */
 	public Coordinate scale(double num) {
-		return new Coordinate(uscale(_num, num));
+		//return new Coordinate(uscale(_num, num));
+		return new Coordinate(_num* num);
 	}
 	
 	
@@ -111,13 +116,15 @@ public class Coordinate {
 	 *operation to multiply coordinates 
 	 */
 	public Coordinate multiply(Coordinate other) {
-		return new Coordinate(uscale(_num, other._num));
+		//return new Coordinate(uscale(_num, other._num));
+		return new Coordinate(_num * other._num);
 	}
 	/*
 	 *operation to multiply coordinate with number
 	 *Standard scalar product
 	 */
 	public Coordinate multiply(double other) {
-		return new Coordinate(this.getNum()*other);
+		//return new Coordinate(this.getNum()*other);
+		return this.scale(other);
 	}
 }

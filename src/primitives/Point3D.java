@@ -25,11 +25,11 @@ public class Point3D extends Point2D {
 	 * @param y For the Y axis
 	 * @param z For the Z axis
 	 */
-	public Point3D(Coordinate x, Coordinate y, Coordinate z)
+	public Point3D(Coordinate x, Coordinate y, Coordinate z) 
 	{
-		_x.setNum(x.getNum());
-		_y.setNum(y.getNum());
-		_z.setNum(z.getNum());
+		super.setX(x);
+		super.setY(y);
+		this.setZ(new Coordinate(z.getNum()));
 	}
 	/**
 	 * Constructor with parameters
@@ -40,9 +40,9 @@ public class Point3D extends Point2D {
 	 */
 	public Point3D(double x, double y, double z)
 	{
-		_x.setNum(x);
-		_y.setNum(y);
-		_z.setNum(z);
+		this.setX(new Coordinate(x));
+		this.setY(new Coordinate(y));
+		this.setZ(new Coordinate(z));
 	}
 	/**
 	 * copy constructor

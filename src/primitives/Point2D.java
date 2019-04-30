@@ -15,6 +15,13 @@ public class Point2D {
 			_y = new Coordinate(0);
 
 		}
+		
+		public Point2D(Coordinate x, Coordinate y)
+		{
+			_x = x;
+			_y = y;
+
+		}
 		/**
 		 * Returns the X-axis for the point
 		 * @return X x-axis
