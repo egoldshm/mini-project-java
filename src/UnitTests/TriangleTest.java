@@ -27,6 +27,7 @@ public class TriangleTest {
 	testTriangle = new Triangle(new Point3D(4, 0, 0), new Point3D(0, 4, 0), new Point3D(0, 0, 4));
 	testArrayList = testTriangle.findIntersections(r);
 	assertEquals(1,testArrayList.size());
+
 	}
 
 }
