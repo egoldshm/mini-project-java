@@ -3,7 +3,7 @@
  */
 package Elements;
 
-import com.sun.prism.paint.Color;
+import java.awt.Color;
 
 /**
  * @author eitan
@@ -16,7 +16,6 @@ public class AmbientLight {
 	 * @param ka
 	 */
 	public AmbientLight(Color _color, double ka) {
-		super();
 		this._color = _color;
 		Ka = ka;
 	}
@@ -67,6 +66,9 @@ public double getKa()
 }
 public Color getIntensity()
 {
-	return null;
+	double b= getKa()*getColor().getBlue();
+	double r= getKa()*getColor().getRed(); 
+	double g= getKa()*getColor().getGreen(); 
+	return new Color((int)b,(int)r,(int)g);
 }
 }

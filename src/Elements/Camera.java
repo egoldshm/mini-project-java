@@ -140,7 +140,7 @@ public class Camera {
 		double Rx=(screenWidth/Nx);
 		double Ry=(screenHeight/Ny);
 		Point3D P;
-		P = Pc.add(_vRight.scalarMultiplication((x-(Nx/2))*Rx+(Rx/2)).subtractVector(_vUp.scalarMultiplication(Ry*(y-Ny/2)+Ry/2)));
+		P = Pc.add(_vRight.scalarMultiplication((x-(Nx/2.0d))*Rx-(Rx/2.0d)).subtractVector(_vUp.scalarMultiplication(Ry*(y-Ny/2.0d)-Ry/2.0d)));
 		return new Ray(_PO, P.subtract(_PO).normalizationOfVector());
 	}
 	
