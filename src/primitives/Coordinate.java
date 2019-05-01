@@ -66,7 +66,7 @@ public class Coordinate {
   	   if (getClass() != c.getClass())
 	        return false;
   	 //return usubtract(_num, ((Coordinate)c)._num) == 0.0;
-  	 return _num == ((Coordinate)c)._num;
+  	 return Util.isZero(_num - ((Coordinate)c)._num);
 
 	}
 	

@@ -12,6 +12,7 @@ public class SphereTest {
 
 	/**
 	 * TC for RayIntersections
+	 * first case there is no intersections
 	 */
 	@Test
 	public void  testRayIntersections() {
