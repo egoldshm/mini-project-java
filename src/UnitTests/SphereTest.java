@@ -27,7 +27,9 @@ public class SphereTest {
 	r = new Ray(Point3D.ZERO, new Vector(0, 0, 100));
 	assertEquals(2,testSphere.findIntersections(r).size());
 	
-	
+	testSphere=new Sphere(new Point3D(0,6,0),3);
+	r = new Ray(Point3D.ZERO, new Vector(1, 4, 2));
+	assertEquals(2,testSphere.findIntersections(r).size());
 	}
 
 }

@@ -51,7 +51,7 @@ public class Ray
 	 */
 	public Vector getDirection()
 	{
-		return _direction;
+		return _direction.normalizationOfVector();
 	}
 	
 	/**
@@ -60,6 +60,7 @@ public class Ray
 	public void setDirection(Vector v)
 	{
 		_direction.setHead(v.getHead());
+		
 	}
 	
 	/**
