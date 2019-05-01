@@ -14,6 +14,45 @@ import Geometries.*;
  *
  */
 public class Scene {
+	/**
+	 * Default Constructor
+	 */
+	public Scene()
+	{
+		
+	}
+	/**
+	 * Constructor with parameters
+	 * @param _sceneName
+	 * @param _background
+	 * @param _ambientLight
+	 * @param _geometries
+	 * @param _camera
+	 * @param _screenDistance
+	 */
+	public Scene(String _sceneName, Color _background, AmbientLight _ambientLight, List<Geometry> _geometries,
+			Camera _camera, double _screenDistance) {
+		this._sceneName = _sceneName;
+		this._background = _background;
+		this._ambientLight = _ambientLight;
+		this._geometries = _geometries;
+		this._camera = _camera;
+		this._screenDistance = _screenDistance;
+	}
+	
+	/**
+	 * copy ctor with
+	 * @param scene
+	 */
+	public Scene(Scene scene) {
+		this._sceneName = scene._sceneName;
+		this._background = scene._background;
+		this._ambientLight = scene._ambientLight;
+		this._geometries = scene._geometries;
+		this._camera = scene._camera;
+		this._screenDistance = scene._screenDistance;
+	}
+
 	private String _sceneName;
 	private Color _background;
 	private AmbientLight _ambientLight;
@@ -107,11 +146,9 @@ public class Scene {
 		if (getClass() != obj.getClass())
 			   	return false;
 		Scene se = (Scene)obj;
-		this._sceneName.equals(se._sceneName) && _background;
-		private AmbientLight _ambientLight;
-		private List<Geometry> _geometries;
-		private Camera _camera;
-		private double _screenDistance;
+		return (this._sceneName.equals(se._sceneName) && _background.equals(se._background) &&
+				_ambientLight.equals(se._ambientLight) &&
+				_geometries.equals(se._geometries) && _camera.equals(se._camera)&& _screenDistance == se._screenDistance);
 
 
 	}
