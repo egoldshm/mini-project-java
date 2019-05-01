@@ -18,10 +18,15 @@ public class TriangleTest {
 	 */
 	@Test
 	public void testRayIntersections() {
+	//an example of a triangle and a vector that don't intersect, so there are no intersections.
 	Triangle testTriangle=new Triangle(new Point3D(0,100,-200),new Point3D(100,-100,-200),new Point3D(-100,-100,-200));
 	Ray r =new Ray(new Point3D(0,0,0),new Vector(0.577350269,-0.577350269,-0.577350269));
 	ArrayList<Point3D> testArrayList= testTriangle.findIntersections(r);
 	assertEquals(0,testArrayList.size());
+	r.setDirection(new Vector(2, 2, 2));
+	testTriangle = new Triangle(new Point3D(4, 0, 0), new Point3D(0, 4, 0), new Point3D(0, 0, 4));
+	testArrayList = testTriangle.findIntersections(r);
+	assertEquals(1,testArrayList.size());
 	}
 
 }

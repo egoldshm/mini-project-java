@@ -106,12 +106,11 @@ public class Plane implements Geometry{
 	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
 	 */
 	@Override
-	//TODO:Prepare this function (done?)
 	public ArrayList<Point3D> findIntersections(Ray r)
 	{
 		ArrayList<Point3D> returnList = new ArrayList<Point3D>();
 		double t = -1 * (_N.scalarMultiplication(r.getPOO().subtract(_Q)))/(_N.scalarMultiplication(r.getDirection()));
-		if(_N.scalarMultiplication(r.getPOO().add(r.getDirection().scalarMultiplication(t)).subtract(_Q))==0)			
+		if(Util.isZero(_N.scalarMultiplication(r.getPOO().add(r.getDirection().scalarMultiplication(t)).subtract(_Q))))	
 		{
 			returnList.add(r.getPOO().add(r.getDirection().scalarMultiplication(t)));
 		}
