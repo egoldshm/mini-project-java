@@ -58,7 +58,7 @@ public abstract class Util {
 		}
 
 		public static boolean isZero(double number) {
-			return getExp(number) < ACCURACY;
+			return Math.abs(/*getExp()*/number) < ACCURACY;
 		}
 
 		public static boolean isOne(double number) {

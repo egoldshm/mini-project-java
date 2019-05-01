@@ -143,7 +143,7 @@ public class Point3D extends Point2D {
 	    // type check and cast
   	   if (getClass() != p.getClass())
 	        return false;
-  	   return getX().equals((((Point3D)p).getX()))&& getY().equals((((Point3D)p).getY()))&&getZ().equals((((Point3D)p).getZ()));
+  	   return this.getX().equals((((Point3D)p).getX()))&& this.getY().equals((((Point3D)p).getY())) && this.getZ().equals((((Point3D)p).getZ()));
 	}
 	
 	/**

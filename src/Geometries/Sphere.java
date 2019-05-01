@@ -68,8 +68,16 @@ public class Sphere extends RadialGeometry implements Geometry
 	 */
 	@Override
 	public ArrayList<Point3D> findIntersections(Ray r) {
+		ArrayList<Point3D> returnList = new ArrayList<Point3D>();
 		//L = vector from the camera to center of the sphere
 		Vector L = new Vector(_center.subtract(r.getPOO()));
+		
+		if(L.normalizationOfVector().equals(r.getDirection().normalizationOfVector()))
+		{
+			returnList.add(this._center.add(L.normalizationOfVector().scalarMultiplication(_radius)));
+			returnList.add(this._center.add(L.normalizationOfVector().scalarMultiplication(-1 * _radius)));
+			return returnList;
+		}
 		//Because the vector from the camera is the unit vector.
 		//The result is the length of the projection of the L vector on the projection vector.
 		//That is, the length between the point of the camera and the point that is the middle between the two cuts.
@@ -77,8 +85,8 @@ public class Sphere extends RadialGeometry implements Geometry
 		//Finds the distance between the beginning of the sphere
 		//and the point that is the center of the string of the ray that crosses the circle
 		//Using the Pythagoras theorem in a straight triangle, and the law that the radius is perpendicular to the string and crosses it.
-		double d = Math.sqrt(_center.squaredDistance(r.getPOO()) - tm * tm);
-		ArrayList<Point3D> returnList = new ArrayList<Point3D>();
+		double d = Math.sqrt(L.length() * L.length() - tm * tm);
+		
 		//If the distance is greater than the sphere radius, there are no cutting points.
 		if(d > this._radius)
 		{

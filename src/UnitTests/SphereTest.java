@@ -16,9 +16,18 @@ public class SphereTest {
 	 */
 	@Test
 	public void  testRayIntersections() {
-	Sphere testSphere=new Sphere(new Point3D(0,0,400),200)	;
-	Ray r =new Ray(new Point3D(0,0,0),new Vector(0.577350269,-0.577350269,-0.577350269));
-	assertEquals(0,testSphere.findIntersections(r).size());	
+	Sphere testSphere=new Sphere(new Point3D(0,4,0), 1)	;
+	Ray r =new Ray(Point3D.ZERO,new Vector(0,0,1));
+	assertEquals(0,testSphere.findIntersections(r).size());
+	
+	testSphere=new Sphere(Point3D.ZERO,200);
+	assertEquals(1,testSphere.findIntersections(r).size());
+	
+	testSphere=new Sphere(new Point3D(0,0,300),200);
+	r = new Ray(Point3D.ZERO, new Vector(0, 0, 100));
+	assertEquals(2,testSphere.findIntersections(r).size());
+	
+	
 	}
 
 }
