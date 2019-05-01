@@ -131,9 +131,12 @@ public class Triangle implements Geometry{
 			return returnList;
 		}
 		//if there is a point of intersection, we need to see if it is also on the triangle
-		Vector N1 = (this._p2.subtract(r.getPOO()).CrossProductVector(this._p3.subtract(r.getPOO())).normalizationOfVector());
-		Vector N2 = (this._p1.subtract(r.getPOO()).CrossProductVector(this._p3.subtract(r.getPOO())).normalizationOfVector());
-		Vector N3 = (this._p1.subtract(r.getPOO()).CrossProductVector(this._p2.subtract(r.getPOO())).normalizationOfVector());
+		Vector v1 = this._p1.subtract(r.getPOO());
+		Vector v2 = this._p2.subtract(r.getPOO());
+		Vector v3 = this._p3.subtract(r.getPOO());
+		Vector N1 = v2.CrossProductVector(v1).normalizationOfVector();
+		Vector N2 = v3.CrossProductVector(v2).normalizationOfVector();
+		Vector N3 = v1.CrossProductVector(v3).normalizationOfVector();
 		Vector v = returnList.get(0).subtract(r.getPOO());
 		//the point is in the same position relative to the "triangles" built by the vectors N1, N2, N3 (three triangles - the sides of a tetrahedron with base "this" and head of P0), meaning it must be on the triangle 
 		if(Math.signum(v.scalarMultiplication(N1)) == Math.signum(v.scalarMultiplication(N2)) && Math.signum(v.scalarMultiplication(N2)) == Math.signum(v.scalarMultiplication(N3)))
