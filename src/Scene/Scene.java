@@ -153,11 +153,7 @@ public class Scene {
 
 
 	}
-<<<<<<< HEAD
 	public Iterator<Geometry> getGeometriesIterator(){
-=======
-	public Iterator <Geometry> getGeometriesIterator(){
->>>>>>> branch 'master' of https://github.com/egoldshm/mini-project-java
 		return _geometries.iterator();
 	}
 

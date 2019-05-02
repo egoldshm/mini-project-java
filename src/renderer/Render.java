@@ -1,6 +1,13 @@
 package renderer;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import Scene.Scene;
+import primitives.*;
+import Geometries.*;
+
 
 public class Render {
 	
@@ -30,6 +37,9 @@ public class Render {
 		this._imageWriter = r._imageWriter;
 	}
 	
+	/**
+	 * @return Scene
+	 */
 	public Scene get_scene() {
 		return _scene;
 	}
@@ -45,7 +55,18 @@ public class Render {
 	public void set_imageWriter(ImageWriter _imageWriter) {
 		this._imageWriter = _imageWriter;
 	}
-	
+	private List<Point3D> getSceneRayIntersections(Ray ray)
+	{
+		Iterator<Geometry> geometries = _scene.getGeometriesIterator();
+		List <Point3D> intersectionPoints = new ArrayList<Point3D>();
+		while(geometries.hasNext())
+		{
+			Geometry geometry =geometries.next();
+			List<Point3D>geometryIntersectionPoint=geometry.findIntersections(ray);
+			intersectionPoints.addAll(geometryIntersectionPoint);
+		}
+		return intersectionPoints;
+	}
 	Scene _scene ; 
 	ImageWriter _imageWriter ;
 	
