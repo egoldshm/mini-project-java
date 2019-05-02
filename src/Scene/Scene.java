@@ -152,6 +152,9 @@ public class Scene {
 
 
 	}
+	public Iterator <Geometry> getGeometriesIterator(){
+		return _geometries.iterator
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
