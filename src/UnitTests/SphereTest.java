@@ -16,17 +16,21 @@ public class SphereTest {
 	 */
 	@Test
 	public void  testRayIntersections() {
+	//vector does not intersect at all - zero intersection points
 	Sphere testSphere=new Sphere(new Point3D(0,4,0), 1)	;
 	Ray r =new Ray(Point3D.ZERO,new Vector(0,0,1));
 	assertEquals(0,testSphere.findIntersections(r).size());
 	
+	//vector is inside the sphere - one intersection point
 	testSphere=new Sphere(Point3D.ZERO,200);
 	assertEquals(1,testSphere.findIntersections(r).size());
 	
+	//vector begins on the outside and goes through the center of the sphere - two intersection points
 	testSphere=new Sphere(new Point3D(0,0,300),200);
 	r = new Ray(Point3D.ZERO, new Vector(0, 0, 100));
 	assertEquals(2,testSphere.findIntersections(r).size());
-	
+
+	//vector begins on the outside and does not go through the center of the sphere - two intersection points
 	testSphere=new Sphere(new Point3D(0,6,0),3);
 	r = new Ray(Point3D.ZERO, new Vector(1, 4, 2));
 	assertEquals(2,testSphere.findIntersections(r).size());

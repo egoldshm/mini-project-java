@@ -71,7 +71,9 @@ public class Sphere extends RadialGeometry implements Geometry
 		ArrayList<Point3D> returnList = new ArrayList<Point3D>();
 		//L = vector from the camera to center of the sphere
 		Vector L = new Vector(_center.subtract(r.getPOO()));
-		
+		//If the ray goes through the center of the sphere, the geometry used to make the general calculation does not work.
+		//It does not create a triangle.
+		//It is checked separately and the corresponding points of intersection are returned.
 		if(L.normalizationOfVector().equals(r.getDirection().normalizationOfVector()))
 		{
 			returnList.add(this._center.add(L.normalizationOfVector().scalarMultiplication(_radius)));

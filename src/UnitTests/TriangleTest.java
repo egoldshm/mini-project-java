@@ -23,6 +23,8 @@ public class TriangleTest {
 	Ray r =new Ray(new Point3D(0,0,0),new Vector(-2, 0, 0));
 	ArrayList<Point3D> testArrayList= testTriangle.findIntersections(r);
 	assertEquals(0,testArrayList.size());
+	
+	//an example of a triangle and a vector that intersect, so there is one intersection.
 	r.setDirection(new Vector(2, 2, 2));	
 	testArrayList = testTriangle.findIntersections(r);
 	assertEquals(1,testArrayList.size());
