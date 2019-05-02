@@ -99,7 +99,7 @@ public class ImageWriterTest {
 	@Test
 	public void testWritePixelIntIntIntArray() {
 		int[] array = new int[3];
-		array[0] = 128;
+		array[0] =128;
 		array[1] = 255;
 		array[2] = 0;
 		ImageWriter imageWriter = new ImageWriter("tests/testWritePixelIntIntIntArrayFile",1000,1000,200,200);

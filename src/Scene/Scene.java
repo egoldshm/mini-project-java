@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-import com.sun.prism.paint.Color;
+import java.awt.Color;
 
 import Elements.*;
 import Geometries.*;
