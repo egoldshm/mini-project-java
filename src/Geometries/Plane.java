@@ -109,7 +109,9 @@ public class Plane implements Geometry{
 	public ArrayList<Point3D> findIntersections(Ray r)
 	{
 		ArrayList<Point3D> returnList = new ArrayList<Point3D>();
+		//if there is an intersection, it will be t * r.vector away from r.point
 		double t = -1 * (_N.scalarMultiplication(r.getPOO().subtract(_Q)))/(_N.scalarMultiplication(r.getDirection()));
+		//this scalar multiplication will return zero if the point P0 + t*v is on the plane (90 degree angle)
 		if(Util.isZero(_N.scalarMultiplication(r.getPOO().add(r.getDirection().scalarMultiplication(t)).subtract(_Q))))	
 		{
 			returnList.add(r.getPOO().add(r.getDirection().scalarMultiplication(t)));

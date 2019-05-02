@@ -2,6 +2,7 @@
  * 
  */
 package Scene;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -153,7 +154,7 @@ public class Scene {
 
 	}
 	public Iterator <Geometry> getGeometriesIterator(){
-		return _geometries.iterator
+		return _geometries.iterator();
 	}
 
 	/* (non-Javadoc)
