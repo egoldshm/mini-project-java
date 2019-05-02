@@ -63,7 +63,9 @@ public class ImageWriter {
 			e.printStackTrace();
 		}
 	}
-	
+	public void writePixel(int xIndex, int yIndex, Color color){
+		_image.setRGB(xIndex, yIndex, color.getRGB());
+	}
 	public void writePixel(int xIndex, int yIndex, int r, int g, int b){
 		int rgb = new Color(r, g, b).getRGB();
 		_image.setRGB(xIndex, yIndex, rgb);
@@ -74,8 +76,6 @@ public class ImageWriter {
 		_image.setRGB(xIndex, yIndex, rgb);
 	}
 	
-	public void writePixel(int xIndex, int yIndex, Color color){
-		_image.setRGB(xIndex, yIndex, color.getRGB());
-	}
+	
 	
 }
