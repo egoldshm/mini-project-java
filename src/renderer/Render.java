@@ -78,7 +78,7 @@ public class Render {
 	
 	private Point3D getClosestPoint(List<Point3D> intersectionPoints) {
 		double distance = Double.MAX_VALUE;
-		Point3D P0 = _scene.get_camera().getP0();
+		Point3D P0 = _scene.get_camera().getPO();
 		Point3D minDistancePoint = null;
 		
 		for(Point3D p: intersectionPoints)
