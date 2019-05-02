@@ -92,7 +92,7 @@ public class Render {
 		
 		return minDistancePoint;
 	}
-	private void renderImage() {
+	public void renderImage() {
 		Ray r;
 		for(int i = 0; i<_imageWriter.getNx();i++)
 		{

@@ -6,6 +6,10 @@ import primitives.*;
  * @info 
  * Object to represent a camera in 3D space
  */
+/**
+ * @author sasegal
+ *
+ */
 public class Camera {
 	private Point3D _PO;
 	private Vector _vUp;
@@ -85,6 +89,19 @@ public class Camera {
 		_vUp=vUp;
 		_vTo=vTo;
 		_vRight=vRight;
+	}
+	
+	/**
+	 * @param PO point, where the camera is positioned in space
+	 * @param vTo Direct vector direction of the camera
+	 * @param vUp Vector direction the top of the camera
+	 */
+	public Camera(Point3D PO, Vector vTo, Vector vUp)
+	{
+		_PO=PO;
+		_vUp=vUp;
+		_vTo=vTo;
+		_vRight= vTo.CrossProductVector(vUp);
 	}
 	/**
 	 * copy constructor
