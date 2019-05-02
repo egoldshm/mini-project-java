@@ -1,6 +1,7 @@
 package renderer;
 
 import java.util.List;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -70,8 +71,10 @@ public class Render {
 	Scene _scene ; 
 	ImageWriter _imageWriter ;
 	
-	
-	
+	private Color calcColor(Point3D point) {
+		return _scene.get_ambientLight().getIntensity();
+	}
+	 
 	
 	
 
