@@ -74,7 +74,23 @@ public class Render {
 	private Color calcColor(Point3D point) {
 		return _scene.get_ambientLight().getIntensity();
 	}
-	 
+	public void printGrid(int interval)
+	{
+		for(int i = 0;i<_imageWriter.getWidth();i+=interval)
+		{
+			for(int j = 0;j<_imageWriter.getHeight();j++)
+			{
+				_imageWriter.writePixel(i, j, 255 - _scene.get_background().getRed(),255 - _scene.get_background().getGreen(),255-_scene.get_background().getBlue());
+			}
+		}
+		for(int i = 0;i<_imageWriter.getHeight();i+=interval)
+		{
+			for(int j = 0;j<_imageWriter.getWidth();j++)
+			{
+				_imageWriter.writePixel(j, i, 255 - _scene.get_background().getRed(),255 - _scene.get_background().getGreen(),255-_scene.get_background().getBlue());
+			}
+		}
+	}
 	
 	private Point3D getClosestPoint(List<Point3D> intersectionPoints) {
 		double distance = Double.MAX_VALUE;
