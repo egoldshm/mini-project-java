@@ -93,12 +93,12 @@ public class Render {
 		return minDistancePoint;
 	}
 	public void renderImage() {
-		Ray r;
+		
 		for(int i = 0; i<_imageWriter.getNx();i++)
 		{
 			for(int j = 0; j<_imageWriter.getNy();j++)
 			{
-				r = new Ray(_scene.get_camera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(), i, j,  _scene.get_screenDistance(),  _imageWriter.getWidth(), _imageWriter.getHeight()));
+				Ray r = new Ray(_scene.get_camera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(), i, j,  _scene.get_screenDistance(),  _imageWriter.getWidth(), _imageWriter.getHeight()));
 				List<Point3D> intersectionPoints = getSceneRayIntersections(r);
 				if(intersectionPoints.isEmpty())
 				{
