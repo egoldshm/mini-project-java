@@ -88,7 +88,7 @@ public class Sphere extends RadialGeometry implements Geometry
 		//and the point that is the center of the string of the ray that crosses the circle
 		//Using the Pythagoras theorem in a straight triangle, and the law that the radius is perpendicular to the string and crosses it.
 		double d = Math.sqrt(L.length() * L.length() - tm * tm);
-		System.out.println(d);
+		//System.out.println(d);
 		//If the distance is greater than the sphere radius, there are no cutting points.
 		if(d > this._radius)
 		{

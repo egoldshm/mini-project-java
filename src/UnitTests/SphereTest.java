@@ -29,6 +29,8 @@ public class SphereTest {
 	testSphere=new Sphere(new Point3D(0,0,300),200);
 	r = new Ray(Point3D.ZERO, new Vector(0, 0, 100));
 	assertEquals(2,testSphere.findIntersections(r).size());
+		
+	
 
 	//vector begins on the outside and does not go through the center of the sphere - two intersection points
 	testSphere=new Sphere(new Point3D(0,6,0),3);
