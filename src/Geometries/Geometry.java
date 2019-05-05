@@ -3,6 +3,7 @@
  */
 package Geometries;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import primitives.Point3D;
@@ -12,7 +13,9 @@ import primitives.Ray;
  * @author egoldshm
  * Interface for basic geometry
  */
-public interface Geometry {
+public abstract class Geometry {
+	
+Color _emmission;
 	
 /**
  * A function that finds cutting points between a ray and geometry
@@ -20,5 +23,5 @@ public interface Geometry {
  * @param ray The ray with which we are looking for Intersection points
  * @return Cutting points with the ray
  */
-ArrayList<Point3D> findIntersections(Ray r);
+abstract ArrayList<Point3D> findIntersections(Ray r);
 }
