@@ -1,5 +1,8 @@
 package Geometries;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import primitives.Point3D;
@@ -10,7 +13,7 @@ import primitives.Vector;
  * @author eitan
  * A class to represent Sphere. realizes Geometry and inherits from RadialGeometry
  */
-public class Sphere extends RadialGeometry implements Geometry
+public class Sphere extends RadialGeometry
 {
 	private Point3D _center;
 
@@ -67,7 +70,9 @@ public class Sphere extends RadialGeometry implements Geometry
 	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
 	 */
 	@Override
-	public ArrayList<Point3D> findIntersections(Ray r) {
+	public Map<Geometry, List<Point3D>> findIntersections(Ray r) {
+		
+		Map<Geometry,List<Point3D>> intersections = new HashMap<Geometry, List<Point3D>>(); 
 		ArrayList<Point3D> returnList = new ArrayList<Point3D>();
 		//L = vector from the camera to center of the sphere
 		Vector L = new Vector(_center.subtract(r.getPOO()));
@@ -78,7 +83,8 @@ public class Sphere extends RadialGeometry implements Geometry
 		{
 			returnList.add(this._center.add(L.normalizationOfVector().scalarMultiplication(_radius)));
 			returnList.add(this._center.add(L.normalizationOfVector().scalarMultiplication(-1 * _radius)));
-			return returnList;
+			intersections.put(this, returnList);
+			return intersections;
 		}
 		//Because the vector from the camera is the unit vector.
 		//The result is the length of the projection of the L vector on the projection vector.
@@ -92,14 +98,16 @@ public class Sphere extends RadialGeometry implements Geometry
 		//If the distance is greater than the sphere radius, there are no cutting points.
 		if(d > this._radius)
 		{
-			return returnList;
+			intersections.put(this, returnList);
+			return intersections;
 		}
 		//If the distance is equal - there is one cut point
 		if(d==this._radius)
 		{
 			//The point is the tm distance and the direction of the beam.
 			returnList.add(r.getPOO().add(r.getDirection().scalarMultiplication(tm)));
-			return returnList;
+			intersections.put(this, returnList);
+			return intersections;
 		}
 		//The distance between the cut points and the middle of the string
 		double th = Math.sqrt(this._radius * this._radius - d * d );
@@ -113,6 +121,17 @@ public class Sphere extends RadialGeometry implements Geometry
 		{
 			returnList.add(r.getPOO().add(r.getDirection().scalarMultiplication(t2)));
 		}
-		return returnList;
+		intersections.put(this, returnList);
+		return intersections;
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see Geometries.Geometry#getNormal(primitives.Point3D)
+	 */
+	@Override
+	Vector getNormal(Point3D point) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

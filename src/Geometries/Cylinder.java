@@ -5,6 +5,8 @@ package Geometries;
 import primitives.Vector;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import primitives.Point3D;
@@ -13,7 +15,7 @@ import primitives.Ray;
  * @author sasegal
  * A class to represent Cylinder. realizes Geometry and inherits from RadialGeometry
  */
-public class Cylinder extends RadialGeometry implements Geometry
+public class Cylinder extends RadialGeometry
 {
 	private Point3D _axisPoint;
 	private Vector _axisDirection;
@@ -78,9 +80,15 @@ public class Cylinder extends RadialGeometry implements Geometry
 	/* (non-Javadoc)
 	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
 	 */
+	
 	@Override
-	public ArrayList<Point3D> findIntersections(Ray r) {
-		// TODO Auto-generated method stub
+	public Map<Geometry,List<Point3D>> findIntersections(Ray r) {
+		// TODO fix
+		return null;
+	}
+	@Override
+	Vector getNormal(Point3D point) {
+		// TODO fix
 		return null;
 	}
 }

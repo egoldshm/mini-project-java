@@ -3,13 +3,17 @@
  */
 package Geometries;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import primitives.*;
 /**
  * @author egoldshm and sarieldov
  * A class to represent Triangle. realizes Geometry.
  */
-public class Triangle implements Geometry{
+public class Triangle extends Geometry{
 
 	/**
 	 * 
@@ -121,14 +125,20 @@ public class Triangle implements Geometry{
 	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
 	 */
 	@Override
-	public ArrayList<Point3D> findIntersections(Ray r) {
-		ArrayList<Point3D> returnList = new ArrayList<Point3D>();
+	public Map<Geometry, List<Point3D>> findIntersections(Ray r) {
+		
+		Map<Geometry,List<Point3D>> intersections = new HashMap<Geometry, List<Point3D>>(); 
+		List<Point3D> returnList = new ArrayList<Point3D>();
 		//to check if there is a point of intersection on the plane the triangle is on
-		returnList.addAll(new Plane(_p1.subtract(_p2).CrossProductVector(_p1.subtract(_p3)), _p1).findIntersections(r));
+		
+		//TODO: check -> auto fixed
+		returnList.addAll((Collection<? extends Point3D>) new Plane(_p1.subtract(_p2).CrossProductVector(_p1.subtract(_p3)), _p1).findIntersections(r));
 		//if there isn't, then there is definitely no intersection in the triangle
 		if(returnList.isEmpty())
 		{
-			return returnList;
+			intersections.put(this, returnList);
+			return intersections;
+
 		}
 		//if there is a point of intersection, we need to see if it is also on the triangle
 		Vector v1 = this._p1.subtract(r.getPOO());
@@ -141,13 +151,21 @@ public class Triangle implements Geometry{
 		//the point is in the same position relative to the "triangles" built by the vectors N1, N2, N3 (three triangles - the sides of a tetrahedron with base "this" and head of P0), meaning it must be on the triangle 
 		if(Math.signum(v.scalarMultiplication(N1)) == Math.signum(v.scalarMultiplication(N2)) && Math.signum(v.scalarMultiplication(N2)) == Math.signum(v.scalarMultiplication(N3)))
 		{
-			return returnList;
+			intersections.put(this, returnList);
+			return intersections;
 		}
 		//no intersection points
 		else
 		{
 			returnList.clear();
-			return returnList;
+			intersections.put(this, returnList);
+			return intersections;
 		}
+	}
+
+	@Override
+	Vector getNormal(Point3D point) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

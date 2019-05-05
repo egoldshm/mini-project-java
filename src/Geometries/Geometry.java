@@ -8,6 +8,7 @@ import java.util.*;
 
 import primitives.Point3D;
 import primitives.Ray;
+import primitives.Vector;
 
 /**
  * @author egoldshm
@@ -15,7 +16,7 @@ import primitives.Ray;
  */
 public abstract class Geometry {
 	
-Color _emmission;
+Color emmission;
 	
 /**
  * A function that finds cutting points between a ray and geometry
@@ -24,4 +25,26 @@ Color _emmission;
  * @return Cutting points with the ray
  */
 abstract Map<Geometry,List<Point3D>> findIntersections(Ray r);
+
+/**
+ * A function that find the vector normal of geometry in point
+ * 
+ * @param point on the geometry in the normal
+ * @return the vector of the normal
+ */
+abstract Vector getNormal(Point3D point);
+
+/**
+ * @return the emmission
+ */
+public Color getEmmission() {
+	return emmission;
+}
+
+/**
+ * @param emmission the emmission to set
+ */
+public void setEmmission(Color emmission) {
+	this.emmission = emmission;
+}
 }
