@@ -4,7 +4,7 @@
 package Geometries;
 
 import java.awt.Color;
-import java.util.ArrayList;
+import java.util.*;
 
 import primitives.Point3D;
 import primitives.Ray;
@@ -23,5 +23,5 @@ Color _emmission;
  * @param ray The ray with which we are looking for Intersection points
  * @return Cutting points with the ray
  */
-abstract ArrayList<Point3D> findIntersections(Ray r);
+abstract Map<Geometry,List<Point3D>> findIntersections(Ray r);
 }

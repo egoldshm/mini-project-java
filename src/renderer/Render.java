@@ -1,6 +1,8 @@
 package renderer;
 
 import java.util.List;
+import java.util.Map;
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -11,7 +13,12 @@ import Geometries.*;
 
 
 public class Render {
-	
+
+	private static class GeoPoint {
+		public Geometry geometry;
+		public Point3D point;
+		}
+
 	/**
 	 * default constructor
 	 */
@@ -56,6 +63,7 @@ public class Render {
 	public void set_imageWriter(ImageWriter _imageWriter) {
 		this._imageWriter = _imageWriter;
 	}
+	//TODO: fix it function
 	private List<Point3D> getSceneRayIntersections(Ray ray)
 	{
 		Iterator<Geometry> geometries = _scene.getGeometriesIterator();
@@ -63,7 +71,7 @@ public class Render {
 		while(geometries.hasNext())
 		{
 			Geometry geometry =geometries.next();
-			List<Point3D>geometryIntersectionPoint=geometry.findIntersections(ray);
+			Map<Geometry,List<Point3D>> geometryIntersectionPoint = geometry.findIntersections(ray);
 			intersectionPoints.addAll(geometryIntersectionPoint);
 		}
 		return intersectionPoints;
@@ -71,9 +79,19 @@ public class Render {
 	Scene _scene ; 
 	ImageWriter _imageWriter ;
 	
-	private Color calcColor(Point3D point) {
+	/**
+	 * @param geometry
+	 * @param point
+	 * @return
+	 */
+	private Color calcColor(Geometry geometry, Point3D point) {
 		return _scene.get_ambientLight().getIntensity();
 	}
+	
+	
+	/**
+	 * @param interval
+	 */
 	public void printGrid(int interval)
 	{
 		for(int i = 0;i<_imageWriter.getWidth();i+=interval)
@@ -92,7 +110,12 @@ public class Render {
 		}
 	}
 	
-	private Point3D getClosestPoint(List<Point3D> intersectionPoints) {
+	/**
+	 * @param intersectionPoints
+	 * @return
+	 */
+	private Map<Geometry,Point3D> getClosestPoint(Map<Geometry,List<Point3D>> intersectionPoints)
+	{
 		double distance = Double.MAX_VALUE;
 		Point3D P0 = _scene.get_camera().getPO();
 		Point3D minDistancePoint = null;
