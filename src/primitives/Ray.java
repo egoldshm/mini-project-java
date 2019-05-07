@@ -10,6 +10,7 @@ public class Ray
 	private Point3D _POO;
 	private Vector _direction;
 	
+	// ***************** Constructors ********************** // 
 	/**
 	 * Constructor with parameters
 	 */
@@ -27,6 +28,8 @@ public class Ray
 		_POO = r._POO;
 		_direction=r._direction;
 	}
+	
+	// ***************** Getters/Setters ********************** //
 	
 	/**
 	 * @Return the point that symbolizes the starting point of the ray
@@ -63,7 +66,19 @@ public class Ray
 		
 	}
 	
+	
+	 
+	// ***************** Admin ********************** //
 	/**
+	* returns the ray as a string
+	*/
+	 @Override
+	 public String toString()
+	 {
+		 return _POO.toString()+" "+_direction.toString();
+	 }
+	 
+	 /**
 	  * to check if two Rays are equal
 	  */
 	 @Override
@@ -80,13 +95,4 @@ public class Ray
 		        return false;
 	  	   return _POO.equals(((Ray)r)._POO)&&_direction.equals(((Ray)r)._direction);
 		}
-	 
-	/**
-	* returns the ray as a string
-	*/
-	 @Override
-	 public String toString()
-	 {
-		 return _POO.toString()+" "+_direction.toString();
-	 }
 }

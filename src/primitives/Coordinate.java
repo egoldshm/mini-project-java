@@ -12,11 +12,11 @@ import static primitives.Util.*;
  */
 public class Coordinate {
 	
-	
-	private double _num;
 	public static Coordinate ZERO = new Coordinate(0.0);
 
-	
+	private double _num;
+
+	// ***************** Constructors ********************** // 
 	/** 
 	 * A constructor that gets a number
 	 * @param num The number to be inserted into the coordinate
@@ -24,14 +24,14 @@ public class Coordinate {
 	public Coordinate(double num) {
 		_num = num;
 	}
-	
 	/**
 	 * copy constructor
 	 */
 	public Coordinate(Coordinate c) {
 		_num =alignZero(c._num);
 	}
-	
+
+	// ***************** Getters/Setters ********************** //
 	/**
 	 * Returns the num representing the num of the coordinate
 	 * @return the num of the coordinate
@@ -50,6 +50,56 @@ public class Coordinate {
 		this._num = num;
 	}
 	
+	
+	// ***************** Operations ******************** // 
+	/*
+	 * operation to add two coordinates
+	 * uses add function from util
+	 */
+	public Coordinate add(Coordinate c)
+	{
+		//return new Coordinate(Util.uadd(this._num, c._num));
+		return new Coordinate(this._num + c._num);
+	}
+
+	/*
+	 * operation to subtract two coordinates
+	 * uses subtract function from Util
+	 */
+	public Coordinate subtract(Coordinate c)
+	{
+		//return new Coordinate(Util.usubtract(this._num, c._num));
+		return new Coordinate(this._num - c._num);
+	}
+		
+	/*
+	 * operation to scale a coordinate
+	 * uses scale function from Util
+	 */
+	public Coordinate scale(double num) {
+		//return new Coordinate(uscale(_num, num));
+		return new Coordinate(_num* num);
+	}
+		
+	/*
+	 *operation to multiply coordinates 
+	 */
+	public Coordinate multiply(Coordinate other) {
+		//return new Coordinate(uscale(_num, other._num));
+		return new Coordinate(_num * other._num);
+	}
+	
+	/*
+	 *operation to multiply coordinate with number
+	 *Standard scalar product
+	 */
+	public Coordinate multiply(double other) {
+		//return new Coordinate(this.getNum()*other);
+		return this.scale(other);
+	}
+
+	
+	// ***************** Admin ******************** // 
 	/**
 	  * to check if two coordinates are equal
 	  */
@@ -68,8 +118,7 @@ public class Coordinate {
   	 //return usubtract(_num, ((Coordinate)c)._num) == 0.0;
   	 return Util.isZero(_num - ((Coordinate)c)._num);
 
-	}
-	
+	}	
 	/**
 	 * returns the double as a string
 	 */
@@ -79,52 +128,4 @@ public class Coordinate {
 		return Double.toString(getNum());
 	}
 	
-	
-	/*
-	 * operation to add two coordinates
-	 * uses add function from util
-	 */
-	public Coordinate add(Coordinate c)
-	{
-		//return new Coordinate(Util.uadd(this._num, c._num));
-		return new Coordinate(this._num + c._num);
-	}
-	
-	
-	/*
-	 * operation to subtract two coordinates
-	 * uses subtract function from Util
-	 */
-	public Coordinate subtract(Coordinate c)
-	{
-		//return new Coordinate(Util.usubtract(this._num, c._num));
-		return new Coordinate(this._num - c._num);
-	}
-	
-	
-	/*
-	 * operation to scale a coordinate
-	 * uses scale function from Util
-	 */
-	public Coordinate scale(double num) {
-		//return new Coordinate(uscale(_num, num));
-		return new Coordinate(_num* num);
-	}
-	
-	
-	/*
-	 *operation to multiply coordinates 
-	 */
-	public Coordinate multiply(Coordinate other) {
-		//return new Coordinate(uscale(_num, other._num));
-		return new Coordinate(_num * other._num);
-	}
-	/*
-	 *operation to multiply coordinate with number
-	 *Standard scalar product
-	 */
-	public Coordinate multiply(double other) {
-		//return new Coordinate(this.getNum()*other);
-		return this.scale(other);
-	}
 }

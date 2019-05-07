@@ -10,6 +10,9 @@ public class Point3D extends Point2D {
 	 */
 	public static Point3D ZERO = new Point3D(Coordinate.ZERO,Coordinate.ZERO,Coordinate.ZERO);
 
+	private Coordinate _z;
+	
+	// ***************** Constructors ********************** // 
 	/**
 	 * Default constructor
 	 */
@@ -31,6 +34,7 @@ public class Point3D extends Point2D {
 		super.setY(y);
 		this.setZ(new Coordinate(z.getNum()));
 	}
+	
 	/**
 	 * Constructor with parameters
 	 * 
@@ -44,6 +48,7 @@ public class Point3D extends Point2D {
 		this.setY(new Coordinate(y));
 		this.setZ(new Coordinate(z));
 	}
+	
 	/**
 	 * copy constructor
 	 */
@@ -54,7 +59,7 @@ public class Point3D extends Point2D {
 		_z=p._z;
 	}
 	
-	private Coordinate _z;
+	// ***************** Getters/Setters ********************** //
 	
 	/**
 	 * Returns the Z-axis for the point
@@ -74,6 +79,8 @@ public class Point3D extends Point2D {
 		_z = z;
 	}
 	
+	// ***************** Operations ******************** // 
+
 	/**
 	 * 
 	 * Subtracts between two points and returns the vector between them
@@ -84,8 +91,7 @@ public class Point3D extends Point2D {
 	{
 		return new Vector(new Point3D(_x.subtract(p._x), _y.subtract(p._y),_z.subtract(p._z)));
 	}
-	
-	
+		
 	/**
 	 * Adds a vector to a point and returns the result as a point
 	 * @param v vector to add
@@ -128,6 +134,8 @@ public class Point3D extends Point2D {
 		return Math.sqrt(this.squaredDistance(p));
 	}
 	
+	// ***************** Admin ******************** // 
+
 	/**
 	  * to check if two Point3D are equal
 	  */

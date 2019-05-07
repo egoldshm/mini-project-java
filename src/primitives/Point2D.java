@@ -7,21 +7,31 @@ package primitives;
  *Class to represent a 2 dimensional point
  */
 public class Point2D {
+	
 		protected Coordinate _x;
 		protected Coordinate _y;
+		// ***************** Constructors ********************** // 
+		/**
+		 * default ctor
+		 */
 		public Point2D()
 		{
 			_x = new Coordinate(0);
 			_y = new Coordinate(0);
 
 		}
-		
+
+		/**
+		 * constractor with 2 params
+		 */
 		public Point2D(Coordinate x, Coordinate y)
 		{
 			_x = x;
 			_y = y;
 
 		}
+		
+		// ***************** Getters/Setters ********************** //
 		/**
 		 * Returns the X-axis for the point
 		 * @return X x-axis
@@ -30,7 +40,7 @@ public class Point2D {
 		{
 			return _x;
 		}
-		
+	
 		/**
 		 * Sets the X-axis for the point
 		 * @param x X-axis
@@ -57,6 +67,8 @@ public class Point2D {
 			_y = y;
 		}
 		
+		
+		// ***************** Admin ********************** //
 		/**
 		  * to check if two Point2D are equal
 		  */

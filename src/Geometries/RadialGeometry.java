@@ -8,7 +8,7 @@ import java.util.Objects;
  * @author eitan
  * abstract class for geometry with radius.
  */
-public abstract class RadialGeometry
+public abstract class RadialGeometry extends Geometry
 {
 	protected double _radius;
 	/**

@@ -10,6 +10,8 @@ public class Vector
 	
 	private Point3D _head;
 	
+	// ***************** Constructors ********************** // 
+
 	/**
 	 * Constructor with parameters
 	 */
@@ -21,6 +23,7 @@ public class Vector
 		}*/
 		_head=new Point3D(p);
 	}
+	
 	/**
 	 * Constructor with double parameters
 	 */
@@ -33,10 +36,14 @@ public class Vector
 		_head = new Point3D(new Coordinate(x), new Coordinate(y), new Coordinate(z));
 	}
 	
+	/**
+	 * default ctor
+	 */
 	public Vector()
 	{
 		this._head = new Point3D(1, 1, 1);
 	}
+	
 	/**
 	 * copy parameters
 	 */
@@ -49,7 +56,7 @@ public class Vector
 		_head = new Point3D(v._head);
 	}
 	
-	
+	// ***************** Getters/Setters ********************** //
 	/**
 	 * @return The point of the vector end (beginning at the beginning of the contractions)
 	 */
@@ -68,36 +75,8 @@ public class Vector
 		_head.setZ(p.getZ());
 	}
 	
-	
+	// ***************** Operations ******************** // 
 
-	/**
-	  * to check if two vectors are equal
-	  */
-	@Override
-	public boolean equals(Object v)
-	{
-		//self check
-		if (this == v)
-			return true;
-		// null check
-	    if (v == null)
-	        return false;
-	    // type check and cast
-  	   if (getClass() != v.getClass())
-	        return false;
-  	   return _head.equals(((Vector)v)._head);
-	}
-	
-	/**
-	* returns the ray as a string
-	*/
-	@Override
-	public String toString()
-	{
-		return _head.toString();
-	}
-	
-	
 	/**
 	 * Connects two vectors by connecting their two points
 	 */
@@ -175,4 +154,34 @@ public class Vector
 		return new Vector(this.getHead().multiply(1/this.length()));
 				
 	}
+	
+	// ***************** Admin ******************** // 
+
+	/**
+	  * to check if two vectors are equal
+	  */
+	@Override
+	public boolean equals(Object v)
+	{
+		//self check
+		if (this == v)
+			return true;
+		// null check
+	    if (v == null)
+	        return false;
+	    // type check and cast
+  	   if (getClass() != v.getClass())
+	        return false;
+  	   return _head.equals(((Vector)v)._head);
+	}
+	
+	/**
+	* returns the ray as a string
+	*/
+	@Override
+	public String toString()
+	{
+		return _head.toString();
+	}
+	
 }
