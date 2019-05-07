@@ -13,5 +13,12 @@ import java.util.List;
  *
  */
 public interface Intersectable {
+
+ /**
+  * A function that finds cutting points between a ray and geometry
+  *
+  * @param ray The ray with which we are looking for Intersection points
+  * @return Cutting points with the ray
+  */
  Map<Geometry,List<Point3D>>  findIntersections(Ray ray);
 }

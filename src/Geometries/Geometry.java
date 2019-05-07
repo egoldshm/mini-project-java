@@ -14,17 +14,10 @@ import primitives.Vector;
  * @author egoldshm
  * Interface for basic geometry
  */
-public abstract class Geometry {
+public abstract class Geometry implements Intersectable {
 	
 Color emmission;
 	
-/**
- * A function that finds cutting points between a ray and geometry
- * 
- * @param ray The ray with which we are looking for Intersection points
- * @return Cutting points with the ray
- */
-abstract Map<Geometry,List<Point3D>> findIntersections(Ray r);
 
 /**
  * A function that find the vector normal of geometry in point
