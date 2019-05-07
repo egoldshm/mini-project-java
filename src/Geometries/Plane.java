@@ -3,13 +3,16 @@
  */
 package Geometries;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import primitives.*;
 /**
  * @author egoldshm and sarieldov
  * A class represented by plane. realizes Geometry.
  */
-public class Plane implements Geometry{
+public class Plane extends Geometry{
 
 	Vector _N;
 	Point3D _Q;
@@ -105,10 +108,10 @@ public class Plane implements Geometry{
 	/* (non-Javadoc)
 	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
 	 */
-	@Override
-	public ArrayList<Point3D> findIntersections(Ray r)
+	public Map<Geometry,List<Point3D>> findIntersections(Ray r)
 	{
-		ArrayList<Point3D> returnList = new ArrayList<Point3D>();
+		Map<Geometry,List<Point3D>> intersections = new HashMap<Geometry, List<Point3D>>(); 
+		List<Point3D> returnList = new ArrayList<Point3D>();
 		//if there is an intersection, it will be t * r.vector away from r.point
 		double t = -1 * (_N.scalarMultiplication(r.getPOO().subtract(_Q)))/(_N.scalarMultiplication(r.getDirection()));
 		//this scalar multiplication will return zero if the point P0 + t*v is on the plane (90 degree angle)
@@ -116,8 +119,18 @@ public class Plane implements Geometry{
 		{
 			returnList.add(r.getPOO().add(r.getDirection().scalarMultiplication(t)));
 		}
-		return returnList;
 		
+		intersections.put(this, returnList);
+		return intersections;
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see Geometries.Geometry#getNormal(primitives.Point3D)
+	 */
+	@Override
+	Vector getNormal(Point3D point) {
+		return _N;
 	}
 
 	

@@ -1,6 +1,11 @@
 package Geometries;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+
+import primitives.Point3D;
+import primitives.Ray;
 
 
 
@@ -42,6 +47,7 @@ public abstract class RadialGeometry extends Geometry
 	        return false;
   	   return Objects.equals(_radius,((RadialGeometry)r)._radius);
 	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -49,5 +55,9 @@ public abstract class RadialGeometry extends Geometry
 	public String toString()
 	{
 		return Double.toString(_radius);
+	}
+	public Map<Geometry, List<Point3D>> findIntersections(Ray r) {
+		// TODO fix it
+		return null;
 	}
 }

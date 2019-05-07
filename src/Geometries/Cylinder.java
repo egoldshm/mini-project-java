@@ -119,9 +119,26 @@ public class Cylinder extends RadialGeometry
 	{
 		return _axisPoint.toString() +" "+ _axisDirection.toString()+" "+Double.toString(_radius);
 	}
+<<<<<<< HEAD
 
 	
 
 	
 	
+=======
+	/* (non-Javadoc)
+	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
+	 */
+	
+	@Override
+	public Map<Geometry,List<Point3D>> findIntersections(Ray r) {
+		// TODO fix
+		return null;
+	}
+	@Override
+	Vector getNormal(Point3D point) {
+		// TODO fix
+		return null;
+	}
+>>>>>>> branch 'master' of http://github.com/egoldshm/mini-project-java
 }

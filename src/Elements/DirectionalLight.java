@@ -65,7 +65,7 @@ public class DirectionalLight extends Light {
 	@Override
 	Color getIntensity() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.getColor();
 	}
 
 
