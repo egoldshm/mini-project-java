@@ -125,8 +125,8 @@ public class pointLight extends Light {
 	 * @see Elements.Light#getIntensity()
 	 */
 	@Override
-	Color getIntensity() {
-		return this.getColor().getRGB()/;//TODO: fix
+	public Color getIntensity() {
+		return null;//TODO: fix
 	}
 
 

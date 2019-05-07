@@ -11,6 +11,7 @@ import java.awt.Color;
 public class AmbientLight extends Light {
 
 	private double Ka;
+	
 	// ***************** Constructors ********************** // 
 
 	/**

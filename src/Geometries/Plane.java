@@ -17,6 +17,8 @@ public class Plane extends Geometry{
 	Vector _N;
 	Point3D _Q;
 	
+	// ***************** Constructors ********************** //
+	
 	/**
 	 * defualt ctor
 	 */
@@ -45,6 +47,8 @@ public class Plane extends Geometry{
 		_Q = temp._Q;
 	}
 	
+	// ***************** Getters/Setters ********************** //
+	
 	/**
 	 * @return Vertical vector to surface
 	 */
@@ -59,8 +63,7 @@ public class Plane extends Geometry{
 	public void setN(Vector N)
 	{
 		_N = N;
-	}
-	
+	}	
 
 	/**
 	 * @return point on the plane
@@ -77,6 +80,38 @@ public class Plane extends Geometry{
 	{
 		_Q = newPoint;
 	}
+	
+	// ***************** Operations ******************** // 
+
+	/* (non-Javadoc)
+	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
+	 */
+	public Map<Geometry,List<Point3D>> findIntersections(Ray r)
+	{
+		Map<Geometry,List<Point3D>> intersections = new HashMap<Geometry, List<Point3D>>(); 
+		List<Point3D> returnList = new ArrayList<Point3D>();
+		//if there is an intersection, it will be t * r.vector away from r.point
+		double t = -1 * (_N.scalarMultiplication(r.getPOO().subtract(_Q)))/(_N.scalarMultiplication(r.getDirection()));
+		//this scalar multiplication will return zero if the point P0 + t*v is on the plane (90 degree angle)
+		if(Util.isZero(_N.scalarMultiplication(r.getPOO().add(r.getDirection().scalarMultiplication(t)).subtract(_Q))))	
+		{
+			returnList.add(r.getPOO().add(r.getDirection().scalarMultiplication(t)));
+		}
+		
+		intersections.put(this, returnList);
+		return intersections;
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see Geometries.Geometry#getNormal(primitives.Point3D)
+	 */
+	@Override
+	public Vector getNormal(Point3D point) {
+		return _N;
+	}
+	
+	// ***************** Admin ********************** //
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -104,34 +139,7 @@ public class Plane extends Geometry{
 	{
 		return _N.toString()+" "+_Q.toString();
 	}
-	
-	/* (non-Javadoc)
-	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
-	 */
-	public Map<Geometry,List<Point3D>> findIntersections(Ray r)
-	{
-		Map<Geometry,List<Point3D>> intersections = new HashMap<Geometry, List<Point3D>>(); 
-		List<Point3D> returnList = new ArrayList<Point3D>();
-		//if there is an intersection, it will be t * r.vector away from r.point
-		double t = -1 * (_N.scalarMultiplication(r.getPOO().subtract(_Q)))/(_N.scalarMultiplication(r.getDirection()));
-		//this scalar multiplication will return zero if the point P0 + t*v is on the plane (90 degree angle)
-		if(Util.isZero(_N.scalarMultiplication(r.getPOO().add(r.getDirection().scalarMultiplication(t)).subtract(_Q))))	
-		{
-			returnList.add(r.getPOO().add(r.getDirection().scalarMultiplication(t)));
-		}
-		
-		intersections.put(this, returnList);
-		return intersections;
-		
-	}
 
-	/* (non-Javadoc)
-	 * @see Geometries.Geometry#getNormal(primitives.Point3D)
-	 */
-	@Override
-	Vector getNormal(Point3D point) {
-		return _N;
-	}
 
 	
 }

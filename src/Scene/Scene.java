@@ -10,16 +10,32 @@ import Elements.*;
 import Geometries.*;
 /**
  * @author eitan
- *
+ * class represents Scene
  */
 public class Scene {
+	
+	private String _sceneName;
+	private Color _background;
+	private AmbientLight _ambientLight;
+	private Geometries geometries;
+	private Camera _camera;
+	private double _screenDistance;
+	
+	// ***************** Constructors ********************** // 
+	
 	/**
 	 * Default Constructor
 	 */
 	public Scene()
 	{
-		
+		this._sceneName = "";
+		this._background = new Color(255,255,255);
+		this._ambientLight = new AmbientLight();
+		this.geometries = new Geometries();
+		this._camera = new Camera();
+		this._screenDistance = 100;
 	}
+	
 	/**
 	 * Constructor with parameters
 	 * @param _sceneName
@@ -52,84 +68,100 @@ public class Scene {
 		this._screenDistance = scene._screenDistance;
 	}
 
-	private String _sceneName;
-	private Color _background;
-	private AmbientLight _ambientLight;
-	private Geometries geometries;
-	private Camera _camera;
-	private double _screenDistance;
+	// ***************** Getters/Setters ********************** //
+
 	/**
 	 * @return the _sceneName
 	 */
 	public String getSceneName() {
 		return _sceneName;
 	}
+	
 	/**
 	 * @param _sceneName the _sceneName to set
 	 */
 	public void setSceneName(String _sceneName) {
 		this._sceneName = _sceneName;
 	}
+	
 	/**
 	 * @return the _background
 	 */
 	public Color getBackground() {
 		return _background;
 	}
+	
 	/**
 	 * @param _background the _background to set
 	 */
 	public void setBackground(Color _background) {
 		this._background = _background;
 	}
+	
 	/**
 	 * @return the _ambientLight
 	 */
 	public AmbientLight getAmbientLight() {
 		return _ambientLight;
 	}
+	
 	/**
 	 * @param _ambientLight the _ambientLight to set
 	 */
 	public void set_ambientLight(AmbientLight _ambientLight) {
 		this._ambientLight = _ambientLight;
 	}
+	
 	/**
 	 * @return the _geometries
 	 */
 	public Geometries getGeometries() {
 		return geometries;
 	}
+	
 	/**
 	 * @param _geometries the _geometries to set
 	 */
 	public void setGeometries(Geometries _geometries) {
 		this.geometries = _geometries;
 	}
+	
 	/**
 	 * @return the _camera
 	 */
 	public Camera getCamera() {
 		return _camera;
 	}
+	
 	/**
 	 * @param _camera the _camera to set
 	 */
 	public void setCamera(Camera _camera) {
 		this._camera = _camera;
 	}
+	
 	/**
-	 * @return the _screenDistance
+	 * @return the screenDistance
 	 */
 	public double getScreenDistance() {
 		return _screenDistance;
 	}
+	
 	/**
 	 * @param _screenDistance the _screenDistance to set
 	 */
 	public void setScreenDistance(double _screenDistance) {
 		this._screenDistance = _screenDistance;
 	}
+	
+	// ***************** Operations ******************** // 
+	
+	public Iterator<Intersectable> getGeometriesIterator(){
+		return geometries.getGeometries().iterator();
+	}
+
+	// ***************** Admin ********************** //
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
@@ -151,10 +183,7 @@ public class Scene {
 
 
 	}
-	public Iterator<Intersectable> getGeometriesIterator(){
-		return geometries.getGeometries().iterator();
-	}
-
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

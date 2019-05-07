@@ -16,6 +16,23 @@ import primitives.Ray;
 public abstract class RadialGeometry extends Geometry
 {
 	protected double _radius;
+	
+	// ***************** Constructors ********************** // 
+	
+	public RadialGeometry() {
+		this._radius = 0;
+	}
+
+	public RadialGeometry(RadialGeometry r) {
+		this._radius = r.getRadius();
+	}
+	
+	public RadialGeometry(double _radius) {
+		this._radius = _radius;
+	}
+	
+	// ***************** Getters/Setters ********************** //
+
 	/**
 	 * @return the radius of the geomtry
 	 */
@@ -23,6 +40,7 @@ public abstract class RadialGeometry extends Geometry
 	{
 		return _radius;
 	}
+	
 	/**
 	 * @param r the radius of the geomtry
 	 */
@@ -30,6 +48,9 @@ public abstract class RadialGeometry extends Geometry
 	{
 		_radius = r;
 	}
+	
+	
+	// ***************** Admin ********************** //
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
@@ -55,9 +76,5 @@ public abstract class RadialGeometry extends Geometry
 	public String toString()
 	{
 		return Double.toString(_radius);
-	}
-	public Map<Geometry, List<Point3D>> findIntersections(Ray r) {
-		// TODO fix it
-		return null;
 	}
 }

@@ -15,18 +15,19 @@ import primitives.*;
  */
 public class Triangle extends Geometry{
 
-	/**
-	 * 
-	 */
 	Point3D _p1;
 	Point3D _p2;
 	Point3D _p3;
+	
+	// ***************** Constructors ********************** // 
 	
 	/**
 	 * default ctor
 	 */
 	public Triangle() {
-		
+		_p1 = new Point3D();
+		_p2 = new Point3D();
+		_p3 = new Point3D();
 	}
 
 	public Triangle(Point3D p1, Point3D p2, Point3D p3) {
@@ -45,6 +46,9 @@ public class Triangle extends Geometry{
 		_p3 = temp._p3;
 	}
 	
+	// ***************** Getters/Setters ********************** //
+
+	
 	/**
 	 * @return One point of triangle
 	 */
@@ -61,7 +65,6 @@ public class Triangle extends Geometry{
 		_p1 = newPoint;
 	}
 	
-
 	/**
 	 * @return A second point of the triangle
 	 */
@@ -77,7 +80,6 @@ public class Triangle extends Geometry{
 	{
 		_p2 = newPoint;
 	}
-	
 
 	/**
 	 * @return Third point of triangle
@@ -94,33 +96,9 @@ public class Triangle extends Geometry{
 	{
 		_p3 = newPoint;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object t)
-	{
-		//self check
-		if (this == t)
-			return true;
-		// null check
-	    if (t == null)
-	        return false;
-	    // type check and cast
-  	   if (getClass() != t.getClass())
-	        return false;
-  	   return _p1.equals(((Triangle)t)._p1)&&_p2.equals(((Triangle)t)._p2)&&_p3.equals(((Triangle)t)._p3);
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString()
-	{
-		return _p1.toString()+" "+_p2.toString()+" "+_p3.toString();
-	}
-
+	
+	// ***************** Operations ******************** // 
+	
 	/* (non-Javadoc)
 	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
 	 */
@@ -164,8 +142,38 @@ public class Triangle extends Geometry{
 	}
 
 	@Override
-	Vector getNormal(Point3D point) {
+	public Vector getNormal(Point3D point) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	// ***************** Admin ********************** //
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object t)
+	{
+		//self check
+		if (this == t)
+			return true;
+		// null check
+	    if (t == null)
+	        return false;
+	    // type check and cast
+  	   if (getClass() != t.getClass())
+	        return false;
+  	   return _p1.equals(((Triangle)t)._p1)&&_p2.equals(((Triangle)t)._p2)&&_p3.equals(((Triangle)t)._p3);
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString()
+	{
+		return _p1.toString()+" "+_p2.toString()+" "+_p3.toString();
+	}
+
 }

@@ -1,6 +1,3 @@
-/**
- *
- */
 package Geometries;
 import primitives.Point3D;
 import primitives.Ray;
@@ -10,7 +7,7 @@ import java.util.List;
 
 /**
  * @author egoldshm
- *
+ * interface for class that exist findIntersections function
  */
 public interface Intersectable {
 
