@@ -10,7 +10,7 @@ import primitives.*;
  * @author eitan
  *
  */
-public class DirectionalLight extends Light {
+public class DirectionalLight extends Light implements LightSource{
 
 	private Vector direction;
 
@@ -66,6 +66,24 @@ public class DirectionalLight extends Light {
 	Color getIntensity() {
 		// TODO Auto-generated method stub
 		return this.getColor();
+	}
+
+	@Override
+	public Color getIntensity(Point3D point) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector getL(Point3D point) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector getD(Point3D point) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

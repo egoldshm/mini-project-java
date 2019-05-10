@@ -6,12 +6,13 @@ package Elements;
 import java.awt.Color;
 
 import primitives.Point3D;
+import primitives.Vector;
 
 /**
  * @author eitan
  *
  */
-public class pointLight extends Light {
+public class pointLight extends Light implements LightSource{
 
 	private Point3D position;
 	private double Kc, Kl, Kq;
@@ -127,6 +128,24 @@ public class pointLight extends Light {
 	@Override
 	public Color getIntensity() {
 		return null;//TODO: fix
+	}
+
+	@Override
+	public Color getIntensity(Point3D point) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector getL(Point3D point) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector getD(Point3D point) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

@@ -7,24 +7,24 @@ import java.util.*;
 
 public class Geometries implements Intersectable {
 
-	private List<Intersectable> _geometries;
+	private List<Geometry> _geometries;
 
 	// ***************** Constructors ********************** //
 
-	public Geometries(List<Intersectable> geometries) {
+	public Geometries(List<Geometry> geometries) {
 		this._geometries = geometries;
 	}
 
 	public Geometries() {
-		_geometries = new ArrayList<Intersectable>();
+		_geometries = new ArrayList<Geometry>();
 	}
 	// ***************** Getters/Setters ********************** //
 
-	public List<Intersectable> getGeometries() {
+	public List<Geometry> getGeometries() {
 		return _geometries;
 	}
 
-	public void setGeometries(List<Intersectable> geometries) {
+	public void setGeometries(List<Geometry> geometries) {
 		this._geometries = geometries;
 	}
 

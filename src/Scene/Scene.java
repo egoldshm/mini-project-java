@@ -3,7 +3,7 @@
  */
 package Scene;
 import java.util.Iterator;
-
+import java.util.List;
 import java.awt.Color;
 
 import Elements.*;
@@ -13,11 +13,11 @@ import Geometries.*;
  * class represents Scene
  */
 public class Scene {
-	
 	private String _sceneName;
 	private Color _background;
 	private AmbientLight _ambientLight;
 	private Geometries geometries;
+	private List<LightSource> lights;
 	private Camera _camera;
 	private double _screenDistance;
 	
@@ -127,6 +127,20 @@ public class Scene {
 	}
 	
 	/**
+	 * @return the lights
+	 */
+	public List<LightSource> getLights() {
+		return lights;
+	}
+
+	/**
+	 * @param lights the lights to set
+	 */
+	public void setLights(List<LightSource> lights) {
+		this.lights = lights;
+	}
+
+	/**
 	 * @return the _camera
 	 */
 	public Camera getCamera() {
@@ -156,7 +170,7 @@ public class Scene {
 	
 	// ***************** Operations ******************** // 
 	
-	public Iterator<Intersectable> getGeometriesIterator(){
+	public Iterator<Geometry> getGeometriesIterator(){
 		return geometries.getGeometries().iterator();
 	}
 
