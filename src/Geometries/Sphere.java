@@ -133,8 +133,7 @@ public class Sphere extends RadialGeometry {
 	 */
 	@Override
 	public Vector getNormal(Point3D point) {
-		// TODO Auto-generated method stub
-		return null;
+		return point.subtract(this._center).normalizationOfVector();
 	}
 
 	// ***************** Admin ********************** //

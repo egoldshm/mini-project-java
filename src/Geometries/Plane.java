@@ -108,7 +108,7 @@ public class Plane extends Geometry{
 	 */
 	@Override
 	public Vector getNormal(Point3D point) {
-		return _N;
+		return _N.normalizationOfVector();
 	}
 	
 	// ***************** Admin ********************** //

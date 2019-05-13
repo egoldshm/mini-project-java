@@ -144,7 +144,9 @@ public class Triangle extends Geometry{
 	@Override
 	public Vector getNormal(Point3D point) {
 		// TODO Auto-generated method stub
-		return null;
+		Vector v1 = this._p2.subtract(this._p1);
+		Vector v2 = this._p3.subtract(this._p1);
+		return v1.CrossProductVector(v2).normalizationOfVector();
 	}
 	
 	// ***************** Admin ********************** //
