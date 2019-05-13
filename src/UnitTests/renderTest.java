@@ -19,7 +19,7 @@ public class renderTest {
 
 	@Test
 	public void basicRenderTest() {
-		List<Intersectable> geometries = new ArrayList<Intersectable>();
+		List<Geometry> geometries = new ArrayList<Geometry>();
         geometries.add(new Triangle(new Point3D( 100, 0, 149),new Point3D(  0, 100, 149),new Point3D( 100, 100, 149)));
 		geometries.add(new Sphere(new Point3D(0, 0, 150), 50));
 	    geometries.add(new Triangle(new Point3D( 100, 0, 149), new Point3D(  0, -100, 149), new Point3D( 100,-100, 149)));	

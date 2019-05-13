@@ -87,7 +87,7 @@ public class Cylinder extends RadialGeometry
 	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
 	 */
 	@Override
-	public Map<Geometry,List<Point3D>> findIntersections(Ray r) {
+	public List<Point3D> findIntersections(Ray r) {
 		// TODO fix
 		return null;
 	}

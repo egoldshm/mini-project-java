@@ -103,9 +103,8 @@ public class Triangle extends Geometry{
 	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
 	 */
 	@Override
-	public Map<Geometry, List<Point3D>> findIntersections(Ray r) {
+	public List<Point3D> findIntersections(Ray r) {
 		
-		Map<Geometry,List<Point3D>> intersections = new HashMap<Geometry, List<Point3D>>(); 
 		List<Point3D> returnList = new ArrayList<Point3D>();
 		//to check if there is a point of intersection on the plane the triangle is on
 		
@@ -114,8 +113,7 @@ public class Triangle extends Geometry{
 		//if there isn't, then there is definitely no intersection in the triangle
 		if(returnList.isEmpty())
 		{
-			intersections.put(this, returnList);
-			return intersections;
+			return returnList;
 
 		}
 		//if there is a point of intersection, we need to see if it is also on the triangle
@@ -129,15 +127,13 @@ public class Triangle extends Geometry{
 		//the point is in the same position relative to the "triangles" built by the vectors N1, N2, N3 (three triangles - the sides of a tetrahedron with base "this" and head of P0), meaning it must be on the triangle 
 		if(Math.signum(v.scalarMultiplication(N1)) == Math.signum(v.scalarMultiplication(N2)) && Math.signum(v.scalarMultiplication(N2)) == Math.signum(v.scalarMultiplication(N3)))
 		{
-			intersections.put(this, returnList);
-			return intersections;
+			return returnList;
 		}
 		//no intersection points
 		else
 		{
 			returnList.clear();
-			intersections.put(this, returnList);
-			return intersections;
+			return returnList;
 		}
 	}
 

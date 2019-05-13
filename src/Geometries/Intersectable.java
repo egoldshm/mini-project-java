@@ -17,5 +17,5 @@ public interface Intersectable {
   * @param ray The ray with which we are looking for Intersection points
   * @return Cutting points with the ray
   */
- Map<Geometry,List<Point3D>>  findIntersections(Ray ray);
+ List<Point3D>  findIntersections(Ray ray);
 }

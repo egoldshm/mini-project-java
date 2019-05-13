@@ -23,7 +23,7 @@ public class TriangleTest {
 	//an example of a triangle and a vector that don't intersect, so there are no intersections.
 	Triangle testTriangle = new Triangle(new Point3D(4, 0, 0), new Point3D(0, 4, 0), new Point3D(0, 0, 4));;
 	Ray r =new Ray(new Point3D(0,0,0),new Vector(-2, 0, 0));
-	Map<Geometry, List<Point3D>> testArrayList= testTriangle.findIntersections(r);
+	List<Point3D> testArrayList= testTriangle.findIntersections(r);
 	assertEquals(0,testArrayList.size());
 	
 	//an example of a triangle and a vector that intersect, so there is one intersection.

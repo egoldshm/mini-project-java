@@ -4,7 +4,7 @@ public abstract class Util {
 	// It is binary, equivalent to ~1/1,000,000,000,000 in decimal (12 digits)
 		private static final double ACCURACY = 0.001;
 
-		// double store format (bit level): seee eeee eeee (1.)mmmm … mmmm
+		// double store format (bit level):
 		// 1 bit sign, 11 bits exponent, 53 bits (52 stored) normalized mantissa
 		// the number is m+2^e where 1<=m<2
 		// NB: exponent is stored "normalized" (i.e. always positive by adding 1023)

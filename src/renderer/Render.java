@@ -17,11 +17,6 @@ import Geometries.*;
  */
 public class Render {
 
-	private class GeoPoint {
-		public Geometry geometry;
-		public Point3D point;
-	}
-
 	private Scene _scene;
 	private ImageWriter _imageWriter;
 
@@ -75,14 +70,13 @@ public class Render {
 
 	// ***************** Operations ******************** //
 
-	// TODO: fix it function
-	private List<Point3D> getSceneRayIntersections(Ray ray) {
+	private Map<Geometry, List<Point3D>> getSceneRayIntersections(Ray ray) {
 		Iterator<Geometry> geometries = _scene.getGeometriesIterator();
-		List<Point3D> intersectionPoints = new ArrayList<Point3D>();
+		Map<Geometry, List<Point3D>> intersectionPoints = new HashMap<Geometry, List<Point3D>>();
 		while (geometries.hasNext()) {
-			Intersectable geometry = geometries.next();
-			Map<Geometry, List<Point3D>> geometryIntersectionPoint = geometry.findIntersections(ray);
-			intersectionPoints.addAll(geometryIntersectionPoint);
+			Geometry geometry = geometries.next();
+			List<Point3D> geometryIntersectionPoints = geometry.findIntersections(ray);
+			intersectionPoints.put(geometry,geometryIntersectionPoints);
 		}
 		return intersectionPoints;
 	}
@@ -92,36 +86,15 @@ public class Render {
 	 * @param point
 	 * @return
 	 */
-	private Color calcColor(GeoPoint geopoint) {
-		Color color = _scene.getAmbientLight().getIntensity();
-		Vector v = geopoint.point.subtract(_scene.getCamera().getPO()).normalizationOfVector();
-		Vector n = geopoint.geometry.getNormal(geopoint.point);
-		int nShininess = geopoint.geometry.getMaterial().getnShininess();
-		double kd = geopoint.geometry.getMaterial().getKd();
-		double ks = geopoint.geometry.getMaterial().getKs();
-		for (LightSource lightSource : this.get_scene().getLights()) {
-			Vector l = lightSource.getL(geopoint.point);
-			if (n.scalarMultiplication(l) * n.scalarMultiplication(v) > 0) {
-				Color lightIntensity = lightSource.getIntensity(geopoint.point);
-				color.add(calcDiffusive(kd, l, n, lightIntensity),
-						calcSpecular(ks, l, n, v, nShininess, lightIntensity));
-			}
-		}
-
-		return new Color(geopoint.geometry.getEmmission().getRed() + color.getRed(),
-				geopoint.geometry.getEmmission().getGreen() + color.getRed(),
-				geopoint.geometry.getEmmission().getBlue() + color.getBlue());
+	private Color calcColor(Geometry geometry, Point3D point) {
+		Color ambientLight = _scene.getAmbientLight().getIntensity(/*point*/);
+		Color emissionLight = geometry.getEmmission();
+		Color I0 = new Color (ambientLight.getRed() + emissionLight.getRed(),
+				ambientLight.getGreen() + emissionLight.getGreen(),
+				ambientLight.getBlue() + emissionLight.getBlue());
+		return I0;
 	}
 
-	private Object calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private Object calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	/**
 	 * @param interval
@@ -145,23 +118,24 @@ public class Render {
 	 * @param intersectionPoints
 	 * @return
 	 */
-	private GeoPoint getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {
+	private Map<Geometry, Point3D>  getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {
 		// In the intersectionPoints - find the point with minimal distance from the ray
 		// begin point and return it
 		double distance = Double.MAX_VALUE;
 		Point3D P0 = _scene.getCamera().getPO();
 
-		GeoPoint geopoint = new GeoPoint();
+		Map<Geometry, Point3D> minDistancePoint =
+				new HashMap<Geometry, Point3D>();
 		for (Map.Entry<Geometry, List<Point3D>> entry : intersectionPoints.entrySet()) {
 			for (Point3D point : entry.getValue()) {
 				if (P0.distance(point) < distance) {
 					distance = P0.distance(point);
-					geopoint.point = point;
-					geopoint.geometry = entry.getKey();
+					minDistancePoint.clear();
+					minDistancePoint.put(entry.getKey(), new Point3D(point));
 				}
 			}
 		}
-		return geopoint;
+		return minDistancePoint;
 	}
 
 	public void renderImage() {
@@ -170,13 +144,15 @@ public class Render {
 			for (int j = 0; j < _imageWriter.getNy(); j++) {
 				Ray r = new Ray(_scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(),
 						i, j, _scene.getScreenDistance(), _imageWriter.getWidth(), _imageWriter.getHeight()));
-				Map<Geometry, List<Point3D>> intersectionPoints = this.get_scene().getGeometries().findIntersections(r);// TODO:
-																														// fix
-				if (intersectionPoints.isEmpty()) {
+				Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(r);																													// fix
+				if (intersectionPoints.isEmpty())
+				{
 					_imageWriter.writePixel(i, j, _scene.getBackground());
-				} else {
-					GeoPoint closestPoint = getClosestPoint(intersectionPoints);// TODO: fix
-					_imageWriter.writePixel(i, j, this.calcColor(closestPoint));
+				}
+				else
+					{
+					Map<Geometry, Point3D> closestPoint = getClosestPoint(intersectionPoints);
+					_imageWriter.writePixel(i, j, this.calcColor(closestPoint.entrySet().iterator().next().getKey(),closestPoint.entrySet().iterator().next().getValue()));
 				}
 			}
 		}

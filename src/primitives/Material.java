@@ -1,5 +1,7 @@
 package primitives;
 
+import java.util.HashMap;
+
 /**
  * class for material
  */
@@ -24,8 +26,8 @@ public class Material {
 	public Material() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
+
 	// ***************** Getters/Setters ********************** //
 	/**
 	 * @return the kd
@@ -68,4 +70,25 @@ public class Material {
 		this.nShininess = nShininess;
 	}
 
+	// ***************** Admin ********************** //
+
+	@Override
+	public boolean equals(Object obj) {
+		//self check
+		if (this == obj)
+			return true;
+		// null check
+		if (obj == null)
+			return false;
+		// type check and cast
+		if (getClass() != obj.getClass())
+			return false;
+		return ( (Material) obj).getKd() == this.getKd() && ( (Material) obj).getKs() == this.getKs() && ( (Material) obj).getnShininess() == this.getnShininess();
+	}
+
+
+	@Override
+	public String toString() {
+		return "ks: " + getKs() +"| kd: " + getKd()+"| nShininess: " + getnShininess();
+	}
 }

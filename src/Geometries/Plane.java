@@ -86,9 +86,8 @@ public class Plane extends Geometry{
 	/* (non-Javadoc)
 	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
 	 */
-	public Map<Geometry,List<Point3D>> findIntersections(Ray r)
+	public List<Point3D> findIntersections(Ray r)
 	{
-		Map<Geometry,List<Point3D>> intersections = new HashMap<Geometry, List<Point3D>>(); 
 		List<Point3D> returnList = new ArrayList<Point3D>();
 		//if there is an intersection, it will be t * r.vector away from r.point
 		double t = -1 * (_N.scalarMultiplication(r.getPOO().subtract(_Q)))/(_N.scalarMultiplication(r.getDirection()));
@@ -98,8 +97,8 @@ public class Plane extends Geometry{
 			returnList.add(r.getPOO().add(r.getDirection().scalarMultiplication(t)));
 		}
 		
-		intersections.put(this, returnList);
-		return intersections;
+		//intersections.put(this, returnList);
+		return returnList;
 		
 	}
 

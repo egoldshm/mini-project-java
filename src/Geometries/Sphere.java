@@ -70,9 +70,8 @@ public class Sphere extends RadialGeometry {
 	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
 	 */
 	@Override
-	public Map<Geometry, List<Point3D>> findIntersections(Ray r) {
+	public List<Point3D> findIntersections(Ray r) {
 
-		Map<Geometry, List<Point3D>> intersections = new HashMap<Geometry, List<Point3D>>();
 		ArrayList<Point3D> returnList = new ArrayList<Point3D>();
 		// L = vector from the camera to center of the sphere
 		Vector L = new Vector(_center.subtract(r.getPOO()));
@@ -84,8 +83,7 @@ public class Sphere extends RadialGeometry {
 		if (L.normalizationOfVector().equals(r.getDirection().normalizationOfVector())) {
 			returnList.add(this._center.add(L.normalizationOfVector().scalarMultiplication(_radius)));
 			returnList.add(this._center.add(L.normalizationOfVector().scalarMultiplication(-1 * _radius)));
-			intersections.put(this, returnList);
-			return intersections;
+			return returnList;
 		}
 		// Because the vector from the camera is the unit vector.
 		// The result is the length of the projection of the L vector on the projection
@@ -103,15 +101,13 @@ public class Sphere extends RadialGeometry {
 		// If the distance is greater than the sphere radius, there are no cutting
 		// points.
 		if (d > this._radius) {
-			intersections.put(this, returnList);
-			return intersections;
+			return returnList;
 		}
 		// If the distance is equal - there is one cut point
 		if (d == this._radius) {
 			// The point is the tm distance and the direction of the beam.
 			returnList.add(r.getPOO().add(r.getDirection().scalarMultiplication(tm)));
-			intersections.put(this, returnList);
-			return intersections;
+			return returnList;
 		}
 		// The distance between the cut points and the middle of the string
 		double th = Math.sqrt(this._radius * this._radius - d * d);
@@ -123,8 +119,7 @@ public class Sphere extends RadialGeometry {
 		if (t2 > 0) {
 			returnList.add(r.getPOO().add(r.getDirection().scalarMultiplication(t2)));
 		}
-		intersections.put(this, returnList);
-		return intersections;
+		return returnList;
 	}
 
 	/*

@@ -5,7 +5,7 @@ import primitives.Ray;
 
 import java.util.*;
 
-public class Geometries implements Intersectable {
+public class Geometries /*implements Intersectable*/ {
 
 	private List<Geometry> _geometries;
 
@@ -28,30 +28,31 @@ public class Geometries implements Intersectable {
 		this._geometries = geometries;
 	}
 
-	// ***************** Operations ******************** // 
-	
+	// ***************** Operations ******************** //
+
+
 	/* (non-Javadoc)
 	 * @see Geometries.Intersectable#findIntersections(primitives.Ray)
 	 */
-	@Override
-	public Map<Geometry, List<Point3D>> findIntersections(Ray ray) {
-		Map<Geometry, List<Point3D>> intersectionPoints = new HashMap<Geometry, List<Point3D>>();
-		for (Intersectable geometry : _geometries) {
-			Map<Geometry, List<Point3D>> geometryIntersectionPoints = geometry.findIntersections(ray);
-			if (!geometryIntersectionPoints.isEmpty()) {
-				for (Map.Entry<Geometry, List<Point3D>> geometry1 : geometryIntersectionPoints.entrySet()) {
-					intersectionPoints.put(geometry1.getKey(), geometry1.getValue());
-				}
-			}
-		}
-		return intersectionPoints;
-	}
+	//@Override
+	//public Map<Geometry, List<Point3D>> findIntersections(Ray ray) {
+	//	Map<Geometry, List<Point3D>> intersectionPoints = new HashMap<Geometry, List<Point3D>>();
+	//	for (Intersectable geometry : _geometries) {
+	//		Map<Geometry, List<Point3D>> geometryIntersectionPoints = geometry.findIntersections(ray);
+	//		if (!geometryIntersectionPoints.isEmpty()) {
+	//			for (Map.Entry<Geometry, List<Point3D>> geometry1 : geometryIntersectionPoints.entrySet()) {
+	//				intersectionPoints.put(geometry1.getKey(), geometry1.getValue());
+	//			}
+	//		}
+	//	}
+	//	return intersectionPoints;
+	//}
 
 	// ***************** Admin ********************** //
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -61,7 +62,7 @@ public class Geometries implements Intersectable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
