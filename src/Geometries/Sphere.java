@@ -8,6 +8,7 @@ import java.util.Objects;
 
 import primitives.Point3D;
 import primitives.Ray;
+import primitives.Util;
 import primitives.Vector;
 
 /**
