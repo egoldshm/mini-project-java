@@ -1,9 +1,11 @@
 package Geometries;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import primitives.Material;
 import primitives.Point3D;
 import primitives.Ray;
 
@@ -30,7 +32,12 @@ public abstract class RadialGeometry extends Geometry
 	public RadialGeometry(double _radius) {
 		this._radius = _radius;
 	}
-	
+
+	public RadialGeometry(Color emmission, Material material, double _radius) {
+		super(emmission, material);
+		this._radius = _radius;
+	}
+
 	// ***************** Getters/Setters ********************** //
 
 	/**

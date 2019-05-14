@@ -7,6 +7,15 @@ import java.util.HashMap;
  */
 public class Material {
 
+	private double Kd;
+	private double Ks;
+	private int nShininess;
+	
+	// ***************** Constructors ********************** //
+	public Material() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * @param kd
 	 * @param ks
@@ -16,15 +25,6 @@ public class Material {
 		Kd = kd;
 		Ks = ks;
 		this.nShininess = nShininess;
-	}
-
-	private double Kd;
-	private double Ks;
-	private int nShininess;
-	
-	// ***************** Constructors ********************** //
-	public Material() {
-		// TODO Auto-generated constructor stub
 	}
 
 

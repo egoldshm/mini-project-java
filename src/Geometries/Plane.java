@@ -2,6 +2,7 @@
  * 
  */
 package Geometries;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +47,13 @@ public class Plane extends Geometry{
 		_N = temp._N;
 		_Q = temp._Q;
 	}
-	
+
+	public Plane(Color emmission, Material material, Vector _N, Point3D _Q) {
+		super(emmission, material);
+		this._N = _N;
+		this._Q = _Q;
+	}
+
 	// ***************** Getters/Setters ********************** //
 	
 	/**

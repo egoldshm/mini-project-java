@@ -2,8 +2,10 @@
  * 
  */
 package Geometries;
+import primitives.Material;
 import primitives.Vector;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +47,13 @@ public class Cylinder extends RadialGeometry
 		this._axisPoint = cylinder._axisPoint;
 		this._axisDirection = cylinder._axisDirection;
 	}
-	
+
+	public Cylinder(Color emmission, Material material, double _radius, Point3D _axisPoint, Vector _axisDirection) {
+		super(emmission, material, _radius);
+		this._axisPoint = _axisPoint;
+		this._axisDirection = _axisDirection;
+	}
+
 	// ***************** Getters/Setters ********************** //
 
 	/**

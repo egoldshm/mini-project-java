@@ -1,15 +1,13 @@
 package Geometries;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import primitives.Point3D;
-import primitives.Ray;
-import primitives.Util;
-import primitives.Vector;
+import primitives.*;
 
 /**
  * @author eitan A class to represent Sphere. realizes Geometry and inherits
@@ -42,7 +40,12 @@ public class Sphere extends RadialGeometry {
 		_center = new Point3D();
 		
 	}
-	
+
+	public Sphere(Color emmission, Material material, double _radius, Point3D _center) {
+		super(emmission, material, _radius);
+		this._center = _center;
+	}
+
 	// ***************** Getters/Setters ********************** //
 
 

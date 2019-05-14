@@ -2,6 +2,7 @@
  * 
  */
 package Geometries;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -45,7 +46,14 @@ public class Triangle extends Geometry{
 		_p2 = temp._p2;
 		_p3 = temp._p3;
 	}
-	
+
+	public Triangle(Color emmission, Material material, Point3D _p1, Point3D _p2, Point3D _p3) {
+		super(emmission, material);
+		this._p1 = _p1;
+		this._p2 = _p2;
+		this._p3 = _p3;
+	}
+
 	// ***************** Getters/Setters ********************** //
 
 	

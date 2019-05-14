@@ -15,6 +15,10 @@ public class Geometries /*implements Intersectable*/ {
 		this._geometries = geometries;
 	}
 
+	public Geometries(Geometries geometries) {
+		this._geometries = geometries.getGeometries();
+	}
+
 	public Geometries() {
 		_geometries = new ArrayList<Geometry>();
 	}
