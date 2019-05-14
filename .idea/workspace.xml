@@ -3,15 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="49d197e0-3614-48df-a94b-56200671ae76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Geometries/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Geometries/Cylinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Geometries/Geometries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Geometries/Geometries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Geometries/Geometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Geometries/Geometry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Geometries/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Geometries/RadialGeometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Geometries/RadialGeometry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Geometries/Sphere.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Geometries/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Geometries/Triangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UnitTests/renderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UnitTests/renderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/primitives/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Material.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,7 +18,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Geometries/Intersectable.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
@@ -97,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/primitives/Util.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="63" column="42" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
+            <state relative-caret-position="969">
+              <caret line="57" column="9" lean-forward="true" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
               <folding>
                 <element signature="e#2345#2346#0" expanded="true" />
                 <element signature="e#2401#2402#0" expanded="true" />
@@ -226,7 +217,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557813397991" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557813407400" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -343,7 +334,7 @@
       <option name="presentableId" value="Default" />
       <updated>1557775670278</updated>
       <workItem from="1557775679957" duration="3734000" />
-      <workItem from="1557812400365" duration="985000" />
+      <workItem from="1557812400365" duration="1048000" />
     </task>
     <task id="LOCAL-00001" summary="היו לי כמה סיבוכים. אמור לעבוד עכשיו.">
       <created>1557779314252</created>
@@ -352,7 +343,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557779314252</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="בגדול עכשיו הכל אמור לעבוד. אבל עדיין יש באג לא ברור...">
+      <created>1557813454770</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1557813454770</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -388,11 +386,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4719000" />
+    <option name="totallyTimeSpent" value="4782000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19616205" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -403,7 +400,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -431,7 +428,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="היו לי כמה סיבוכים. אמור לעבוד עכשיו." />
-    <option name="LAST_COMMIT_MESSAGE" value="היו לי כמה סיבוכים. אמור לעבוד עכשיו." />
+    <MESSAGE value="בגדול עכשיו הכל אמור לעבוד. אבל עדיין יש באג לא ברור..." />
+    <option name="LAST_COMMIT_MESSAGE" value="בגדול עכשיו הכל אמור לעבוד. אבל עדיין יש באג לא ברור..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -586,13 +584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Geometries/Intersectable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Geometries/Geometry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -658,12 +649,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/primitives/Util.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="63" column="42" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
+        <state relative-caret-position="969">
+          <caret line="57" column="9" lean-forward="true" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
           <folding>
             <element signature="e#2345#2346#0" expanded="true" />
             <element signature="e#2401#2402#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Geometries/Intersectable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" column="30" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="30" />
         </state>
       </provider>
     </entry>
