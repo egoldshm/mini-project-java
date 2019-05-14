@@ -37,5 +37,13 @@ public class SphereTest {
 	r = new Ray(Point3D.ZERO, new Vector(1, 4, 2));
 	assertEquals(2,testSphere.findIntersections(r).size());
 	}
+	
+	@Test
+	public void testNormal()
+	{
+		//some sphere for which we check the normal at a point for which we know is on it
+		Sphere testSphere = new Sphere(new Point3D(1, -1, 1), 2);
+		assertEquals(testSphere.getNormal(new Point3D(1, -1, 3)), new Vector(0, 0, 1));
+	}
 
 }

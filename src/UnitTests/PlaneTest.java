@@ -22,5 +22,13 @@ public class PlaneTest {
 		assertEquals(true,(testPlane.findIntersections(testRay)).get(0).equals(pTest));
 				
 	}
+	
+	@Test
+	public void testNormal()
+	{
+		//some plane for which we check its normal at a point we know is on it
+		Plane testPlane = new Plane(new Vector(1, -2, 4), new Point3D(0, 4, -1));
+		assertEquals(testPlane.getNormal(new Point3D(0, 4, -1)), new Vector(1, -2, 4).normalizationOfVector());
+	}
 
 }
