@@ -20,6 +20,7 @@ public class Sphere extends RadialGeometry {
 	// ***************** Constructors ********************** //
 
 	public Sphere(Point3D p, double r) {
+		super();
 		this._center = p;
 		this._radius = r;
 	}
@@ -28,6 +29,7 @@ public class Sphere extends RadialGeometry {
 	 * copy constructor
 	 */
 	public Sphere(Sphere sphere) {
+		super(sphere);
 		this._center = sphere.getCenter();
 		this._radius = sphere.getRadius();
 	}

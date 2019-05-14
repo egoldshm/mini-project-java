@@ -30,7 +30,7 @@ public class AmbientLight extends Light {
 	 */
 	public AmbientLight() {
 		super();
-		Ka = 0;
+		Ka = 1;
 	}
 
 	/**
@@ -62,6 +62,6 @@ public class AmbientLight extends Light {
 		double b = getKa() * getColor().getBlue();
 		double r = getKa() * getColor().getRed();
 		double g = getKa() * getColor().getGreen();
-		return new Color((int) b, (int) r, (int) g);
+		return new Color((int) r, (int) g, (int) b);
 	}
 }

@@ -22,6 +22,7 @@ public abstract class RadialGeometry extends Geometry
 	// ***************** Constructors ********************** // 
 	
 	public RadialGeometry() {
+		super();
 		this._radius = 0;
 	}
 

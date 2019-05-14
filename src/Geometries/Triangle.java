@@ -26,12 +26,14 @@ public class Triangle extends Geometry{
 	 * default ctor
 	 */
 	public Triangle() {
+		super();
 		_p1 = new Point3D();
 		_p2 = new Point3D();
 		_p3 = new Point3D();
 	}
 
 	public Triangle(Point3D p1, Point3D p2, Point3D p3) {
+		super();
 		this._p1 = p1;
 		this._p2 = p2;
 		this._p3 = p3;
@@ -42,6 +44,7 @@ public class Triangle extends Geometry{
 	 */
 	public Triangle(Triangle temp) 
 	{
+		super(temp);
 		_p1 = temp._p1;
 		_p2 = temp._p2;
 		_p3 = temp._p3;

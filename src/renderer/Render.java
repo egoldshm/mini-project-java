@@ -1,6 +1,7 @@
 package renderer;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 import Elements.LightSource;
 
@@ -89,10 +90,18 @@ public class Render {
 	private Color calcColor(Geometry geometry, Point3D point) {
 		Color ambientLight = _scene.getAmbientLight().getIntensity(/*point*/);
 		Color emissionLight = geometry.getEmmission();
-		Color I0 = new Color (ambientLight.getRed() + emissionLight.getRed(),
-				ambientLight.getGreen() + emissionLight.getGreen(),
-				ambientLight.getBlue() + emissionLight.getBlue());
+		try
+		{
+		Color I0 = new Color ((ambientLight.getRed() + emissionLight.getRed()),
+				(ambientLight.getGreen() + emissionLight.getGreen()),
+				(ambientLight.getBlue() + emissionLight.getBlue()));
 		return I0;
+		}
+		catch(Exception e) {
+			System.out.print(ambientLight);
+			System.out.print(emissionLight);
+			return null;
+		}
 	}
 
 
@@ -152,7 +161,18 @@ public class Render {
 				else
 					{
 					Map<Geometry, Point3D> closestPoint = getClosestPoint(intersectionPoints);
-					_imageWriter.writePixel(i, j, this.calcColor(closestPoint.entrySet().iterator().next().getKey(),closestPoint.entrySet().iterator().next().getValue()));
+					Set<Entry<Geometry, Point3D>> it = closestPoint.entrySet();
+					if(it.iterator().hasNext())
+					{
+					Entry<Geometry, Point3D> a = it.iterator().next();
+					Geometry g = a.getKey();
+					Point3D p = a.getValue();
+					_imageWriter.writePixel(i, j, this.calcColor(g,p));
+					}
+					else
+					{
+						_imageWriter.writePixel(i, j, _scene.getBackground());
+					}
 				}
 			}
 		}

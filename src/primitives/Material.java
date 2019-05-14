@@ -12,9 +12,6 @@ public class Material {
 	private int nShininess;
 	
 	// ***************** Constructors ********************** //
-	public Material() {
-		// TODO Auto-generated constructor stub
-	}
 
 	/**
 	 * @param kd
@@ -25,6 +22,29 @@ public class Material {
 		Kd = kd;
 		Ks = ks;
 		this.nShininess = nShininess;
+	}
+	
+
+	/**
+	 * @param kd
+	 * @param ks
+	 * @param nShininess
+	 */
+	public Material() {
+		Kd = 0;
+		Ks = 0;
+		this.nShininess = 0;
+	}
+
+	/**
+	 * @param kd
+	 * @param ks
+	 * @param nShininess
+	 */
+	public Material(Material m) {
+		Kd = m.getKd();
+		Ks = m.getKs();
+		this.nShininess = m.getnShininess();
 	}
 
 
