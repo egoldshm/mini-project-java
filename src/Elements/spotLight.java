@@ -49,6 +49,7 @@ public class spotLight extends pointLight {
 		return direction;
 	}
 
+	
 	/**
 	 * @param direction the direction to set
 	 */
