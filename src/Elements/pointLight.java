@@ -132,8 +132,11 @@ public class pointLight extends Light implements LightSource{
 
 	@Override
 	public Color getIntensity(Point3D point) {
-		// TODO Auto-generated method stub
-		return null;
+		//the function returns the original intensity weekend parabolicly as it is further away
+		//IL = I0 / (Kc * Kl*d * Kq*d*d)
+		double d = this.position.distance(point);
+		double t = (this.Kc * this.Kl * d * this.Kq * d * d);
+		return new Color((int)(this.getColor().getRed() / t), (int)(this.getColor().getGreen() / t), (int)(this.getColor().getBlue() / t));
 	}
 
 	@Override
