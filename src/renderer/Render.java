@@ -13,7 +13,7 @@ import primitives.Vector;
 import Geometries.*;
 
 /**
- * class that render picture from sence and camera
+ * class that render picture from scene and camera
  *
  */
 public class Render {
@@ -88,20 +88,16 @@ public class Render {
 	 * @return
 	 */
 	private Color calcColor(Geometry geometry, Point3D point) {
-		Color ambientLight = _scene.getAmbientLight().getIntensity(/*point*/);
+		Color ambientLight = _scene.getAmbientLight().getIntensity(point);
 		Color emissionLight = geometry.getEmmission();
-		try
-		{
-		Color I0 = new Color ((ambientLight.getRed() + emissionLight.getRed()),
-				(ambientLight.getGreen() + emissionLight.getGreen()),
-				(ambientLight.getBlue() + emissionLight.getBlue()));
-		return I0;
+		Iterator<LightSource> lights = this.get_scene().getLightsIterator();
+		while (lights.hasNext()){
+		LightSource light = lights.next();
+		Color diffuseLight += calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point));
+		Color specularLight += calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point.subtract(_scene.getCamera().getPO())), geometry.getNormal(point)
+				, light.getL(point), geometry.getMaterial().getnShininess(),light.getIntensity(point));
 		}
-		catch(Exception e) {
-			System.out.print(ambientLight);
-			System.out.print(emissionLight);
-			return null;
-		}
+		return new Color(ambientLight + emissionLight + diffuseLight + specularLight)
 	}
 
 

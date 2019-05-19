@@ -170,8 +170,19 @@ public class Scene {
 	
 	// ***************** Operations ******************** // 
 	
+	/**
+	 * @return iterator of geometries
+	 */
 	public Iterator<Geometry> getGeometriesIterator(){
 		return geometries.getGeometries().iterator();
+	}
+	
+	/**
+	 * @return iterator of light sources
+	 */
+	public Iterator<LightSource> getLightsIterator()
+	{
+		return lights.iterator();
 	}
 
 	// ***************** Admin ********************** //
