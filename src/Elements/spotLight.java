@@ -3,6 +3,7 @@ package Elements;
 import java.awt.Color;
 
 import primitives.Point3D;
+import primitives.Util;
 import primitives.Vector;
 
 public class spotLight extends pointLight {
@@ -64,7 +65,7 @@ public class spotLight extends pointLight {
 		//IL = I0 * (D * L) / (Kc * Kl*d * Kq*d*d)
 		double d = (point.subtract(this.getPosition())).scalarMultiplication(getDirection());
 		Color c = super.getIntensity(point);
-		return new Color((int)(c.getRed() * d), (int)(c.getGreen() * d), (int)(c.getBlue() * d));
+		return Util.brightness(c, d);
 		
 	}
 	

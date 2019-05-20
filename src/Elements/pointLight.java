@@ -6,6 +6,7 @@ package Elements;
 import java.awt.Color;
 
 import primitives.Point3D;
+import primitives.Util;
 import primitives.Vector;
 
 /**
@@ -136,7 +137,7 @@ public class pointLight extends Light implements LightSource{
 		//IL = I0 / (Kc * Kl*d * Kq*d*d)
 		double d = this.position.distance(point);
 		double t = (this.Kc * this.Kl * d * this.Kq * d * d);
-		return new Color((int)(this.getColor().getRed() / t), (int)(this.getColor().getGreen() / t), (int)(this.getColor().getBlue() / t));
+		return Util.brightness(this.getColor(), (1/t));
 	}
 
 	@Override

@@ -1,5 +1,12 @@
 package primitives;
 
+import java.awt.Color;
+
+/**
+ * @author sasegal
+ *
+ */
+
 public abstract class Util {
 	// It is binary, equivalent to ~1/1,000,000,000,000 in decimal (12 digits)
 		private static final double ACCURACY = 0.001;
@@ -67,6 +74,38 @@ public abstract class Util {
 
 		public static double alignZero(double number) {
 			return getExp(number) < ACCURACY ? 0.0 : number;
+		}
+		
+		
+		public static Color addColors(Color...C)
+		{
+			//the function averages colors
+			int r = 0;
+			int g = 0;
+			int b = 0;
+			for(Color c:C)
+			{
+				r +=c.getRed();
+				g += c.getGreen();
+				b += c.getBlue();
+			}
+			r /= C.length;
+			g /= C.length;
+			b /= C.length;
+			return new Color(r, g, b);
+		}
+		
+		/**
+		 * @param c Color to be scaled
+		 * @param scale number to scale color by 
+		 * @return scaled color
+		 */
+		public static Color brightness(Color c, double scale) {
+			//the function scales colors by a number
+		    int r = Math.min(255, (int) (c.getRed() * scale));
+		    int g = Math.min(255, (int) (c.getGreen() * scale));
+		    int b = Math.min(255, (int) (c.getBlue() * scale));
+		    return new Color(r,g,b);
 		}
 
 }

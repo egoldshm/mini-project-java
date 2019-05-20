@@ -88,16 +88,19 @@ public class Render {
 	 * @return
 	 */
 	private Color calcColor(Geometry geometry, Point3D point) {
-		Color ambientLight = _scene.getAmbientLight().getIntensity(point);
+		Color ambientLight = _scene.getAmbientLight().getIntensity();
 		Color emissionLight = geometry.getEmmission();
 		Iterator<LightSource> lights = this.get_scene().getLightsIterator();
+		Color diffuseLight = ;
+		Color specularLight = new Color();
+		
 		while (lights.hasNext()){
 		LightSource light = lights.next();
-		Color diffuseLight += calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point));
-		Color specularLight += calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point.subtract(_scene.getCamera().getPO())), geometry.getNormal(point)
+		diffuseLight += calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point));
+		specularLight += calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point.subtract(_scene.getCamera().getPO())), geometry.getNormal(point)
 				, light.getL(point), geometry.getMaterial().getnShininess(),light.getIntensity(point));
 		}
-		return new Color(ambientLight + emissionLight + diffuseLight + specularLight)
+		return Util.addColors(ambientLight, emissionLight, diffuseLight, specularLight);
 	}
 
 
