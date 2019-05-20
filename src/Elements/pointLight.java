@@ -145,11 +145,6 @@ public class pointLight extends Light implements LightSource{
 		return point.subtract(position);
 	}
 
-	@Override
-	public Vector getD(Point3D point) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 
