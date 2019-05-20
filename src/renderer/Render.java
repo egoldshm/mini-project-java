@@ -82,6 +82,7 @@ public class Render {
 		return intersectionPoints;
 	}
 
+	
 	/**
 	 * @param geometry
 	 * @param point
@@ -90,16 +91,23 @@ public class Render {
 	private Color calcColor(Geometry geometry, Point3D point) {
 		Color ambientLight = _scene.getAmbientLight().getIntensity();
 		Color emissionLight = geometry.getEmmission();
+		Color difTemp, specTemp;
 		Iterator<LightSource> lights = this.get_scene().getLightsIterator();
-		Color diffuseLight = ;
-		Color specularLight = new Color();
-		
+		int rd=0, gd=0, bd=0, rs=0, gs=0, bs=0,count = 0;
 		while (lights.hasNext()){
-		LightSource light = lights.next();
-		diffuseLight += calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point));
-		specularLight += calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point.subtract(_scene.getCamera().getPO())), geometry.getNormal(point)
-				, light.getL(point), geometry.getMaterial().getnShininess(),light.getIntensity(point));
+			count++;
+			LightSource light = lights.next();
+			difTemp = calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point));
+			specTemp= calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point.subtract(_scene.getCamera().getPO())), geometry.getNormal(point), light.getL(point), geometry.getMaterial().getnShininess(),light.getIntensity(point));
+			rd+=difTemp.getRed();
+			gd+=difTemp.getGreen();
+			bd+=difTemp.getBlue();
+			rs+=specTemp.getRed();
+			gs+=specTemp.getGreen();
+			bs+=specTemp.getBlue();
 		}
+		Color diffuseLight = new Color(rd/count, gd/count, bd/count);
+		Color specularLight = new Color(rs/count, gs/count, bs/count);
 		return Util.addColors(ambientLight, emissionLight, diffuseLight, specularLight);
 	}
 
@@ -177,6 +185,33 @@ public class Render {
 		}
 	}
 
+	/**
+	 * @param _kd
+	 * @param _N
+	 * @param _L
+	 * @param _Il
+	 * @return diffusive component of light
+	 */
+	private Color calcDiffusiveComp(double _kd, Vector _N, Vector _L, Color _Il)
+	{
+		return Util.brightness(_Il, _kd * _N.scalarMultiplication(_L));
+	}
+	
+	/**
+	 * @param _ks
+	 * @param _V
+	 * @param _Norm
+	 * @param _L
+	 * @param _n
+	 * @param _Il
+	 * @return specular component of light
+	 */
+	private Color calcSpecularComp(double _ks, Vector _V, Vector _Norm, Vector _L, int _n, Color _Il)
+	{
+		//we may need to add an absolute value here because of the way the normal is calculated
+		Vector R = _L.subtractVector(_Norm.scalarMultiplication(2 * _L.scalarMultiplication(_Norm)));
+		return Util.brightness(_Il, _ks * Math.pow(_V.scalarMultiplication(R), _n));
+	}
 	// ***************** Admin ********************** //
 
 }
