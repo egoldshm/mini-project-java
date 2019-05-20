@@ -94,6 +94,7 @@ public class Render {
 		Color difTemp, specTemp;
 		Iterator<LightSource> lights = this.get_scene().getLightsIterator();
 		int rd=0, gd=0, bd=0, rs=0, gs=0, bs=0,count = 0;
+		//summing the specular and diffusive component for every light source
 		while (lights.hasNext()){
 			count++;
 			LightSource light = lights.next();
@@ -108,6 +109,7 @@ public class Render {
 		}
 		Color diffuseLight = new Color(rd/count, gd/count, bd/count);
 		Color specularLight = new Color(rs/count, gs/count, bs/count);
+		//summing ambient, emission, diffusive, specular light components
 		return Util.addColors(ambientLight, emissionLight, diffuseLight, specularLight);
 	}
 

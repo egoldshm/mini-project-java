@@ -48,5 +48,11 @@ public class renderTest {
 		render.printGrid(50);
 		render.get_imageWriter().writeToimage();
 	}
-
+	
+	@Test
+	public void specAndDifTest() {
+		Geometries geo = new Geometries();
+		geo.add(new Triangle(Point3D.ZERO, new Point3D(3, 0, 0), new Point3D(3, 2, 0)));
+		geo.add(new Triangle(Point3D.ZERO, new Point3D(0, 2, 0), new Point3D(3, 2, 0)));
+	}
 }

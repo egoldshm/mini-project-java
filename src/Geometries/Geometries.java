@@ -34,7 +34,14 @@ public class Geometries /*implements Intersectable*/ {
 
 	// ***************** Operations ******************** //
 
-
+	public void add(Geometry... G)
+	{
+		for(Geometry g:G)
+		{
+			this._geometries.add(g);
+		}
+		
+	}
 	/* (non-Javadoc)
 	 * @see Geometries.Intersectable#findIntersections(primitives.Ray)
 	 */
