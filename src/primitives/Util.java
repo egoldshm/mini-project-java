@@ -102,9 +102,14 @@ public abstract class Util {
 		 */
 		public static Color brightness(Color c, double scale) {
 			//the function scales colors by a number
-		    int r = Math.min(255, (int) (c.getRed() * scale));
-		    int g = Math.min(255, (int) (c.getGreen() * scale));
-		    int b = Math.min(255, (int) (c.getBlue() * scale));
+		    int r = Math.max(Math.min(255, (int) (c.getRed() * scale)), 0);
+		    int g = Math.max(Math.min(255, (int) (c.getGreen() * scale)), 0);
+		    int b = Math.max(Math.min(255, (int) (c.getBlue() * scale)), 0);
+		    int t;
+		    if(r!=0||g!=0||b!=0)
+		    {
+		    	t=1;
+		    }
 		    return new Color(r,g,b);
 		}
 

@@ -213,7 +213,7 @@ public class Render {
 	private Color calcSpecularComp(double _ks, Vector _V, Vector _Norm, Vector _L, int _n, Color _Il)
 	{
 		//we may need to add an absolute value here because of the way the normal is calculated
-		Vector R = _L.subtractVector(_Norm.scalarMultiplication(2 * _L.scalarMultiplication(_Norm)));
+		Vector R = _L.subtractVector(_Norm.scalarMultiplication(2 * Math.abs(_L.scalarMultiplication(_Norm))));
 		return Util.brightness(_Il, _ks * Math.pow(_V.scalarMultiplication(R), _n));
 	}
 	// ***************** Admin ********************** //

@@ -136,7 +136,7 @@ public class pointLight extends Light implements LightSource{
 		//the function returns the original intensity weekend parabolicly as it is further away
 		//IL = I0 / (Kc * Kl*d * Kq*d*d)
 		double d = this.position.distance(point);
-		double t = (this.Kc * this.Kl * d * this.Kq * d * d);
+		double t = (this.Kc + this.Kl * d + this.Kq * d * d);
 		return Util.brightness(this.getColor(), (1/t));
 	}
 
