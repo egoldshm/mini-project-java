@@ -34,7 +34,7 @@ public abstract class Geometry implements Intersectable {
 	}
 
 	public Geometry() {
-		this.emmission = new Color(0,0,0);
+		this.emmission = new Color(255,255,255);
 		this.material = new Material();
 	}
 

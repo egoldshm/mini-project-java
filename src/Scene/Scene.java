@@ -2,6 +2,7 @@
  * 
  */
 package Scene;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.awt.Color;
@@ -34,6 +35,7 @@ public class Scene {
 		this.geometries = new Geometries();
 		this._camera = new Camera();
 		this._screenDistance = 100;
+		this.lights = new ArrayList<LightSource>();
 	}
 	
 	/**
@@ -53,6 +55,26 @@ public class Scene {
 		this.geometries = _geometries;
 		this._camera = _camera;
 		this._screenDistance = _screenDistance;
+		this.lights = new ArrayList<LightSource>();
+	}
+	/**
+	 * Constructor with parameters
+	 * @param _sceneName
+	 * @param _background
+	 * @param _ambientLight
+	 * @param _geometries
+	 * @param _camera
+	 * @param _screenDistance
+	 * @param _lights
+	 */
+	public Scene(String _sceneName, Color _background, AmbientLight _ambientLight, Geometries _geometries, Camera _camera, double _screenDistance, List<LightSource> _lights) {
+		this._sceneName = _sceneName;
+		this._background = _background;
+		this._ambientLight = _ambientLight;
+		this.geometries = _geometries;
+		this._camera = _camera;
+		this._screenDistance = _screenDistance;
+		this.lights = _lights;
 	}
 	
 	/**
@@ -66,6 +88,7 @@ public class Scene {
 		this.geometries = scene.geometries;
 		this._camera = scene._camera;
 		this._screenDistance = scene._screenDistance;
+		this.lights = scene.lights;
 	}
 
 	// ***************** Getters/Setters ********************** //
