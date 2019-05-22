@@ -31,8 +31,8 @@ public class Material {
 	 * @param nShininess
 	 */
 	public Material() {
-		Kd = 1;
-		Ks = 1;
+		Kd = 5;
+		Ks = 5;
 		this.nShininess = 1;
 	}
 

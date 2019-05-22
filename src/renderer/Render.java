@@ -96,10 +96,10 @@ public class Render {
 		if(this.get_scene().getLights().isEmpty())
 			return Util.addColors(ambientLight, emissionLight);
 		Iterator<LightSource> lights = this.get_scene().getLightsIterator();
-		int /*rd=0, gd=0, bd=0, rs=0, gs=0, bs=0,*/count = 0;
+		/*int rd=0, gd=0, bd=0, rs=0, gs=0, bs=0,count = 0;*/
 		//summing the specular and diffusive component for every light source
 		while (lights.hasNext()){
-			count++;
+			//count++;
 			LightSource light = lights.next();
 			diffuseLight = calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point));
 			specularLight= calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point.subtract(_scene.getCamera().getPO())), geometry.getNormal(point), light.getL(point), geometry.getMaterial().getnShininess(),light.getIntensity(point));
@@ -214,7 +214,7 @@ public class Render {
 	private Color calcSpecularComp(double _ks, Vector _V, Vector _Norm, Vector _L, int _n, Color _Il)
 	{
 		//we may need to add an absolute value here because of the way the normal is calculated
-		Vector R = _L.subtractVector(_Norm.scalarMultiplication(2 * Math.abs(_L.scalarMultiplication(_Norm))));
+		Vector R = _L.subtractVector(_Norm.scalarMultiplication(2 * /*Math.abs(*/_L.scalarMultiplication(_Norm))/*)*/);
 		return Util.brightness(_Il, _ks * Math.pow(_V.scalarMultiplication(R), _n));
 	}
 	// ***************** Admin ********************** //
