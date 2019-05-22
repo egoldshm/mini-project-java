@@ -91,7 +91,8 @@ public class Render {
 	private Color calcColor(Geometry geometry, Point3D point) {
 		Color ambientLight = _scene.getAmbientLight().getIntensity();
 		Color emissionLight = geometry.getEmmission();
-		Color difTemp, specTemp;
+		Color diffuseLight, specularLight;
+		ArrayList<Color> colorList = new ArrayList<Color>();
 		if(this.get_scene().getLights().isEmpty())
 			return Util.addColors(ambientLight, emissionLight);
 		Iterator<LightSource> lights = this.get_scene().getLightsIterator();
@@ -100,19 +101,19 @@ public class Render {
 		while (lights.hasNext()){
 			count++;
 			LightSource light = lights.next();
-			difTemp = calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point));
-			specTemp= calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point.subtract(_scene.getCamera().getPO())), geometry.getNormal(point), light.getL(point), geometry.getMaterial().getnShininess(),light.getIntensity(point));
-			rd+=difTemp.getRed();
+			diffuseLight = calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point));
+			specularLight= calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point.subtract(_scene.getCamera().getPO())), geometry.getNormal(point), light.getL(point), geometry.getMaterial().getnShininess(),light.getIntensity(point));
+			/*rd+=difTemp.getRed();
 			gd+=difTemp.getGreen();
 			bd+=difTemp.getBlue();
 			rs+=specTemp.getRed();
 			gs+=specTemp.getGreen();
-			bs+=specTemp.getBlue();
+			bs+=specTemp.getBlue();*/
+			colorList.add(diffuseLight);
+			colorList.add(specularLight);
 		}
-		Color diffuseLight = new Color(rd/count, gd/count, bd/count);
-		Color specularLight = new Color(rs/count, gs/count, bs/count);
 		//summing ambient, emission, diffusive, specular light components
-		return Util.addColors(ambientLight, emissionLight, diffuseLight, specularLight);
+		return Util.addColors(colorList, ambientLight, emissionLight/*, diffuseLight, specularLight*/);
 	}
 
 

@@ -1,6 +1,8 @@
 package primitives;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * @author sasegal
@@ -92,6 +94,29 @@ public abstract class Util {
 			r /= C.length;
 			g /= C.length;
 			b /= C.length;
+			return new Color(r, g, b);
+		}
+		public static Color addColors(Collection<Color> C1, Color...C2)
+		{
+			//the function averages colors
+			ArrayList<Color> C = new ArrayList<Color>();
+			C.addAll(C1);
+			for(Color c:C2)
+			{
+				C.add(c);
+			}
+			int r = 0;
+			int g = 0;
+			int b = 0;
+			for(Color c:C)
+			{
+				r +=c.getRed();
+				g += c.getGreen();
+				b += c.getBlue();
+			}
+			r /= C.size();
+			g /= C.size();
+			b /= C.size();
 			return new Color(r, g, b);
 		}
 		
