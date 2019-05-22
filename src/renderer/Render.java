@@ -96,7 +96,7 @@ public class Render {
 		if(this.get_scene().getLights().isEmpty())
 			return Util.addColors(ambientLight, emissionLight);
 		Iterator<LightSource> lights = this.get_scene().getLightsIterator();
-		int rd=0, gd=0, bd=0, rs=0, gs=0, bs=0,count = 0;
+		int /*rd=0, gd=0, bd=0, rs=0, gs=0, bs=0,*/count = 0;
 		//summing the specular and diffusive component for every light source
 		while (lights.hasNext()){
 			count++;
