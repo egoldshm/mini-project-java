@@ -52,11 +52,11 @@ public class renderTest {
 	@Test
 	public void specAndDifTest1() {
 		Geometries geo = new Geometries();
-		geo.add(new Triangle(new Color(32,22,0),new Material(), new Point3D(100, 0, 0), new Point3D(100, 0, 100),new Point3D(100, 100, 100)));
-		geo.add(new Triangle(new Color(32,22,0),new Material(), new Point3D(100, 0, 0), new Point3D(100, 100, 0),new Point3D(100, 100, 100)));
-		Scene scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(255, 0, 255), 1), new Geometries(geo), new Camera(Point3D.ZERO,  new Vector(100, 50, 50).normalizationOfVector(),new Vector(0, 1, 0)), 400);
+		geo.add(new Triangle(new Color(32,22,0),new Material(), new Point3D(100, 50, 50), new Point3D(100, -50, 50),new Point3D(100, -50, -50)));
+		geo.add(new Triangle(new Color(32,22,0),new Material(), new Point3D(100, 50, 50), new Point3D(100, 50, -50),new Point3D(100, -50, -50)));
+		Scene scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(255, 0, 255), 1), new Geometries(geo), new Camera(Point3D.ZERO,  new Vector(1, 0, 0),new Vector(0, 1, 0)), 400);
 		List<LightSource> lights = new ArrayList<LightSource>();
-		lights.add(new pointLight(new Color(255,255,255),new Point3D(89,45,51), 0.1,0.1,0.1));
+		lights.add(new pointLight(new Color(255,255,255),new Point3D(95,0,0), 0.1,0.1,0.01));
 		scene.setLights(lights);
 		ImageWriter imageWriter = new ImageWriter("tests/specAndDifTest1", 500, 500, 500, 500);
 		Render render = new Render(scene, imageWriter);
