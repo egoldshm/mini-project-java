@@ -17,7 +17,7 @@ import java.util.List;
 
 public class renderTest {
 
-	@Test
+	/*@Test
 	public void basicRenderTest() {
 		List<Geometry> geometries = new ArrayList<Geometry>();
         geometries.add(new Triangle(new Point3D( 100, 0, 149),new Point3D(  0, 100, 149),new Point3D( 100, 100, 149)));
@@ -47,7 +47,7 @@ public class renderTest {
 		render.renderImage();
 		render.printGrid(50);
 		render.get_imageWriter().writeToimage();
-	}
+	}*/
 	
 	@Test
 	public void specAndDifTest1() {
@@ -55,9 +55,9 @@ public class renderTest {
 		Geometries geo = new Geometries();
 		geo.add(new Triangle(new Color(32,22,0),new Material(), new Point3D(100, 50, 50), new Point3D(100, -50, 50),new Point3D(100, -50, -50)));
 		geo.add(new Triangle(new Color(32,22,0),new Material(), new Point3D(100, 50, 50), new Point3D(100, 50, -50),new Point3D(100, -50, -50)));
-		Scene scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(255, 0, 255), 1), new Geometries(geo), new Camera(Point3D.ZERO,  new Vector(1, 0, 0),new Vector(0, 1, 0)), 400);
+		Scene scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(0, 0, 0), 1), new Geometries(geo), new Camera(Point3D.ZERO,  new Vector(1, 0,0),new Vector(0, 1, 0)), 400);
 		List<LightSource> lights = new ArrayList<LightSource>();
-		lights.add(new pointLight(new Color(255,255,255),new Point3D(95,0,0), 0.01,0.01,0.01));
+		lights.add(new pointLight(new Color(0,0,255),new Point3D(95,0,0), 0.01,0.01,0.01));
 		scene.setLights(lights);
 		ImageWriter imageWriter = new ImageWriter("tests/specAndDifTest1", 500, 500, 500, 500);
 		Render render = new Render(scene, imageWriter);

@@ -54,7 +54,7 @@ public class Render {
 	 * @return Scene
 	 */
 	public Scene get_scene() {
-		return _scene;
+		return new Scene(this._scene);
 	}
 
 	public void set_scene(Scene _scene) {
@@ -76,8 +76,9 @@ public class Render {
 		Map<Geometry, List<Point3D>> intersectionPoints = new HashMap<Geometry, List<Point3D>>();
 		while (geometries.hasNext()) {
 			Geometry geometry = geometries.next();
-			List<Point3D> geometryIntersectionPoints = geometry.findIntersections(ray);
-			intersectionPoints.put(geometry,geometryIntersectionPoints);
+			List<Point3D> geometryIntersectionPoints = new ArrayList<Point3D>(geometry.findIntersections(ray));
+			if(!geometryIntersectionPoints.isEmpty())
+				intersectionPoints.put(geometry,geometryIntersectionPoints);
 		}
 		return intersectionPoints;
 	}
@@ -163,6 +164,13 @@ public class Render {
 
 		for (int i = 0; i < _imageWriter.getNx(); i++) {
 			for (int j = 0; j < _imageWriter.getNy(); j++) {
+				if(i==250 && j==250)
+				{
+				
+					int p;
+					p=9;
+					
+				}
 				Ray r = new Ray(_scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(),
 						i, j, _scene.getScreenDistance(), _imageWriter.getWidth(), _imageWriter.getHeight()));
 				Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(r);																													// fix
