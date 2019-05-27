@@ -32,7 +32,7 @@ public class Material {
 	 */
 	public Material() {
 		Kd = 1;
-		Ks = 10;
+		Ks = 1;
 		this.nShininess = 4;
 	}
 
