@@ -63,7 +63,7 @@ public class spotLight extends pointLight {
 	{
 		//the function returns the base function's intensity and multiplies it by the projection of the direction onto the vector between the light and the point
 		//IL = I0 * (D * L) / (Kc * Kl*d * Kq*d*d)
-		double d = (point.subtract(this.getPosition())).scalarMultiplication(getDirection());
+		double d = Math.abs((point.subtract(this.getPosition())).scalarMultiplication(getDirection()));
 		Color c = super.getIntensity(point);
 		return Util.brightness(c, d);
 		

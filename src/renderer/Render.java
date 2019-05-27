@@ -97,19 +97,12 @@ public class Render {
 		if(this.get_scene().getLights().isEmpty())
 			return Util.addColors(ambientLight, emissionLight);
 		Iterator<LightSource> lights = this.get_scene().getLightsIterator();
-		/*int rd=0, gd=0, bd=0, rs=0, gs=0, bs=0,count = 0;*/
+
 		//summing the specular and diffusive component for every light source
 		while (lights.hasNext()){
-			//count++;
 			LightSource light = lights.next();
 			diffuseLight = calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point));
 			specularLight= calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point.subtract(_scene.getCamera().getPO())), geometry.getNormal(point), light.getL(point), geometry.getMaterial().getnShininess(),light.getIntensity(point));
-			/*rd+=difTemp.getRed();
-			gd+=difTemp.getGreen();
-			bd+=difTemp.getBlue();
-			rs+=specTemp.getRed();
-			gs+=specTemp.getGreen();
-			bs+=specTemp.getBlue();*/
 			colorList.add(diffuseLight);
 			colorList.add(specularLight);
 		}
@@ -164,12 +157,10 @@ public class Render {
 
 		for (int i = 0; i < _imageWriter.getNx(); i++) {
 			for (int j = 0; j < _imageWriter.getNy(); j++) {
-				if(i==250 && j==250)
+				if(i==150 && j==150)
 				{
-				
 					int p;
-					p=9;
-					
+					p=9;		
 				}
 				Ray r = new Ray(_scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(),
 						i, j, _scene.getScreenDistance(), _imageWriter.getWidth(), _imageWriter.getHeight()));
@@ -207,7 +198,7 @@ public class Render {
 	 */
 	private Color calcDiffusiveComp(double _kd, Vector _N, Vector _L, Color _Il)
 	{
-		return Util.brightness(_Il, _kd * _N.scalarMultiplication(_L));
+		return Util.brightness(_Il, Math.abs(_kd * _N.scalarMultiplication(_L)));
 	}
 	
 	/**
@@ -222,8 +213,9 @@ public class Render {
 	private Color calcSpecularComp(double _ks, Vector _V, Vector _Norm, Vector _L, int _n, Color _Il)
 	{
 		//we may need to add an absolute value here because of the way the normal is calculated
-		Vector R = _L.subtractVector(_Norm.scalarMultiplication(2 * /*Math.abs(*/_L.scalarMultiplication(_Norm))/*)*/);
-		return Util.brightness(_Il, _ks * Math.pow(_V.scalarMultiplication(R), _n));
+		Vector R = _L.subtractVector(_Norm.scalarMultiplication(2 * _L.scalarMultiplication(_Norm)));
+		double t = Math.abs(_ks * Math.pow(R.scalarMultiplication(_V.scalarMultiplication(1)),  1/_n));
+		return Util.brightness(_Il, t);
 	}
 	// ***************** Admin ********************** //
 
