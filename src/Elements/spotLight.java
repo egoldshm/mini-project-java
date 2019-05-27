@@ -22,7 +22,7 @@ public class spotLight extends pointLight {
 	 */
 	public spotLight(Color _color, Point3D position, double kc, double kl, double kq, Vector direction) {
 		super(_color, position, kc, kl, kq);
-		this.direction = direction;
+		this.direction = direction.normalizationOfVector();
 	}
 
 	public spotLight(spotLight spotLight) {
@@ -55,7 +55,7 @@ public class spotLight extends pointLight {
 	 * @param direction the direction to set
 	 */
 	public void setDirection(Vector direction) {
-		this.direction = direction;
+		this.direction = direction.normalizationOfVector();
 		
 	}
 	@Override
@@ -63,7 +63,7 @@ public class spotLight extends pointLight {
 	{
 		//the function returns the base function's intensity and multiplies it by the projection of the direction onto the vector between the light and the point
 		//IL = I0 * (D * L) / (Kc * Kl*d * Kq*d*d)
-		double d = Math.abs((point.subtract(this.getPosition())).scalarMultiplication(getDirection()));
+		double d = Math.abs((point.subtract(this.getPosition())).scalarMultiplication(this.getDirection()));
 		Color c = super.getIntensity(point);
 		return Util.brightness(c, d);
 		
