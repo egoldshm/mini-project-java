@@ -5,6 +5,8 @@ package Elements;
 
 import java.awt.Color;
 
+import primitives.Point3D;
+
 /**
  * @author eitan Class for ambient light
  */
