@@ -5,6 +5,8 @@ package Elements;
 
 import java.awt.Color;
 
+import primitives.Point3D;
+
 /**
  * @author eitan
  * abstract class for light in sense 
@@ -44,5 +46,5 @@ public abstract class Light {
 	/**
 	 * @return color in point
 	 */
-	abstract Color getIntensity();
+	abstract Color getIntensity(Point3D p);
 }

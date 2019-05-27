@@ -90,7 +90,7 @@ public class Render {
 	 * @return
 	 */
 	private Color calcColor(Geometry geometry, Point3D point) {
-		Color ambientLight = _scene.getAmbientLight().getIntensity();
+		Color ambientLight = _scene.getAmbientLight().getIntensity(point);
 		Color emissionLight = geometry.getEmmission();
 		Color diffuseLight, specularLight;
 		ArrayList<Color> colorList = new ArrayList<Color>();

@@ -63,11 +63,6 @@ public class DirectionalLight extends Light implements LightSource{
 	 * @see Elements.Light#getIntensity()
 	 */
 	@Override
-	Color getIntensity() {
-		return null;
-	}
-
-	@Override
 	public Color getIntensity(Point3D point) {
 		//The function just return the original intensity
 		//IL = I0

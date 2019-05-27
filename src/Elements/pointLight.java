@@ -126,10 +126,7 @@ public class pointLight extends Light implements LightSource{
 	/* (non-Javadoc)
 	 * @see Elements.Light#getIntensity()
 	 */
-	@Override
-	public Color getIntensity() {
-		return null;//TODO: fix
-	}
+	
 
 	@Override
 	public Color getIntensity(Point3D point) {

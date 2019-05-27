@@ -5,6 +5,8 @@ package Elements;
 
 import java.awt.Color;
 
+import primitives.Point3D;
+
 /**
  * @author eitan Class for ambient light
  */
@@ -58,7 +60,7 @@ public class AmbientLight extends Light {
 	}
 
 	// ***************** Operations ******************** // 
-	public Color getIntensity() {
+	public Color getIntensity(Point3D p) {
 		double b = getKa() * getColor().getBlue();
 		double r = getKa() * getColor().getRed();
 		double g = getKa() * getColor().getGreen();
