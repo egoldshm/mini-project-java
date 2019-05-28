@@ -125,7 +125,7 @@ public abstract class Util {
 		 * @param scale number to scale color by 
 		 * @return scaled color
 		 */
-		public static Color brightness(Color c, double scale) {
+	/*	public static Color brightness(Color c, double scale) {
 			//the function scales colors by a number
 		    int r = Math.max(Math.min(255, (int) (c.getRed() * scale)), 0);
 		    int g = Math.max(Math.min(255, (int) (c.getGreen() * scale)), 0);
@@ -136,6 +136,6 @@ public abstract class Util {
 		    	t=1;
 		    }
 		    return new Color(r,g,b);
-		}
+		}*/
 
 }
