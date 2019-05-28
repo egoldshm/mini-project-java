@@ -236,7 +236,6 @@ public class Render {
 		double multiColor=0;
         if(_V.scalarMultiplication(R)>0)
         	multiColor=_ks*(Math.pow((_V.scalarMultiplication(R)),_n));
-		//we may need to add an absolute value here because of the way the normal is calculated
 		return new Color(SpecinCol(_Il.getRed(),multiColor),SpecinCol(_Il.getGreen(),multiColor),SpecinCol(_Il.getBlue(),multiColor));
 	}
 	
