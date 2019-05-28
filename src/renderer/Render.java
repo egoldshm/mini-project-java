@@ -167,7 +167,7 @@ public class Render {
 
 		for (int i = 0; i < _imageWriter.getNx(); i++) {
 			for (int j = 0; j < _imageWriter.getNy(); j++) {
-				if(i==150 && j==150)
+				if(i==340 && j==210)
 				{
 					int p;
 					p=9;		
@@ -228,7 +228,7 @@ public class Render {
 		
 		_L = _L.normalizationOfVector();
 		_Norm = _Norm.normalizationOfVector();
-		_V.normalizationOfVector();
+		_V = _V.normalizationOfVector();
 		Vector tmp = new Vector(_Norm);
 		Vector R = new Vector(_L);
 		tmp = tmp.scalarMultiplication(-2 * _L.scalarMultiplication(_Norm));

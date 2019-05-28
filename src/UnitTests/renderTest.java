@@ -99,7 +99,7 @@ public class renderTest {
 		
 		//a sphere and a pointlight
 		geo = new Geometries();
-		geo.add(new Sphere(new Color(32,22,0),new Material(10, 1, 4), 100, new Point3D(200, 0, 0)));
+		geo.add(new Sphere(new Color(0,0,0),new Material(10, 1, 4), 100, new Point3D(200, 0, 0)));
 		scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(255, 0, 0), 1), new Geometries(geo), new Camera(Point3D.ZERO,  new Vector(1, 0, 0),new Vector(0, 1, 0)), 400);
 		lights = new ArrayList<LightSource>();
 		lights.add(new pointLight(new Color(100,100,100),new Point3D(95,5,-50), 0.01,0.01,0.01));
@@ -124,10 +124,10 @@ public class renderTest {
 
 		//a sphere and a spotlight
 		geo = new Geometries();
-		geo.add(new Sphere(new Color(0,0,100),new Material(10, 1, 20), 100, new Point3D(0, 0, 200)));
-		scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(0, 0, 0), 1), new Geometries(geo), new Camera(Point3D.ZERO,  new Vector(0, 0, 1),new Vector(0, 1, 0)), 400);
+		geo.add(new Sphere(new Color(0,0,255),new Material(0.8, 1.5, 50), 500, new Point3D(0, 0, -1000)));
+		scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(0, 0, 0), 1), new Geometries(geo), new Camera(Point3D.ZERO,  new Vector(0, 0, -1),new Vector(0, 1, 0)), 400);
 		lights = new ArrayList<LightSource>();
-		lights.add(new spotLight(new Color(255, 100, 100),new Point3D(0 , 0, 90), 0.1, 0.01, 0.1, new Vector(0, 0, 1)));
+		lights.add(new spotLight(new Color(255, 0, 0),new Point3D(200 , 250, -100), 0.01, 0.00001, 0.000005, new Vector(-2, -2, -3)));
 		scene.setLights(lights);
 		imageWriter = new ImageWriter("tests/specAndDifTest4", 500, 500, 500, 500);
 		render = new Render(scene, imageWriter);
