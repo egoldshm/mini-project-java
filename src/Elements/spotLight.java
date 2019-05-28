@@ -63,11 +63,20 @@ public class spotLight extends pointLight {
 	{
 		//the function returns the base function's intensity and multiplies it by the projection of the direction onto the vector between the light and the point
 		//IL = I0 * (D * L) / (Kc * Kl*d * Kq*d*d)
-		double d = Math.abs((point.subtract(this.getPosition())).scalarMultiplication(this.getDirection()));
-		Color c = super.getIntensity(point);
-		return Util.brightness(c, d);
+		 double d=this.getPosition().distance(point);
+	     double t1= this.getKc()+this.getKl()*d+this.getKq()*d*d;
+	     double t2=direction.scalarMultiplication(this.getL(point));
+	     return new Color(CacInColor(this.getColor().getRed(),t2,t1),CacInColor(this.getColor().getGreen(),t2,t1),CacInColor(this.getColor().getBlue(),t2,t1));
 		
 	}
-	
+	private int CacInColor(int C,double tmp1, double tmp)
+	{
+	        int tmp2=(int)((C*tmp1)/tmp);
+	        if(tmp2>255)
+	            return 255;
+	        if(tmp2<0)
+	            return 0;
+	        return tmp2;
+	}
 
 }

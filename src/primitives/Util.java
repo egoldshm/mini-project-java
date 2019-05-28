@@ -79,7 +79,7 @@ public abstract class Util {
 		}
 		
 		
-		public static Color addColors(Color...C)
+		/*public static Color addColors(Color...C)
 		{
 			//the function averages colors
 			int r = 0;
@@ -119,7 +119,7 @@ public abstract class Util {
 			b /= C.size();
 			return new Color(r, g, b);
 		}
-		
+		*/
 		/**
 		 * @param c Color to be scaled
 		 * @param scale number to scale color by 
