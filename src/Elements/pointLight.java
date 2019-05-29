@@ -11,7 +11,7 @@ import primitives.Vector;
 
 /**
  * @author eitan
- *
+ * Class of Light Source representation of point Light
  */
 public class pointLight extends Light implements LightSource{
 
@@ -21,11 +21,12 @@ public class pointLight extends Light implements LightSource{
 	// ***************** Constructors ********************** // 
 
 	/**
-	 * @param _color
-	 * @param position
-	 * @param kc
-	 * @param kl
-	 * @param kq
+	 * Constructor
+	 * @param color of the light
+	 * @param position the position of the light
+	 * @param kc first constant
+	 * @param kl second constant
+	 * @param kq third constant
 	 */
 	public pointLight(Color _color, Point3D position, double kc, double kl, double kq) {
 		super(_color);
@@ -36,7 +37,7 @@ public class pointLight extends Light implements LightSource{
 	}
 
 	/**
-	 * @param copy ctor
+	 * copy constructor
 	 */
 	public pointLight(pointLight pointLight) {
 		super(pointLight.getColor());
@@ -46,14 +47,14 @@ public class pointLight extends Light implements LightSource{
 		Kq = pointLight.Kq;
 	}
 	/**
-	 * 
+	 * Default constructor
 	 */
 	public pointLight() {
 	}
 	
 	// ***************** Getters/Setters ********************** //
 	/**
-	 * @return the position
+	 * @return the position of the light
 	 */
 	public Point3D getPosition() {
 		return position;
@@ -62,7 +63,7 @@ public class pointLight extends Light implements LightSource{
 
 
 	/**
-	 * @param position the position to set
+	 * @param position the position of the light to set
 	 */
 	public void setPosition(Point3D position) {
 		this.position = position;
@@ -71,7 +72,7 @@ public class pointLight extends Light implements LightSource{
 
 
 	/**
-	 * @return the kc
+	 * @return the kc first constant
 	 */
 	public double getKc() {
 		return Kc;
@@ -80,7 +81,7 @@ public class pointLight extends Light implements LightSource{
 
 
 	/**
-	 * @param kc the kc to set
+	 * @param kc the kc first constant to set
 	 */
 	public void setKc(double kc) {
 		Kc = kc;
@@ -89,7 +90,7 @@ public class pointLight extends Light implements LightSource{
 
 
 	/**
-	 * @return the kl
+	 * @return the kl second constant
 	 */
 	public double getKl() {
 		return Kl;
@@ -107,7 +108,7 @@ public class pointLight extends Light implements LightSource{
 
 
 	/**
-	 * @return the kq
+	 * @return the kq third constant
 	 */
 	public double getKq() {
 		return Kq;
@@ -128,6 +129,9 @@ public class pointLight extends Light implements LightSource{
 	 */
 	
 
+	/* (non-Javadoc)
+	 * @see Elements.Light#getIntensity(primitives.Point3D)
+	 */
 	@Override
 	public Color getIntensity(Point3D point) {
 		//the function returns the original intensity weekend parabolicly as it is further away
@@ -137,6 +141,9 @@ public class pointLight extends Light implements LightSource{
 		return new Color(CacInColor(this.getColor().getRed(),t),CacInColor(this.getColor().getGreen(),t),CacInColor(this.getColor().getBlue(),t));
 	}
 	
+	/**
+	 * Auxiliary function for computation of light
+	 */
 	private int CacInColor(int C, double tmp)
     {
         int tmp2=(int)(C/tmp);
@@ -147,6 +154,9 @@ public class pointLight extends Light implements LightSource{
         return tmp2;
     }
 	
+	/* (non-Javadoc)
+	 * @see Elements.LightSource#getL(primitives.Point3D)
+	 */
 	@Override
 	public Vector getL(Point3D point) {
 		return point.subtract(position).normalizationOfVector();

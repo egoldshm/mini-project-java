@@ -5,35 +5,60 @@ import primitives.Ray;
 
 import java.util.*;
 
-public class Geometries /*implements Intersectable*/ {
+/**
+ * @author eitan
+ * @info
+ * class for list of geometries
+ */
+public class Geometries {
 
 	private List<Geometry> _geometries;
 
 	// ***************** Constructors ********************** //
 
+	/**
+	 * constructor
+	 * @param geometries list of Geometry
+	 */
 	public Geometries(List<Geometry> geometries) {
 		this._geometries = geometries;
 	}
 
+	/**
+	 * Copy constructor
+	 */
 	public Geometries(Geometries geometries) {
 		this._geometries = geometries.getGeometries();
 	}
 
+	/**
+	 * Default constructor
+	 */
 	public Geometries() {
 		_geometries = new ArrayList<Geometry>();
 	}
 	// ***************** Getters/Setters ********************** //
 
+	/**
+	 * @return List of Geometry
+	 */
 	public List<Geometry> getGeometries() {
 		return _geometries;
 	}
 
+	/**
+	 * @param geometries list of the geometry
+	 */
 	public void setGeometries(List<Geometry> geometries) {
 		this._geometries = geometries;
 	}
 
 	// ***************** Operations ******************** //
 
+	/**
+	 * function for add geometry for the list
+	 * @param G few Geometries for add to the list 
+	 */
 	public void add(Geometry... G)
 	{
 		for(Geometry g:G)

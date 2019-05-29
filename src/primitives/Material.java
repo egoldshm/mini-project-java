@@ -14,9 +14,9 @@ public class Material {
 	// ***************** Constructors ********************** //
 
 	/**
-	 * @param kd
-	 * @param ks
-	 * @param nShininess
+	 * @param kd diffuse factor
+	 * @param ks specular factor
+	 * @param nShininess Shininess factor
 	 */
 	public Material(double kd, double ks, int nShininess) {
 		Kd = kd;
@@ -26,9 +26,7 @@ public class Material {
 	
 
 	/**
-	 * @param kd
-	 * @param ks
-	 * @param nShininess
+	 * Default constructor
 	 */
 	public Material() {
 		Kd = 1;
@@ -37,9 +35,7 @@ public class Material {
 	}
 
 	/**
-	 * @param kd
-	 * @param ks
-	 * @param nShininess
+	 * Copy constructor
 	 */
 	public Material(Material m) {
 		Kd = m.getKd();
@@ -50,41 +46,41 @@ public class Material {
 
 	// ***************** Getters/Setters ********************** //
 	/**
-	 * @return the kd
+	 * @return the kd diffuse factor
 	 */
 	public double getKd() {
 		return Kd;
 	}
 	/**
-	 * @param kd the kd to set
+	 * @param kd the diffuse factor to set
 	 */
 	public void setKd(double kd) {
 		Kd = kd;
 	}
 
 	/**
-	 * @return the ks
+	 * @return the ks specular factor
 	 */
 	public double getKs() {
 		return Ks;
 	}
 
 	/**
-	 * @param ks the ks to set
+	 * @param ks the specular factor to set
 	 */
 	public void setKs(double ks) {
 		Ks = ks;
 	}
 
 	/**
-	 * @return the nShininess
+	 * @return the nShininess Shininess factor
 	 */
 	public int getnShininess() {
 		return nShininess;
 	}
 
 	/**
-	 * @param nShininess the nShininess to set
+	 * @param nShininess the Shininess factor to set
 	 */
 	public void setnShininess(int nShininess) {
 		this.nShininess = nShininess;
@@ -92,6 +88,9 @@ public class Material {
 
 	// ***************** Admin ********************** //
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		//self check
@@ -107,6 +106,9 @@ public class Material {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "ks: " + getKs() +"| kd: " + getKd()+"| nShininess: " + getnShininess();

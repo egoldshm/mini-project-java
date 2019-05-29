@@ -52,6 +52,9 @@ public class Camera {
 		_vRight = c.getVRight();
 	}
 
+	/**
+	 * Default constructor
+	 */
 	public Camera() {
 
 	}

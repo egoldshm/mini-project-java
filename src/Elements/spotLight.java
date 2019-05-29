@@ -6,6 +6,10 @@ import primitives.Point3D;
 import primitives.Util;
 import primitives.Vector;
 
+/**
+ * @author eitan
+ * Class of Light Source representation of spot Light
+ */
 public class spotLight extends pointLight {
 
 	private Vector direction;
@@ -13,30 +17,50 @@ public class spotLight extends pointLight {
 	// ***************** Constructors ********************** // 
 
 	/**
-	 * @param _color
-	 * @param position
-	 * @param kc
-	 * @param kl
-	 * @param kq
-	 * @param direction
+	 * Constructor
+	 * @param color of the light
+	 * @param position the position of the light
+	 * @param kc first constant
+	 * @param kl second constant
+	 * @param kq third constant
+	 * @param direction of the light
 	 */
 	public spotLight(Color _color, Point3D position, double kc, double kl, double kq, Vector direction) {
 		super(_color, position, kc, kl, kq);
 		this.direction = direction.normalizationOfVector();
 	}
 
+	/**
+	 * Copy constructor
+	 */
 	public spotLight(spotLight spotLight) {
 		super(spotLight.getColor(), spotLight.getPosition(), spotLight.getKc(), spotLight.getKl(), spotLight.getKq());
 		this.direction = spotLight.direction;
 	}
+	
+	/**
+	 * Constructor
+	 * @param color of the light
+	 * @param position the position of the light
+	 * @param kc first constant
+	 * @param kl second constant
+	 * @param kq third constant
+	 */
 	public spotLight(Color _color, Point3D position, double kc, double kl, double kq) {
 		super(_color, position, kc, kl, kq);
 	}
 
+	/**
+	 * Constructor
+	 * @param pointLight and become to spot Light
+	 */
 	public spotLight(pointLight pointLight) {
 		super(pointLight);
 	}
 
+	/**
+	 * Default constructor
+	 */
 	public spotLight() {
 	}
 	
@@ -44,7 +68,7 @@ public class spotLight extends pointLight {
 	// ***************** Getters/Setters ********************** //
 
 	/**
-	 * @return the direction
+	 * @return the direction of the light
 	 */
 	public Vector getDirection() {
 		return direction;
@@ -52,12 +76,15 @@ public class spotLight extends pointLight {
 
 	
 	/**
-	 * @param direction the direction to set
+	 * @param direction the direction of the light to set
 	 */
 	public void setDirection(Vector direction) {
 		this.direction = direction.normalizationOfVector();
 		
 	}
+	/* (non-Javadoc)
+	 * @see Elements.pointLight#getIntensity(primitives.Point3D)
+	 */
 	@Override
 	public Color getIntensity(Point3D point)
 	{
@@ -69,6 +96,10 @@ public class spotLight extends pointLight {
 	     return new Color(CacInColor(this.getColor().getRed(),t2,t1),CacInColor(this.getColor().getGreen(),t2,t1),CacInColor(this.getColor().getBlue(),t2,t1));
 		
 	}
+	
+	/**
+	 * Auxiliary function for computation of light
+	 */
 	private int CacInColor(int C,double tmp1, double tmp)
 	{
 	        int tmp2=(int)((C*tmp1)/tmp);

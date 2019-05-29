@@ -23,7 +23,7 @@ public class Triangle extends Geometry{
 	// ***************** Constructors ********************** // 
 	
 	/**
-	 * default ctor
+	 * default constructor
 	 */
 	public Triangle() {
 		super();
@@ -32,6 +32,12 @@ public class Triangle extends Geometry{
 		_p3 = new Point3D();
 	}
 
+	/**
+	 * constructor
+	 * @param p1 first point of the triangle
+	 * @param p2 second point of the triangle
+	 * @param p3 third point of the triangle
+	 */
 	public Triangle(Point3D p1, Point3D p2, Point3D p3) {
 		super();
 		this._p1 = p1;
@@ -40,7 +46,7 @@ public class Triangle extends Geometry{
 	}
 
 	/**
-	 * copy ctor
+	 * copy constructor
 	 */
 	public Triangle(Triangle temp) 
 	{
@@ -50,6 +56,14 @@ public class Triangle extends Geometry{
 		_p3 = temp._p3;
 	}
 
+	/**
+	 * constructor
+	 * @param emmission of the triangle
+	 * @param material of the triangle
+	 * @param p1 first point of the triangle
+	 * @param p2 second point of the triangle
+	 * @param p3 third point of the triangle
+	 */
 	public Triangle(Color emmission, Material material, Point3D _p1, Point3D _p2, Point3D _p3) {
 		super(emmission, material);
 		this._p1 = _p1;

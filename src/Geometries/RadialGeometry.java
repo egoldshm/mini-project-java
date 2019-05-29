@@ -21,19 +21,34 @@ public abstract class RadialGeometry extends Geometry
 	
 	// ***************** Constructors ********************** // 
 	
+	/**
+	 * Default constructor
+	 */
 	public RadialGeometry() {
 		super();
 		this._radius = 0;
 	}
 
+	/**
+	 * Copy constructor
+	 */
 	public RadialGeometry(RadialGeometry r) {
 		this._radius = r.getRadius();
 	}
 	
+	/**
+	 * constructor
+	 * @param radius of the geometry.
+	 */
 	public RadialGeometry(double _radius) {
 		this._radius = _radius;
 	}
 
+	/**
+	 * @param emmission of the geometry
+	 * @param material of the geometry
+	 * @param radius Geometry
+	 */
 	public RadialGeometry(Color emmission, Material material, double _radius) {
 		super(emmission, material);
 		this._radius = _radius;

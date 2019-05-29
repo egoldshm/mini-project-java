@@ -8,7 +8,8 @@ import java.awt.Color;
 import primitives.Point3D;
 
 /**
- * @author eitan Class for ambient light
+ * @author eitan
+ * Class for ambient light
  */
 public class AmbientLight extends Light {
 
@@ -17,10 +18,9 @@ public class AmbientLight extends Light {
 	// ***************** Constructors ********************** // 
 
 	/**
-	 * ctor with 2 param
-	 * 
-	 * @param _color
-	 * @param ka
+	 * Constructor
+	 * @param color of the light
+	 * @param ka Ambient factor
 	 */
 	public AmbientLight(Color _color, double ka) {
 		super(_color);
@@ -28,7 +28,7 @@ public class AmbientLight extends Light {
 	}
 
 	/**
-	 * default ctor
+	 * default constructor
 	 */
 	public AmbientLight() {
 		super();
@@ -36,7 +36,7 @@ public class AmbientLight extends Light {
 	}
 
 	/**
-	 * copy ctor
+	 * copy constructor
 	 */
 	public AmbientLight(AmbientLight ambientLight) {
 		super(ambientLight.getColor());
@@ -60,6 +60,9 @@ public class AmbientLight extends Light {
 	}
 
 	// ***************** Operations ******************** // 
+	/* (non-Javadoc)
+	 * @see Elements.Light#getIntensity(primitives.Point3D)
+	 */
 	public Color getIntensity(Point3D p) {
 		double b = getKa() * getColor().getBlue();
 		double r = getKa() * getColor().getRed();

@@ -19,6 +19,11 @@ public class Sphere extends RadialGeometry {
 
 	// ***************** Constructors ********************** //
 
+	/**
+	 * constructor
+	 * @param p point of center the sphere
+	 * @param r radius of the sphere
+	 */
 	public Sphere(Point3D p, double r) {
 		super();
 		this._center = p;
@@ -43,6 +48,12 @@ public class Sphere extends RadialGeometry {
 		
 	}
 
+	/**
+	 * @param emmission of the sphere
+	 * @param material of the sphere
+	 * @param radius of the sphere
+	 * @param center point of the sphere
+	 */
 	public Sphere(Color emmission, Material material, double _radius, Point3D _center) {
 		super(emmission, material, _radius);
 		this._center = _center;

@@ -31,19 +31,20 @@ public abstract class Light {
 	}
 	// ***************** Getters/Setters ********************** //
 	/**
-	 * @return the _color
+	 * @return the color
 	 */
 	public Color getColor() {
 		return _color;
 	}
 	/**
-	 * @param _color the _color to set
+	 * @param color the color to set
 	 */
 	public void setColor(Color _color) {
 		this._color = _color;
 	}
 	// ***************** Operations ******************** // 
 	/**
+	 * @param p point where get the intensity
 	 * @return color in point
 	 */
 	abstract Color getIntensity(Point3D p);

@@ -23,16 +23,27 @@ public abstract class Geometry implements Intersectable {
 
 	// ***************** Constructors ********************** //
 
+	/**
+	 * constructor
+	 * @param emmission of the geometry
+	 * @param material of the geometry
+	 */
 	public Geometry(Color emmission, Material material) {
 		this.emmission = emmission;
 		this.material = material;
 	}
 
+	/**
+	 * Default constructor
+	 */
 	public Geometry(Geometry geometry) {
 		this.emmission = geometry.emmission;
 		this.material = geometry.material;
 	}
 
+	/**
+	 * copy constructor
+	 */
 	public Geometry() {
 		this.emmission = new Color(255,255,255);
 		this.material = new Material();

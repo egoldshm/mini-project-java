@@ -80,12 +80,18 @@ public class Render {
 
 	// ***************** Operations ******************** //
 
+	/**
+	 * @param ray by which we look at the scene
+	 * @return A map that connects cutting points and the geometry of those cut points.
+	 */
 	private Map<Geometry, List<Point3D>> getSceneRayIntersections(Ray ray) {
 		Iterator<Geometry> geometries = _scene.getGeometriesIterator();
 		Map<Geometry, List<Point3D>> intersectionPoints = new HashMap<Geometry, List<Point3D>>();
+		//Moves to any shape in the scene and inserts the cut points with it to the MAPõ
 		while (geometries.hasNext()) {
 			Geometry geometry = geometries.next();
 			List<Point3D> geometryIntersectionPoints = new ArrayList<Point3D>(geometry.findIntersections(ray));
+			//If there are no cut points - do not insert.
 			if(!geometryIntersectionPoints.isEmpty())
 				intersectionPoints.put(geometry,geometryIntersectionPoints);
 		}
@@ -94,9 +100,10 @@ public class Render {
 
 	
 	/**
-	 * @param geometry
-	 * @param point
-	 * @return
+	 * A function that calculates the color of a particular point in a scene.
+	 * @param geometry on which the point is located 
+	 * @param The point for which we calculate the color.
+	 * @return Color at the point
 	 */
 	private Color calcColor(Geometry geometry, Point3D point) {
 		Color ambientLight = _scene.getAmbientLight().getIntensity(point);
@@ -120,6 +127,12 @@ public class Render {
 	    return addColors(add1,add2);
 	}
 	
+    /**
+     * A function that get two colors is summed together logically.
+     * @param a first color
+     * @param b second color
+     * @return The result of the connection between the two colors
+     */
     private Color addColors(Color a, Color b)
     {
         // summing every R,GB and dividing by 2
@@ -131,7 +144,8 @@ public class Render {
     }
 
 	/**
-	 * @param interval
+	 * A function that draws grid at a certain interval in the image.
+	 * @param interval between lines
 	 */
 	public void printGrid(int interval) {
 		for (int i = 0; i < _imageWriter.getWidth(); i += interval) {
@@ -149,8 +163,9 @@ public class Render {
 	}
 
 	/**
-	 * @param intersectionPoints
-	 * @return
+	 * A function that accepts a map of shape and cut points, and returns for each shape the point closest to the point of view.
+	 * @param intersectionPoints Map of cutting points with geometries
+	 * @return A new map with geometry and the nearest point.
 	 */
 	private Map<Geometry, Point3D>  getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {
 		// In the intersectionPoints - find the point with minimal distance from the ray
@@ -172,26 +187,27 @@ public class Render {
 		return minDistancePoint;
 	}
 
+	/**
+	 * A function that creates the scene given the geometries and shapes into an image file.
+	 */
 	public void renderImage() {
-
+		//Passes each pixel in the image, and checks which color should be put, if it has a cut point - finds using the calColor function. If not - painting with the color of the background.
 		for (int i = 0; i < _imageWriter.getNx(); i++) {
 			for (int j = 0; j < _imageWriter.getNy(); j++) {
-				if(i==340 && j==210)
-				{
-					int p;
-					p=9;		
-				}
 				Ray r = new Ray(_scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(),
 						i, j, _scene.getScreenDistance(), _imageWriter.getWidth(), _imageWriter.getHeight()));
-				Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(r);																													// fix
+				Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(r);
+				// if no intersection Points - put background color
 				if (intersectionPoints.isEmpty())
 				{
 					_imageWriter.writePixel(i, j, _scene.getBackground());
 				}
 				else
 					{
+					//find the closest point
 					Map<Geometry, Point3D> closestPoint = getClosestPoint(intersectionPoints);
 					Set<Entry<Geometry, Point3D>> it = closestPoint.entrySet();
+					//check if point exist
 					if(it.iterator().hasNext())
 					{
 					Entry<Geometry, Point3D> a = it.iterator().next();
@@ -201,6 +217,7 @@ public class Render {
 					}
 					else
 					{
+						// if no intersection Points - put background color
 						_imageWriter.writePixel(i, j, _scene.getBackground());
 					}
 				}
@@ -209,10 +226,11 @@ public class Render {
 	}
 
 	/**
-	 * @param _kd
-	 * @param _N
-	 * @param _L
-	 * @param _Il
+	 * A function that calculates the diffusive for a point
+	 * @param _kd The factor of diffusive in geometry
+	 * @param _N Normal in the point
+	 * @param _L vector that light is coming from
+	 * @param _Il color of the light
 	 * @return diffusive component of light
 	 */
 	private Color calcDiffusiveComp(double _kd, Vector _N, Vector _L, Color _Il)
@@ -224,12 +242,12 @@ public class Render {
 	}
 	
 	/**
-	 * @param _ks
-	 * @param _V
-	 * @param _Norm
-	 * @param _L
-	 * @param _n
-	 * @param _Il
+	 * @param _ks factor of the specular
+	 * @param _V Vector between the point and the camera
+	 * @param _Norm normal in the point
+	 * @param _L vector where the light come from
+	 * @param _n shininess factor
+	 * @param _Il color at the point
 	 * @return specular component of light
 	 */
 	private Color calcSpecularComp(double _ks, Vector _V, Vector _Norm, Vector _L, int _n, Color _Il)
@@ -248,6 +266,9 @@ public class Render {
 		return new Color(SpecinCol(_Il.getRed(),multiColor),SpecinCol(_Il.getGreen(),multiColor),SpecinCol(_Il.getBlue(),multiColor));
 	}
 	
+	/**
+	 * Auxiliary function multiply number by intesity (for light)
+	 */
 	private int SpecinCol( int Inten, double tmp)
     {
        int tmp2=(int)(Inten*tmp);

@@ -21,14 +21,14 @@ public class Plane extends Geometry{
 	// ***************** Constructors ********************** //
 	
 	/**
-	 * defualt ctor
+	 * Default constructor
 	 */
 	public Plane() {
 		
 	}
 	
 	/**
-	 * ctor with params for plane
+	 * constructor with params for plane
 	 * @param v Vertical vector to surface
 	 * @param p point on the plane
 	 */
@@ -39,8 +39,7 @@ public class Plane extends Geometry{
 	}
 	
 	/**
-	 * copy ctor
-	 * @param temp
+	 * Copy constructor
 	 */
 	public Plane(Plane temp) 
 	{
@@ -48,6 +47,12 @@ public class Plane extends Geometry{
 		_Q = temp._Q;
 	}
 
+	/**
+	 * @param emmission color of the plane
+	 * @param material of the plane
+	 * @param _N Vertical vector to surface
+	 * @param _Q point on the plane
+	 */
 	public Plane(Color emmission, Material material, Vector _N, Point3D _Q) {
 		super(emmission, material);
 		this._N = _N;

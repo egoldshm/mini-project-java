@@ -40,12 +40,12 @@ public class Scene {
 	
 	/**
 	 * Constructor with parameters
-	 * @param _sceneName
-	 * @param _background
-	 * @param _ambientLight
-	 * @param _geometries
-	 * @param _camera
-	 * @param _screenDistance
+	 * @param sceneName
+	 * @param background color of the scene
+	 * @param ambientLight of the scene
+	 * @param geometries in the scene
+	 * @param camera in the scene, when we look from
+	 * @param screenDistance
 	 */
 	public Scene(String _sceneName, Color _background, AmbientLight _ambientLight, Geometries _geometries,
 			Camera _camera, double _screenDistance) {
@@ -59,13 +59,13 @@ public class Scene {
 	}
 	/**
 	 * Constructor with parameters
-	 * @param _sceneName
-	 * @param _background
-	 * @param _ambientLight
-	 * @param _geometries
-	 * @param _camera
-	 * @param _screenDistance
-	 * @param _lights
+	 * @param sceneName
+	 * @param background color of the scene
+	 * @param ambientLight of the scene
+	 * @param geometries in the scene
+	 * @param camera in the scene, when we look from
+	 * @param screenDistance
+	 * @param lights in the scene
 	 */
 	public Scene(String _sceneName, Color _background, AmbientLight _ambientLight, Geometries _geometries, Camera _camera, double _screenDistance, List<LightSource> _lights) {
 		this._sceneName = _sceneName;
@@ -78,7 +78,7 @@ public class Scene {
 	}
 	
 	/**
-	 * copy ctor with
+	 * copy constructor with
 	 * @param scene
 	 */
 	public Scene(Scene scene) {
@@ -94,49 +94,49 @@ public class Scene {
 	// ***************** Getters/Setters ********************** //
 
 	/**
-	 * @return the _sceneName
+	 * @return the sceneName
 	 */
 	public String getSceneName() {
 		return _sceneName;
 	}
 	
 	/**
-	 * @param _sceneName the _sceneName to set
+	 * @param sceneName the name to set
 	 */
 	public void setSceneName(String _sceneName) {
 		this._sceneName = _sceneName;
 	}
 	
 	/**
-	 * @return the _background
+	 * @return the background color
 	 */
 	public Color getBackground() {
 		return _background;
 	}
 	
 	/**
-	 * @param _background the _background to set
+	 * @param background the background color
 	 */
 	public void setBackground(Color _background) {
 		this._background = _background;
 	}
 	
 	/**
-	 * @return the _ambientLight
+	 * @return the ambientLight
 	 */
 	public AmbientLight getAmbientLight() {
 		return _ambientLight;
 	}
 	
 	/**
-	 * @param _ambientLight the _ambientLight to set
+	 * @param ambientLight the ambientLight to set
 	 */
 	public void set_ambientLight(AmbientLight _ambientLight) {
 		this._ambientLight = _ambientLight;
 	}
 	
 	/**
-	 * @return the _geometries
+	 * @return the geometries in the scene
 	 */
 	public Geometries getGeometries() {
 		return geometries;
@@ -150,7 +150,7 @@ public class Scene {
 	}
 	
 	/**
-	 * @return the lights
+	 * @return the lights in the scene
 	 */
 	public List<LightSource> getLights() {
 		return lights;
@@ -164,14 +164,14 @@ public class Scene {
 	}
 
 	/**
-	 * @return the _camera
+	 * @return the camera
 	 */
 	public Camera getCamera() {
 		return _camera;
 	}
 	
 	/**
-	 * @param _camera the _camera to set
+	 * @param camera the camera to set
 	 */
 	public void setCamera(Camera _camera) {
 		this._camera = _camera;
@@ -185,7 +185,7 @@ public class Scene {
 	}
 	
 	/**
-	 * @param _screenDistance the _screenDistance to set
+	 * @param screenDistance the screenDistance to set
 	 */
 	public void setScreenDistance(double _screenDistance) {
 		this._screenDistance = _screenDistance;
@@ -237,7 +237,6 @@ public class Scene {
 	 */
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		return this._sceneName +" "+ this._screenDistance + this.geometries + " " + this.lights + " " + this._ambientLight + " " + this._background + " " + this._camera;
 	}
 }

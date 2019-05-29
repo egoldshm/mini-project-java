@@ -8,7 +8,7 @@ import primitives.*;
 
 /**
  * @author eitan
- *
+ * Class of Direct Light Representation
  */
 public class DirectionalLight extends Light implements LightSource{
 
@@ -16,21 +16,25 @@ public class DirectionalLight extends Light implements LightSource{
 
 	// ***************** Constructors ********************** // 
 	/**
-	 * @param direction
-	 * @param color
+	 * constructor
+	 * @param direction Vector of Direction of light
+	 * @param color of the light
 	 */
 	public DirectionalLight(Vector direction, Color color) {
 		super(color);
 		this.direction = direction;
 	}
 
+	/**
+	 * Copy constructor
+	 */
 	public DirectionalLight(DirectionalLight directionalLight) {
 		super(directionalLight.getColor());
 		this.direction = directionalLight.direction;
 	}
 
 	/**
-	 * 
+	 * Default constructor
 	 */
 	public DirectionalLight() {
 		
@@ -45,9 +49,6 @@ public class DirectionalLight extends Light implements LightSource{
 	public Vector getDirection() {
 		return direction;
 	}
-
-
-
 
 	/**
 	 * @param vector of the direction
@@ -69,6 +70,9 @@ public class DirectionalLight extends Light implements LightSource{
 		return this.getColor();
 	}
 
+	/* (non-Javadoc)
+	 * @see Elements.LightSource#getL(primitives.Point3D)
+	 */
 	@Override
 	public Vector getL(Point3D point) {
 		return this.direction.normalizationOfVector();
