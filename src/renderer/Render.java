@@ -51,20 +51,29 @@ public class Render {
 
 	// ***************** Getters/Setters ********************** //
 	/**
-	 * @return Scene
+	 * @return Scene in the render
 	 */
 	public Scene get_scene() {
 		return new Scene(this._scene);
 	}
-
+	
+	/**
+	 * @param Sence in the render
+	 */
 	public void set_scene(Scene _scene) {
 		this._scene = _scene;
 	}
-
+	
+	/**
+	 * @return ImageWriter in the render
+	 */
 	public ImageWriter get_imageWriter() {
 		return _imageWriter;
 	}
 
+	/**
+	 * @param ImageWriter in the render
+	 */
 	public void set_imageWriter(ImageWriter _imageWriter) {
 		this._imageWriter = _imageWriter;
 	}
