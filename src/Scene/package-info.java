@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author eitan
- *
- */
-package Scene;

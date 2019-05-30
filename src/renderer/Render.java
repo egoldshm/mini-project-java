@@ -2,15 +2,13 @@ package renderer;
 
 import java.util.*;
 import java.util.Map.Entry;
-
-import Elements.LightSource;
-
 import java.awt.Color;
 
-import Scene.Scene;
+import elements.LightSource;
+import geometries.*;
 import primitives.*;
 import primitives.Vector;
-import Geometries.*;
+import scene.Scene;
 
 /**
  * class that render picture from scene and camera
