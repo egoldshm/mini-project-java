@@ -1,5 +1,4 @@
-/**
- * 
+/** *
  */
 package Geometries;
 import java.awt.*;
@@ -118,8 +117,7 @@ public class Plane extends Geometry{
 	 * @see Geometries.Geometry#getNormal(primitives.Point3D)
 	 */
 	@Override
-	public Vector getNormal(Point3D point) {
-		
+	public Vector getNormal(Point3D point) { 
 		return _N.normalizationOfVector();
 	}
 	
