@@ -106,8 +106,8 @@ public class Render {
 	 * @return Color at the point
 	 */
 	private Color calcColor(Geometry geometry, Point3D point) {
-		Color ambientLight = _scene.getAmbientLight().getIntensity(point);
-		Color emissionLight = geometry.getEmmission();
+		Color ambientLight = _scene.getAmbientLight().getIntensity(point);//ambient
+		Color emissionLight = geometry.getEmmission();//emission
 		Color diffuseLight = new Color(0, 0, 0);
 		Color specularLight = new Color(0, 0, 0);
 		Color difTmp, specTmp;
@@ -210,10 +210,10 @@ public class Render {
 					//check if point exist
 					if(it.iterator().hasNext())
 					{
-					Entry<Geometry, Point3D> a = it.iterator().next();
-					Geometry g = a.getKey();
-					Point3D p = a.getValue();
-					_imageWriter.writePixel(i, j, this.calcColor(g,p));
+						Entry<Geometry, Point3D> a = it.iterator().next();
+						Geometry g = a.getKey();
+						Point3D p = a.getValue();
+						_imageWriter.writePixel(i, j, this.calcColor(g,p));
 					}
 					else
 					{
@@ -235,10 +235,11 @@ public class Render {
 	 */
 	private Color calcDiffusiveComp(double _kd, Vector _N, Vector _L, Color _Il)
 	{
-		_N = _N.normalizationOfVector();
-		_L = _L.normalizationOfVector();
-		double tmp = Math.abs(_kd * (_N.scalarMultiplication(_L)));
+		_N = _N.normalizationOfVector();//N.normalize()
+		_L = _L.normalizationOfVector();//L.normalize()
+		double tmp = Math.abs(_kd * (_N.scalarMultiplication(_L)));//abs(kd * (N * L))
 		return new Color(SpecinCol(_Il.getRed(),tmp),SpecinCol(_Il.getGreen(),tmp),SpecinCol(_Il.getBlue(),tmp));
+		//returning the scaled color
 	}
 	
 	/**
@@ -253,30 +254,32 @@ public class Render {
 	private Color calcSpecularComp(double _ks, Vector _V, Vector _Norm, Vector _L, int _n, Color _Il)
 	{
 		
-		_L = _L.normalizationOfVector();
-		_Norm = _Norm.normalizationOfVector();
-		_V = _V.normalizationOfVector();
-		Vector tmp = new Vector(_Norm);
-		Vector R = new Vector(_L);
-		tmp = tmp.scalarMultiplication(-2 * _L.scalarMultiplication(_Norm));
-		R = new Vector(R.addVector(tmp).normalizationOfVector());
+		_L = _L.normalizationOfVector();//L.normalize()
+		_Norm = _Norm.normalizationOfVector();//Norm.normalize()
+		_V = _V.normalizationOfVector();//V.normalize()
+		Vector tmp = new Vector(_Norm);//copy of Norm
+		Vector R = new Vector(_L);//copy of L
+		tmp = tmp.scalarMultiplication(-2 * _L.scalarMultiplication(_Norm));//tmp = -2 * Norm * (L * Norm)
+		R = new Vector(R.addVector(tmp).normalizationOfVector());//R = (R +tmp).normalize()
 		double multiColor=0;
         if(_V.scalarMultiplication(R)>0)
-        	multiColor=_ks*(Math.pow((_V.scalarMultiplication(R)),_n));
+        	multiColor=_ks*(Math.pow((_V.scalarMultiplication(R)),_n));//getting the scaling factor of the color including shininess
 		return new Color(SpecinCol(_Il.getRed(),multiColor),SpecinCol(_Il.getGreen(),multiColor),SpecinCol(_Il.getBlue(),multiColor));
+		//returning the scaled color
 	}
 	
 	/**
-	 * Auxiliary function multiply number by intesity (for light)
+	 * Auxiliary function multiply number by intensity (for light)
 	 */
 	private int SpecinCol( int Inten, double tmp)
     {
-       int tmp2=(int)(Inten*tmp);
-        if(tmp2>255)
+		//making sure Inten*tmp is bounded by 0 and 255
+       int t=(int)(Inten*tmp);
+        if(t>255)
             return 255;
-        if(tmp2<0)
+        if(t<0)
             return 0;
-        return tmp2;
+        return t;
     }
 
 	// ***************** Admin ********************** //
