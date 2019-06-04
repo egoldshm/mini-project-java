@@ -17,40 +17,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class renderTest {
-/*
+
 	@Test
 	public void shadowTest(){
 		
+		//test where the triangle is further away from the sphere
 		List<Geometry> geometries = new ArrayList<Geometry>();
 		Sphere sphere = new Sphere(new Color(0,0,100), new Material(1,1,20) , 500, new Point3D(0.0, 0.0, -1000));
 		
 		
-		Triangle triangle1 = new Triangle(new Point3D(  3500,  3500, -2000),
-							 new Point3D( -3500, -3500, -1000),
-				 						 new Point3D(  3500, -3500, -2000));
-
-		Triangle triangle2 = new Triangle(new Point3D(  3500,  3500, -2000),
-				  						  new Point3D( -3500,  3500, -1000),
-				  						  new Point3D( -3500, -3500, -1000));
+		Triangle triangle = new Triangle(new Color(0, 0, 100), new Material(1, 1, 20), new Point3D( -125, -225, -260),
+							 new Point3D( -225, -125, -260),
+				 						 new Point3D(  -225, -225, -270));
 		geometries.add(sphere);
-		geometries.add(triangle1);
-		geometries.add(triangle2);
+		geometries.add(triangle);
 		
 		List<LightSource> lst = new ArrayList<LightSource>();
-		lst.add(new spotLight(new Color(255, 100, 100), new Point3D(200, 200, -100), 
-				    0, 0.000001, 0.0000005,new Vector(-2, -2, -3)));
+		lst.add(new spotLight(new Color(100, 0, 100), new Point3D(-200, -200, -150), 
+				    0, 0.000001, 0.0000005,new Vector(2, 2, -3)));
 	
-		Scene scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(255, 255, 255), 1), new Geometries(geometries), new Camera(new Point3D(0, 0, 0),  new Vector(0, 1, 0),new Vector(-400, 0, 0)), 100);
+		Scene scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(0, 0, 0), 1), new Geometries(geometries), new Camera(new Point3D(0, 0, 0),  new Vector(0, 0, -1),new Vector(0, 1, 0)), 500);
 		scene.setLights(lst);
-		ImageWriter imageWriter = new ImageWriter("tests/shadowTest", 500, 500, 500, 500);
+		ImageWriter imageWriter = new ImageWriter("tests/shadowTestFarTriangle", 1000, 1000, 1000, 1000);
 		
 		Render render = new Render(scene,imageWriter);
 		
 		render.renderImage();
 		render.get_imageWriter().writeToimage();
 		
+		
+		geometries.remove(triangle);
+		triangle.setP1(triangle.getP1().add(new Vector(0, 0, 1000)));
+		triangle.setP2(triangle.getP2().add(new Vector(0, 0, 1000)));
+		triangle.setP3(triangle.getP3().add(new Vector(0, 0, 1000)));
+		imageWriter = new ImageWriter("tests/shadowTestCloseTriangle", 1000, 1000, 1000, 1000);
+		render = new Render(scene,imageWriter);
+		
+		render.renderImage();
+		render.get_imageWriter().writeToimage();
 	}
-	*/
+	
 	@Test
 	public void basicRenderTest() {
 		//four triangles and a sphere without colors
