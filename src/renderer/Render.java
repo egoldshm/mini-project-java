@@ -114,10 +114,13 @@ public class Render {
 		//summing the specular and diffusive component for every light source
 		while (lights.hasNext()){
 			light = lights.next();
-			difTmp = addColors(diffuseLight, calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point)));
-			diffuseLight = new Color(difTmp.getRGB());
-			specTmp = addColors(specularLight, calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point.subtract(_scene.getCamera().getPO())), geometry.getNormal(point), light.getL(point), geometry.getMaterial().getnShininess(),light.getIntensity(point)));
-			specularLight= new Color(specTmp.getRGB());
+			if(!this.occluded(light, point, geometry))
+			{
+				difTmp = addColors(diffuseLight, calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point)));
+				diffuseLight = new Color(difTmp.getRGB());
+				specTmp = addColors(specularLight, calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point.subtract(_scene.getCamera().getPO())), geometry.getNormal(point), light.getL(point), geometry.getMaterial().getnShininess(),light.getIntensity(point)));
+				specularLight= new Color(specTmp.getRGB());
+			}
 		}
 		//summing ambient, emission, diffusive, specular light components
 		Color add1=addColors(ambientLight,emissionLight);
@@ -125,6 +128,27 @@ public class Render {
 	    return addColors(add1,add2);
 	}
 	
+	private boolean occluded(LightSource light, Point3D point, Geometry geometry)
+	{
+		
+		Vector lightDirection = light.getL(point).scalarMultiplication(-1);
+		
+		Vector epsVector = new Vector(geometry.getNormal(point).scalarMultiplication(2));
+		
+		Point3D geometryPoint = new Point3D(point).add(epsVector);
+		
+		Ray lightRay = new Ray(geometryPoint, lightDirection);
+		
+		Map<Geometry, List<Point3D>> intersectionPoints = this.getSceneRayIntersections(lightRay);
+		
+		//Flat geometry cannot intersect itself
+		if(geometry instanceof FlatGeometry)
+		{
+			intersectionPoints.remove(geometry);
+		}
+		
+		return !intersectionPoints.isEmpty();		
+	}
     /**
      * A function that get two colors is summed together logically.
      * @param a first color
