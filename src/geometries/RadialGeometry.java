@@ -13,7 +13,8 @@ import primitives.Ray;
 
 /**
  * @author eitan
- * abstract class for geometry with radius.
+ * @info
+ * 		abstract class for geometry with radius.
  */
 public abstract class RadialGeometry extends Geometry
 {

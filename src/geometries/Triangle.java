@@ -14,7 +14,7 @@ import primitives.*;
  * @author egoldshm and sarieldov
  * A class to represent Triangle. realizes Geometry.
  */
-public class Triangle extends Geometry{
+public class Triangle extends Geometry implements FlatGeometry{
 
 	Point3D _p1;
 	Point3D _p2;

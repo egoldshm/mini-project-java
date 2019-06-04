@@ -10,9 +10,10 @@ import java.util.Map;
 import primitives.*;
 /**
  * @author egoldshm and sarieldov
- * A class represented by plane. realizes Geometry.
+ * @info
+ * 		 A class represented by plane. realizes Geometry.
  */
-public class Plane extends Geometry{
+public class Plane extends Geometry implements FlatGeometry{
 
 	Vector _N;
 	Point3D _Q;
