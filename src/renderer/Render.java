@@ -163,6 +163,11 @@ public class Render {
 	    return addColors(add1,add2);
 	}
 	
+	private Ray constructReflectedRay(Vector v, Point3D p, Ray r)
+	{
+		
+	}
+	
 	private Color calcColor(Geometry geometry, Point3D point, Ray inRay)
 	{
 		return calcColor(geometry, point, inRay, 0);
