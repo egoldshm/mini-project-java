@@ -10,6 +10,8 @@ public class Material {
 	private double Kd;
 	private double Ks;
 	private int nShininess;
+	private double _Kr;
+	private double _Kt;
 	
 	// ***************** Constructors ********************** //
 
@@ -22,9 +24,18 @@ public class Material {
 		Kd = kd;
 		Ks = ks;
 		this.nShininess = nShininess;
+		this._Kr = 0;
+		this._Kt = 0;
 	}
 	
-
+	public Material(double kd, double ks, int nShininess, double kr, double kt)
+	{
+		Kd = kd;
+		Ks = ks;
+		this.nShininess = nShininess;
+		this._Kr = kr;
+		this._Kt = kt;
+	}
 	/**
 	 * Default constructor
 	 */
@@ -32,6 +43,8 @@ public class Material {
 		Kd = 1;
 		Ks = 1;
 		this.nShininess = 4;
+		this._Kr = 0;
+		this._Kt = 0;
 	}
 
 	/**
@@ -41,6 +54,8 @@ public class Material {
 		Kd = m.getKd();
 		Ks = m.getKs();
 		this.nShininess = m.getnShininess();
+		this._Kr = m.getKr();
+		this._Kt = m.getKt();
 	}
 
 
@@ -84,6 +99,25 @@ public class Material {
 	 */
 	public void setnShininess(int nShininess) {
 		this.nShininess = nShininess;
+	}
+	
+	public double getKr()
+	{
+		return  this._Kr;
+	}
+	
+	public void setKr(double kr)
+	{
+		this._Kr = kr;
+	}
+	
+	public double getKt() {
+		return this._Kt;
+	}
+	
+	public void setKt(double kt)
+	{
+		this._Kt = kt;
 	}
 
 	// ***************** Admin ********************** //

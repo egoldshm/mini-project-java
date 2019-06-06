@@ -18,6 +18,7 @@ public class Render {
 
 	private Scene _scene;
 	private ImageWriter _imageWriter;
+	private final int RECURSION_LEVEL = 2;
 
 	// ***************** Constructors ********************** //
 
@@ -126,6 +127,45 @@ public class Render {
 		Color add1=addColors(ambientLight,emissionLight);
 	    Color add2=addColors(diffuseLight,specularLight);
 	    return addColors(add1,add2);
+	}
+	
+	private Color calcColor(Geometry geometry, Point3D point, Ray inRay, int level)
+	{
+		if(level == this.RECURSION_LEVEL)
+		{
+			return new Color(0, 0, 0);
+		}
+		Color ambientLight = _scene.getAmbientLight().getIntensity(point);//ambient
+		Color emissionLight = geometry.getEmmission();//emission
+		Color diffuseLight = new Color(0, 0, 0);
+		Color specularLight = new Color(0, 0, 0);
+		Color difTmp, specTmp;
+		Iterator<LightSource> lights = this.get_scene().getLightsIterator();
+		LightSource light;
+		//summing the specular and diffusive component for every light source
+		while (lights.hasNext()){
+			light = lights.next();
+			if(!this.occluded(light, point, geometry))
+			{
+				difTmp = addColors(diffuseLight, calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point)));
+				diffuseLight = new Color(difTmp.getRGB());
+				specTmp = addColors(specularLight, calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point.subtract(_scene.getCamera().getPO())), geometry.getNormal(point), light.getL(point), geometry.getMaterial().getnShininess(),light.getIntensity(point)));
+				specularLight= new Color(specTmp.getRGB());
+			}
+		}
+		
+		Ray reflectedRay = constructReflectedRay
+		
+		
+		//summing ambient, emission, diffusive, specular light components
+		Color add1=addColors(ambientLight,emissionLight);
+	    Color add2=addColors(diffuseLight,specularLight);
+	    return addColors(add1,add2);
+	}
+	
+	private Color calcColor(Geometry geometry, Point3D point, Ray inRay)
+	{
+		return calcColor(geometry, point, inRay, 0);
 	}
 	
 	private boolean occluded(LightSource light, Point3D point, Geometry geometry)

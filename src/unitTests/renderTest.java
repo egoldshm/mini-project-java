@@ -38,7 +38,7 @@ public class renderTest {
 	
 		Scene scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(0, 0, 0), 1), new Geometries(geometries), new Camera(new Point3D(0, 0, 0),  new Vector(0, 0, -1),new Vector(0, 1, 0)), 500);
 		scene.setLights(lst);
-		ImageWriter imageWriter = new ImageWriter("tests/shadowTestFarTriangle", 1000, 1000, 1000, 1000);
+		ImageWriter imageWriter = new ImageWriter("tests/shadowTestFarTriangleFarLight", 1000, 1000, 1000, 1000);
 		
 		Render render = new Render(scene,imageWriter);
 		
@@ -47,10 +47,25 @@ public class renderTest {
 		
 		
 		geometries.remove(triangle);
-		triangle.setP1(triangle.getP1().add(new Vector(0, 0, 1000)));
-		triangle.setP2(triangle.getP2().add(new Vector(0, 0, 1000)));
-		triangle.setP3(triangle.getP3().add(new Vector(0, 0, 1000)));
-		imageWriter = new ImageWriter("tests/shadowTestCloseTriangle", 1000, 1000, 1000, 1000);
+		triangle.setP1(triangle.getP1().add(new Vector(0, 0, -100)));
+		triangle.setP2(triangle.getP2().add(new Vector(0, 0, -100)));
+		triangle.setP3(triangle.getP3().add(new Vector(0, 0, -100)));
+		geometries.add(triangle);
+		imageWriter = new ImageWriter("tests/shadowTestCloseTriangleFarLight", 1000, 1000, 1000, 1000);
+		render = new Render(scene,imageWriter);
+		
+		render.renderImage();
+		render.get_imageWriter().writeToimage();
+		
+		geometries.remove(triangle);
+		triangle.setP1(triangle.getP1().add(new Vector(0, 0, 100)));
+		triangle.setP2(triangle.getP2().add(new Vector(0, 0, 100)));
+		triangle.setP3(triangle.getP3().add(new Vector(0, 0, 100)));
+		geometries.add(triangle);
+		lst.clear();
+		lst.add(new spotLight(new Color(100, 0, 100), new Point3D(-200, -200, -150).add(new Vector(2, 2, -3).scalarMultiplication(5)), 
+			    0, 0.000001, 0.0000005,new Vector(2, 2, -3)));
+		imageWriter = new ImageWriter("tests/shadowTestFarTriangleCloseLight", 1000, 1000, 1000, 1000);
 		render = new Render(scene,imageWriter);
 		
 		render.renderImage();
