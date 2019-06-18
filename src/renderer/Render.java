@@ -227,9 +227,9 @@ public class Render {
 			intersectionPoints.remove(geometry);
 		}
 		
-		for (Entry<Geometry, List<Point3D>> entry: intersectionPoints)
-			if (entry.geometry.material.Kt == 0)
-			return true;
+		for (Entry<Geometry, List<Point3D>> entry: intersectionPoints.entrySet())
+			if(entry.)
+			{return true;}
 			return false;		
 	}
     /**
