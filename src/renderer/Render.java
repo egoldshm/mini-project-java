@@ -102,32 +102,10 @@ public class Render {
 	 * A function that calculates the color of a particular point in a scene.
 	 * @param geometry on which the point is located 
 	 * @param The point for which we calculate the color.
+	 * @param inRay ray of sight from previous source (camera, reflection or refraction) to point
+	 * @param level level of recursion
 	 * @return Color at the point
 	 */
-	private Color calcColor(Geometry geometry, Point3D point) {
-		Color ambientLight = _scene.getAmbientLight().getIntensity(point);//ambient
-		Color emissionLight = geometry.getEmmission();//emission
-		Color diffuseLight = new Color(0, 0, 0);
-		Color specularLight = new Color(0, 0, 0);
-		Color difTmp, specTmp;
-		Iterator<LightSource> lights = this.get_scene().getLightsIterator();
-		LightSource light;
-		//summing the specular and diffusive component for every light source
-		while (lights.hasNext()){
-			light = lights.next();
-			if(!this.occluded(light, point, geometry))
-			{
-				difTmp = addColors(diffuseLight, calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point)));
-				diffuseLight = new Color(difTmp.getRGB());
-				specTmp = addColors(specularLight, calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point.subtract(_scene.getCamera().getPO())), geometry.getNormal(point), light.getL(point), geometry.getMaterial().getnShininess(),light.getIntensity(point)));
-				specularLight= new Color(specTmp.getRGB());
-			}
-		}
-		//summing ambient, emission, diffusive, specular light components
-		Color add1=addColors(ambientLight,emissionLight);
-	    Color add2=addColors(diffuseLight,specularLight);
-	    return addColors(add1,add2);
-	}
 	
 	private Color calcColor(Geometry geometry, Point3D point, Ray inRay, int level)
 	{
@@ -154,20 +132,77 @@ public class Render {
 			}
 		}
 		
-		Ray reflectedRay = constructReflectedRay
+		
+		//reflection calculation
+		Ray reflectedRay = constructReflectedRay(geometry.getNormal(point), point, inRay);
+		Map<Geometry, Point3D> reflectedEntry = this.getClosestPoint(this.getSceneRayIntersections(reflectedRay));
+		Set<Entry<Geometry, Point3D>> it1 = reflectedEntry.entrySet();
+		Color reflectedColor;
+		if(it1.iterator().hasNext())
+		{
+			Entry<Geometry, Point3D> a = it1.iterator().next();
+			Geometry g = a.getKey();
+			Point3D p = a.getValue();
+			reflectedColor = calcColor(g, p, reflectedRay, level + 1);
+		}
+		else {
+			reflectedColor = this.get_scene().getBackground();
+		}
+		
+		double Kr = geometry.getMaterial().getKr();
+		Color reflectedLight = new Color(SpecinCol(reflectedColor.getRed(), Kr), SpecinCol(reflectedColor.getGreen(), Kr), SpecinCol(reflectedColor.getBlue(), Kr));
+		
+		//refraction calculation
+		Ray refractedRay = constructRefractedRay(geometry.getNormal(point), point, inRay);
+		Map<Geometry, Point3D> refractedEntry = this.getClosestPoint(this.getSceneRayIntersections(refractedRay));
+		Set<Entry<Geometry, Point3D>> it2 = refractedEntry.entrySet();
+		Color refractedColor;
+		if(it2.iterator().hasNext())
+		{
+			Entry<Geometry, Point3D> a = it2.iterator().next();
+			Geometry g = a.getKey();
+			Point3D p = a.getValue();
+			refractedColor = calcColor(g, p, refractedRay, level + 1);
+		}
+		else {
+			refractedColor = this.get_scene().getBackground();
+		}
+		
+		double Kt = geometry.getMaterial().getKt();
+		Color refractedLight = new Color(SpecinCol(refractedColor.getRed(), Kt), SpecinCol(refractedColor.getGreen(), Kt), SpecinCol(refractedColor.getBlue(), Kt));
 		
 		
 		//summing ambient, emission, diffusive, specular light components
 		Color add1=addColors(ambientLight,emissionLight);
 	    Color add2=addColors(diffuseLight,specularLight);
-	    return addColors(add1,add2);
+	    return addColors(addColors(add1, reflectedLight), addColors(add2, refractedLight));
 	}
 	
-	private Ray constructReflectedRay(Vector v, Point3D p, Ray r)
+	
+	private Ray constructRefractedRay(Vector _N, Point3D p, Ray r)
 	{
-		
+		return new Ray(p, r.getDirection().normalizationOfVector());
 	}
 	
+	private Ray constructReflectedRay(Vector _N, Point3D p, Ray r)
+	{
+		Vector _L = r.getDirection().normalizationOfVector();//direction.normalize()
+		_N = _N.normalizationOfVector();//Norm.normalize()
+		Vector tmp = new Vector(_N);//copy of Norm
+		Vector R = new Vector(_L);//copy of L
+		tmp = tmp.scalarMultiplication(-2 * _L.scalarMultiplication(_N));//tmp = -2 * Norm * (L * Norm)
+		R = R.addVector(tmp).normalizationOfVector();//R = (R +tmp).normalize()
+		
+		return new Ray(p, R);
+	}
+	
+	/**
+	 * A function that calculates the color of a particular point in a scene that calls the recursive function.
+	 * @param geometry on which the point is located 
+	 * @param The point for which we calculate the color.
+	 * @param inRay ray of sight from previous source (camera, reflection or refraction) to point
+	 * @return Color at the point
+	 */
 	private Color calcColor(Geometry geometry, Point3D point, Ray inRay)
 	{
 		return calcColor(geometry, point, inRay, 0);
@@ -192,7 +227,10 @@ public class Render {
 			intersectionPoints.remove(geometry);
 		}
 		
-		return !intersectionPoints.isEmpty();		
+		for (Entry<Geometry, List<Point3D>> entry: intersectionPoints)
+			if (entry.geometry.material.Kt == 0)
+			return true;
+			return false;		
 	}
     /**
      * A function that get two colors is summed together logically.
@@ -280,7 +318,7 @@ public class Render {
 						Entry<Geometry, Point3D> a = it.iterator().next();
 						Geometry g = a.getKey();
 						Point3D p = a.getValue();
-						_imageWriter.writePixel(i, j, this.calcColor(g,p));
+						_imageWriter.writePixel(i, j, this.calcColor(g,p, r));
 					}
 					else
 					{
