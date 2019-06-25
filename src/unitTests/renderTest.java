@@ -18,6 +18,29 @@ import java.util.List;
 
 public class renderTest {
 
+	
+	@Test
+	public void reflectionAndRefractionTest(){
+		
+		//test where the triangle is further away from the sphere
+		List<Geometry> geometries = new ArrayList<Geometry>();
+		Sphere sphere = new Sphere(new Color(0,0,100), new Material(1,1,20) , 500, new Point3D(0.0, 0.0, -1000));
+		
+		geometries.add(sphere);
+		
+		List<LightSource> lst = new ArrayList<LightSource>();
+		lst.add(new spotLight(new Color(100, 0, 100), new Point3D(-200, -200, -150), 
+				    0, 0.000001, 0.0000005,new Vector(2, 2, -3)));
+	
+		Scene scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(0, 0, 0), 1), new Geometries(geometries), new Camera(new Point3D(0, 0, 0),  new Vector(0, 0, -1),new Vector(0, 1, 0)), 500);
+		scene.setLights(lst);		
+		
+		ImageWriter imageWriter = new ImageWriter("tests/reflectionAndRefractionTest", 1000, 1000, 1000, 1000);
+		Render render = new Render(scene,imageWriter);
+		
+		render.renderImage();
+		render.get_imageWriter().writeToimage();
+	}
 	@Test
 	public void shadowTest(){
 		
