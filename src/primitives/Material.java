@@ -101,20 +101,32 @@ public class Material {
 		this.nShininess = nShininess;
 	}
 	
+	/**
+	 * @return Kr reflection factor
+	 */
 	public double getKr()
 	{
 		return  this._Kr;
 	}
 	
+	/**
+	 * @param kr reflection factor
+	 */
 	public void setKr(double kr)
 	{
 		this._Kr = kr;
 	}
 	
+	/**
+	 * @return Kt transparent factor
+	 */
 	public double getKt() {
 		return this._Kt;
 	}
 	
+	/**
+	 * @param kt transparent factor
+	 */
 	public void setKt(double kt)
 	{
 		this._Kt = kt;

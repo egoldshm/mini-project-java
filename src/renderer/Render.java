@@ -227,10 +227,11 @@ public class Render {
 			intersectionPoints.remove(geometry);
 		}
 		
-		for (Entry<Geometry, List<Point3D>> entry: intersectionPoints.entrySet())
-			if(entry.)
+		for (Map.Entry<Geometry, List<Point3D>> entry: intersectionPoints.entrySet()) {
+			if(entry.getKey().getMaterial().getKt() != 1)
 			{return true;}
-			return false;		
+			return false;		}
+		return false;
 	}
     /**
      * A function that get two colors is summed together logically.
