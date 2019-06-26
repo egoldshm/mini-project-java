@@ -130,6 +130,12 @@ public class Render {
 				specTmp = addColors(specularLight, calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point.subtract(_scene.getCamera().getPO())), geometry.getNormal(point), light.getL(point), geometry.getMaterial().getnShininess(),light.getIntensity(point)));
 				specularLight= new Color(specTmp.getRGB());
 			}
+			else
+			{
+				  diffuseLight = new Color(0, 0, 0);
+	             specularLight = new Color(0, 0, 0);
+			}
+			
 		}
 		
 		//reflection calculation
@@ -178,12 +184,6 @@ public class Render {
 	}
 	
 	
-	private Ray constructRefractedRay(Vector _N, Point3D p, Ray r)
-	{
-		
-		return new Ray(p, r.getDirection().normalizationOfVector());
-	}
-	
 	 private Ray constructReflectedRay(Vector normal, Point3D point, Ray inRay)
 	    {
 		 normal = normal.normalizationOfVector();
@@ -192,25 +192,15 @@ public class Render {
 	     epsVector = epsVector.scalarMultiplication(2);
 	     point = point.add(epsVector);
 	     D = D.normalizationOfVector();
-	     Ray R=new Ray(point,D);//The  Ray that you will return
+	     Ray R=new Ray(point,D);
 	     Vector tmp=new Vector(normal);
 	     tmp = tmp.scalarMultiplication(-2*D.scalarMultiplication(normal));
 	     R.setDirection(R.getDirection().addVector(tmp).normalizationOfVector());
 	     return R;
 
 	    }
-	    /**
-	     * FUNCTION
-	     *constructRefractedRay
-	     * PARAMETERS
-	     *point-the point on the geometry,inray -rey
-	     * RETURN VALUE
-	     *Ray
-	     * MEANING
-	     * this func create the refracted  ray to the geometry on the point
-	     * SEE ALSO
-	     *Vector
-	     */
+	   
+	 
 	    private Ray constructRefractedRay(Geometry geometry, Point3D point, Ray inRay)
 	    {
 	        Vector Normal = geometry.getNormal(point);
@@ -388,10 +378,11 @@ public class Render {
 	 */
 	private Color calcSpecularComp(double _ks, Vector _V, Vector _Norm, Vector _L, int _n, Color _Il)
 	{
-		
+	
 		_L = _L.normalizationOfVector();//L.normalize()
 		_Norm = _Norm.normalizationOfVector();//Norm.normalize()
 		_V = _V.normalizationOfVector();//V.normalize()
+	
 		Vector tmp = new Vector(_Norm);//copy of Norm
 		Vector R = new Vector(_L);//copy of L
 		tmp = tmp.scalarMultiplication(-2 * _L.scalarMultiplication(_Norm));//tmp = -2 * Norm * (L * Norm)
@@ -399,7 +390,8 @@ public class Render {
 		double multiColor=0;
         if(_V.scalarMultiplication(R)>0)
         	multiColor=_ks*(Math.pow((_V.scalarMultiplication(R)),_n));//getting the scaling factor of the color including shininess
-		return new Color(SpecinCol(_Il.getRed(),multiColor),SpecinCol(_Il.getGreen(),multiColor),SpecinCol(_Il.getBlue(),multiColor));
+		
+        return new Color(SpecinCol(_Il.getRed(),multiColor),SpecinCol(_Il.getGreen(),multiColor),SpecinCol(_Il.getBlue(),multiColor));
 		//returning the scaled color
 	}
 	

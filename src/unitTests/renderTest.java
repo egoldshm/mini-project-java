@@ -44,20 +44,19 @@ public class renderTest {
 		Sphere sphere = new Sphere(new Color(0, 0, 100), new Material(1,1,20,0,0.5),300, new Point3D(-550, -500, -1000));
 		Sphere sphere2 = new Sphere(new Color(100, 20, 20), new Material(1,1,20,0,0),150, new Point3D(-550, -500, -1000));
 
-		Triangle triangle = new Triangle(new Point3D(  1500, -1500, -1500),
+		Triangle triangle = new Triangle(new Color(20, 20, 20),new Material(1,1,4,1,0),
+				new Point3D(  1500, -1500, -1500),
 				 						 new Point3D( -1500,  1500, -1500),
 				 						 new Point3D(  200,  200, -375));
 		
-		Triangle triangle2 = new Triangle(new Point3D(  1500, -1500, -1500),
+		Triangle triangle2 = new Triangle(new Color(20, 20, 20),new Material(1,1,4,0.5,0),
+				new Point3D(  1500, -1500, -1500),
 										  new Point3D( -1500,  1500, -1500),
 										  new Point3D( -1500, -1500, -1500));
 		
-		triangle.setEmmission(new Color(20, 20, 20));
-		triangle2.setEmmission(new Color(20, 20, 20));
-		triangle.getMaterial().setKr(1);
-		triangle2.getMaterial().setKr(0.5);
 		List<LightSource> list = new ArrayList<LightSource>();
-		list.add(new spotLight(new Color(255, 100, 100), new Point3D(200, 200, -150), 0, 0.00001, 0.000005, new Vector(-2, -2, -3)));
+		list.add(new spotLight(new Color(255, 100, 100),
+				new Point3D(200, 200, -150), 0, 0.00001, 0.000005, new Vector(-2, -2, -3)));
 		Geometries geo = new Geometries();
 		geo.add(triangle,triangle2,sphere,sphere2);
 		Scene scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(255, 255, 255), 0.1), geo, new Camera(new Point3D(0, 0, 0),  new Vector(0, 0, -1),new Vector(0, 1, 0)), 300,list);
@@ -77,20 +76,18 @@ public class renderTest {
 		Sphere sphere = new Sphere(new Color(0, 0, 100), new Material(1,1,20,0,0.5),300, new Point3D(0, 0, -1000));
 		Sphere sphere2 = new Sphere(new Color(100, 20, 20), new Material(1,1,20,0,0),150, new Point3D(0, 0, -1000));		
 		
-		Triangle triangle = new Triangle(new Point3D(  2000, -1000, -1500),
+		Triangle triangle = new Triangle(new Color(20, 20, 20),new Material(1,1,4,1,0)
+				,new Point3D(  2000, -1000, -1500),
 				 						 new Point3D( -1000,  2000, -1500),
 				 						 new Point3D(  700,  700, -375));
 		
-		Triangle triangle2 = new Triangle(new Point3D(  2000, -1000, -1500),
+		Triangle triangle2 = new Triangle(new Color(20, 20, 20),new Material(1,1,4,0.5,0)
+				,new Point3D(  2000, -1000, -1500),
 										  new Point3D( -1000,  2000, -1500),
 										  new Point3D( -1000, -1000, -1500));
 		Geometries geo = new Geometries();
 		geo.add(triangle,triangle2,sphere,sphere2);
 
-		triangle.setEmmission(new Color(20, 20, 20));
-		triangle2.setEmmission(new Color(20, 20, 20));
-		triangle.getMaterial().setKr(1);
-		triangle2.getMaterial().setKr(0.5);
 		List<LightSource> list = new ArrayList<LightSource>();
 		list.add(new spotLight(new Color(255, 100, 100), new Point3D(200, 200, -150), 0, 0.00001, 0.000005, new Vector(-2, -2, -3)));
 		
