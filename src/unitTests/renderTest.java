@@ -18,29 +18,94 @@ import java.util.List;
 
 public class renderTest {
 
-	
 	@Test
-	public void reflectionAndRefractionTest(){
-		
-		//test where the triangle is further away from the sphere
-		List<Geometry> geometries = new ArrayList<Geometry>();
-		Sphere sphere = new Sphere(new Color(0,0,100), new Material(1,1,20) , 500, new Point3D(0.0, 0.0, -1000));
-		
-		geometries.add(sphere);
-		
-		List<LightSource> lst = new ArrayList<LightSource>();
-		lst.add(new spotLight(new Color(100, 0, 100), new Point3D(-200, -200, -150), 
-				    0, 0.000001, 0.0000005,new Vector(2, 2, -3)));
+	public void recursiveTest()
+       {
+		Sphere sphere = new Sphere(new Color(0, 0, 100), new Material(1,1,20,0,0.5),500, new Point3D(0.0, 0.0, -1000));
+		Sphere sphere2 = new Sphere(new Color(100, 20, 20), new Material(1,1,20,0,0),250, new Point3D(0.0, 0.0, -1000));
+		List<LightSource> list = new ArrayList<LightSource>();
+		list.add(new spotLight(new Color(255, 100, 100), new Point3D(-200, -200, -150) ,0.1,0.00001, 0.000005, new Vector(2, 2, -3)));
 	
-		Scene scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(0, 0, 0), 1), new Geometries(geometries), new Camera(new Point3D(0, 0, 0),  new Vector(0, 0, -1),new Vector(0, 1, 0)), 500);
-		scene.setLights(lst);		
-		
-		ImageWriter imageWriter = new ImageWriter("tests/reflectionAndRefractionTest", 1000, 1000, 1000, 1000);
+		ImageWriter imageWriter = new ImageWriter("tests/RecursiveTest11", 500, 500, 500, 500);
+		Geometries geo = new Geometries();
+		geo.add(sphere,sphere2);
+		Scene scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(255, 255, 255), 0.1), geo, new Camera(new Point3D(0, 0, 0),  new Vector(0, 0, -1),new Vector(0, 1, 0)), 300,list);
 		Render render = new Render(scene,imageWriter);
 		
 		render.renderImage();
 		render.get_imageWriter().writeToimage();
 	}
+	
+	
+	@Test
+	public void recursiveTest2(){
+		
+				
+		Sphere sphere = new Sphere(new Color(0, 0, 100), new Material(1,1,20,0,0.5),300, new Point3D(-550, -500, -1000));
+		Sphere sphere2 = new Sphere(new Color(100, 20, 20), new Material(1,1,20,0,0),150, new Point3D(-550, -500, -1000));
+
+		Triangle triangle = new Triangle(new Point3D(  1500, -1500, -1500),
+				 						 new Point3D( -1500,  1500, -1500),
+				 						 new Point3D(  200,  200, -375));
+		
+		Triangle triangle2 = new Triangle(new Point3D(  1500, -1500, -1500),
+										  new Point3D( -1500,  1500, -1500),
+										  new Point3D( -1500, -1500, -1500));
+		
+		triangle.setEmmission(new Color(20, 20, 20));
+		triangle2.setEmmission(new Color(20, 20, 20));
+		triangle.getMaterial().setKr(1);
+		triangle2.getMaterial().setKr(0.5);
+		List<LightSource> list = new ArrayList<LightSource>();
+		list.add(new spotLight(new Color(255, 100, 100), new Point3D(200, 200, -150), 0, 0.00001, 0.000005, new Vector(-2, -2, -3)));
+		Geometries geo = new Geometries();
+		geo.add(triangle,triangle2,sphere,sphere2);
+		Scene scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(255, 255, 255), 0.1), geo, new Camera(new Point3D(0, 0, 0),  new Vector(0, 0, -1),new Vector(0, 1, 0)), 300,list);
+
+		ImageWriter imageWriter = new ImageWriter("tests/RecursiveTest2", 500, 500, 500, 500);
+		
+		Render render = new Render(scene,imageWriter);
+		
+		render.renderImage();
+		render.get_imageWriter().writeToimage();
+		
+	}
+	
+	@Test
+	public void recursiveTest3(){
+				
+		Sphere sphere = new Sphere(new Color(0, 0, 100), new Material(1,1,20,0,0.5),300, new Point3D(0, 0, -1000));
+		Sphere sphere2 = new Sphere(new Color(100, 20, 20), new Material(1,1,20,0,0),150, new Point3D(0, 0, -1000));		
+		
+		Triangle triangle = new Triangle(new Point3D(  2000, -1000, -1500),
+				 						 new Point3D( -1000,  2000, -1500),
+				 						 new Point3D(  700,  700, -375));
+		
+		Triangle triangle2 = new Triangle(new Point3D(  2000, -1000, -1500),
+										  new Point3D( -1000,  2000, -1500),
+										  new Point3D( -1000, -1000, -1500));
+		Geometries geo = new Geometries();
+		geo.add(triangle,triangle2,sphere,sphere2);
+
+		triangle.setEmmission(new Color(20, 20, 20));
+		triangle2.setEmmission(new Color(20, 20, 20));
+		triangle.getMaterial().setKr(1);
+		triangle2.getMaterial().setKr(0.5);
+		List<LightSource> list = new ArrayList<LightSource>();
+		list.add(new spotLight(new Color(255, 100, 100), new Point3D(200, 200, -150), 0, 0.00001, 0.000005, new Vector(-2, -2, -3)));
+		
+		Scene scene = new Scene("Test scene", new Color(0, 0, 0), new AmbientLight(new Color(255, 255, 255), 0.1), geo, new Camera(new Point3D(0, 0, 0),  new Vector(0, 0, -1),new Vector(0, 1, 0)), 300,list);
+
+		ImageWriter imageWriter = new ImageWriter("tests/RecursiveTest3", 500, 500, 500, 500);
+		
+		Render render = new Render(scene,imageWriter);
+		
+		render.renderImage();
+		render.get_imageWriter().writeToimage();
+
+	}
+	
+	
 	@Test
 	public void shadowTest(){
 		
@@ -189,6 +254,9 @@ public class renderTest {
 		
 	
  }
+	
+ }
 
 
-	}
+
+	
