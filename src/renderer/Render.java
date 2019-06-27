@@ -150,14 +150,14 @@ public class Render {
 			reflectedColor = calcColor(g, p, reflectedRay, level + 1);
 		}
 		else {
-			reflectedColor = this.get_scene().getBackground();
+			reflectedColor = new Color(0,0,0);
 		}
 		
 		double Kr = geometry.getMaterial().getKr();
 		Color reflectedLight = new Color(SpecinCol(reflectedColor.getRed(), Kr), SpecinCol(reflectedColor.getGreen(), Kr), SpecinCol(reflectedColor.getBlue(), Kr));
 		
 		//refraction calculation
-		Ray refractedRay = constructRefractedRay(geometry, point, inRay);
+		Ray refractedRay = new Ray(constructRefractedRay(geometry, point, inRay));
 		Map<Geometry, Point3D> refractedEntry = this.getClosestPoint(this.getSceneRayIntersections(refractedRay));
 		Set<Entry<Geometry, Point3D>> it2 = refractedEntry.entrySet();
 		Color refractedColor;
@@ -166,10 +166,10 @@ public class Render {
 			Entry<Geometry, Point3D> a = it2.iterator().next();
 			Geometry g = a.getKey();
 			Point3D p = a.getValue();
-			refractedColor = calcColor(g, p, refractedRay, level + 1);
+			refractedColor = new Color(calcColor(g, p, refractedRay, level + 1).getRGB());
 		}
 		else {
-			refractedColor = this.get_scene().getBackground();
+			refractedColor = new Color(0,0,0);
 		}
 		
 		double Kt = geometry.getMaterial().getKt();
@@ -177,9 +177,11 @@ public class Render {
 		
 		
 		//summing ambient, emission, diffusive, specular light components
-		Color add1=addColors(ambientLight,emissionLight);
-	    Color add2=addColors(diffuseLight,specularLight);
-	    return addColors(addColors(add1, reflectedLight), addColors(add2, refractedLight));
+		Color add1=new Color(addColors(ambientLight,emissionLight).getRGB());
+        Color add2=new Color(addColors(diffuseLight,specularLight).getRGB());
+        Color add3=new Color(addColors(refractedLight,reflectedLight).getRGB());
+        Color add4=new Color(addColors(add1,add2).getRGB());
+        return  new Color(addColors(add3,add4).getRGB());
 	}
 	
 	
