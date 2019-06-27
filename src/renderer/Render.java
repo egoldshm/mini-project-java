@@ -132,7 +132,7 @@ public class Render {
 			}
 			else
 			{
-				  diffuseLight = new Color(0, 0, 0);
+				 diffuseLight = new Color(0, 0, 0);
 	             specularLight = new Color(0, 0, 0);
 			}
 			
@@ -144,8 +144,7 @@ public class Render {
 		Color reflectedColor;
 		if(!reflectedEntry.isEmpty())
 		{
-			Set<Entry<Geometry, Point3D>> it1 = reflectedEntry.entrySet();
-			Entry<Geometry, Point3D> a = it1.iterator().next();
+			Entry<Geometry, Point3D> a = reflectedEntry.entrySet().iterator().next();
 			Geometry g = a.getKey();
 			Point3D p = a.getValue();
 			reflectedColor = calcColor(g, p, reflectedRay, level + 1);
@@ -186,12 +185,10 @@ public class Render {
 	
 	 private Ray constructReflectedRay(Vector normal, Point3D point, Ray inRay)
 	    {
-		 normal = normal.normalizationOfVector();
-	     Vector D=new Vector(inRay.getDirection());//creating the direction Vector
-	     Vector epsVector = new Vector(normal);//a copy for the normal vector
+	     Vector D=(new Vector(inRay.getDirection())).normalizationOfVector();//creating the direction Vector
+	     Vector epsVector = new Vector(normal.normalizationOfVector());//a copy for the normal vector
 	     epsVector = epsVector.scalarMultiplication(2);
 	     point = point.add(epsVector);
-	     D = D.normalizationOfVector();
 	     Ray R=new Ray(point,D);
 	     Vector tmp=new Vector(normal);
 	     tmp = tmp.scalarMultiplication(-2*D.scalarMultiplication(normal));
@@ -210,8 +207,9 @@ public class Render {
 	        no = no.normalizationOfVector();
 	        Vector epsVector = new Vector(no);
 	        epsVector = epsVector.scalarMultiplication(2).normalizationOfVector();
-	        point.subtract(epsVector.getHead());
-	        return new Ray (point, inRay.getDirection());
+	        Point3D pointResult = new Point3D(point.getX().subtract(epsVector.getHead().getX()),
+	        		point.getY().subtract(epsVector.getHead().getY()),point.getZ().subtract(epsVector.getHead().getZ()));
+	        return new Ray (pointResult,inRay.getDirection());
 	    }
 	
 	/**
@@ -226,6 +224,13 @@ public class Render {
 		return calcColor(geometry, point, inRay, 0);
 	}
 	
+	/**
+	 * this function decide if a point is cover by other geometries
+	 * @param light the source light
+	 * @param point the point from where we send  the light check shadow
+	 * @param geometry the point on the geometry
+	 * @return if the geometry occluded or not.
+	 */
 	private boolean occluded(LightSource light, Point3D point, Geometry geometry)
 	{
 		
