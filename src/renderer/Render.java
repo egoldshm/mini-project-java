@@ -123,7 +123,10 @@ public class Render {
 		//summing the specular and diffusive component for every light source
 		while (lights.hasNext()){
 			light = lights.next();
-			if(!this.occluded(light, point, geometry))
+			Vector l = light.getL(point);
+			Vector v = point.subtract(_scene.getCamera().getPO()).normalizationOfVector();
+	        Vector n = geometry.getNormal(point);
+			if(!this.occluded(light, point, geometry) && n.scalarMultiplication(l) * n.scalarMultiplication(v) > 0)
 			{
 				difTmp = addColors(diffuseLight, calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point)));
 				diffuseLight = new Color(difTmp.getRGB());
@@ -255,9 +258,9 @@ public class Render {
 		for (Map.Entry<Geometry, List<Point3D>> entry: intersectionPoints.entrySet())
 			if(entry.getKey().getMaterial().getKt() == 0)
 			{
-				return false;
+				return true;
 				}
-		return true;
+		return false;
 	}
     /**
      * A function that get two colors is summed together logically.

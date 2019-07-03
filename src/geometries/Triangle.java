@@ -123,10 +123,10 @@ public class Triangle extends Geometry implements FlatGeometry{
 	}
 	
 	// ***************** Operations ******************** // 
-	
+	/*
 	/* (non-Javadoc)
 	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
-	 */
+	 *//*
 	@Override
 	public List<Point3D> findIntersections(Ray r) {
 		
@@ -160,6 +160,40 @@ public class Triangle extends Geometry implements FlatGeometry{
 			returnList.clear();
 			return returnList;
 		}
+	}*/
+	public List<Point3D> findIntersections(Ray ray) {
+
+	    List<Point3D> intersections = new ArrayList<Point3D>();
+
+	    Plane plane = new Plane(this.getNormal(_p1),this._p1);
+	    		intersections = plane.findIntersections(ray);
+	    if (intersections.isEmpty())
+	        return intersections;
+
+	    Point3D p0 = ray.getPOO();
+
+	    Vector v1 = _p1.subtract(p0).normalizationOfVector();
+	    Vector v2 = _p2.subtract(p0).normalizationOfVector();
+	    Vector v3 = _p3.subtract(p0).normalizationOfVector();
+
+	    Vector n1 = new Vector(v1.CrossProductVector(v2));
+	    Vector n2 = new Vector(v2.CrossProductVector(v3));
+	    Vector n3 = new Vector(v3.CrossProductVector(v1));
+
+	    Point3D p = new Point3D(intersections.get(0));
+
+	    if (!((Math.signum(p.subtract(p0).scalarMultiplication(n1)) ==
+	            Math.signum(p.subtract(p0).scalarMultiplication(n2)) &&
+	            Math.signum(p.subtract(p0).scalarMultiplication(n2)) ==
+	                    Math.signum(p.subtract(p0).scalarMultiplication(n3)))))
+	        intersections.clear();
+
+	    else {
+	        if (intersections.get(0).subtract(ray.getPOO()).scalarMultiplication(ray.getDirection()) < 0)
+	            intersections.clear();
+	    }
+
+	    return intersections;
 	}
 
 	@Override

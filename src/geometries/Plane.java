@@ -100,6 +100,8 @@ public class Plane extends Geometry implements FlatGeometry{
 	 */
 	public List<Point3D> findIntersections(Ray r)
 	{
+		/*
+		
 		 List<Point3D> L=new ArrayList<Point3D>(); // the LIst of points that intersect the plane
 	        Point3D p0=new Point3D(r.getPOO()); // the point that the ray comes out from
 	        Point3D  q0=new Point3D(_Q); // a point on the plane
@@ -119,8 +121,8 @@ public class Plane extends Geometry implements FlatGeometry{
 	            L.add(p0);
 	            return L;
 	        }
-	        return L;
-	    /*
+	        return L;*/
+	   
 		List<Point3D> returnList = new ArrayList<Point3D>();
 		//if there is an intersection, it will be t * r.vector away from r.point
 		double t = -1 * (_N.scalarMultiplication(r.getPOO().subtract(_Q)))/(_N.scalarMultiplication(r.getDirection()));
@@ -131,7 +133,7 @@ public class Plane extends Geometry implements FlatGeometry{
 		}
 		
 		//intersections.put(this, returnList);
-		return returnList;*/
+		return returnList;
 		
 	}
 

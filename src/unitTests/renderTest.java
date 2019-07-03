@@ -45,10 +45,10 @@ public class renderTest {
 		Sphere sphere2 = new Sphere(new Color(100, 20, 20), new Material(1,1,20,0,0),150, new Point3D(-550, -500, -1000));
 
 		Triangle triangle = new Triangle(new Color(20, 20, 20),new Material(1,1,4,1,0),
-				new Point3D(  1500, -1500, -1500),
+				new Point3D(1500, -1500, -1500),
 				 						 new Point3D( -1500,  1500, -1500),
 				 						 new Point3D(  200,  200, -375));
-		
+
 		Triangle triangle2 = new Triangle(new Color(20, 20, 20),new Material(1,1,4,0.5,0),
 				new Point3D(  1500, -1500, -1500),
 										  new Point3D( -1500,  1500, -1500),
