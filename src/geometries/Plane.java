@@ -99,9 +99,7 @@ public class Plane extends Geometry implements FlatGeometry{
 	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
 	 */
 	public List<Point3D> findIntersections(Ray r)
-	{
-		/*
-		
+	{/*
 		 List<Point3D> L=new ArrayList<Point3D>(); // the LIst of points that intersect the plane
 	        Point3D p0=new Point3D(r.getPOO()); // the point that the ray comes out from
 	        Point3D  q0=new Point3D(_Q); // a point on the plane
