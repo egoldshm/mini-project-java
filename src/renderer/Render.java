@@ -188,7 +188,14 @@ public class Render {
 	}
 	
 	
-	 private Ray constructReflectedRay(Vector normal, Point3D point, Ray inRay)
+	 /**
+	  * function for the construct ray for Reflected
+	 * @param normal vector of the geomery in the point
+	 * @param point the point where we calc the Reflected
+	 * @param inRay ray that we get
+	 * @return Ray new ray we get
+	 */
+	private Ray constructReflectedRay(Vector normal, Point3D point, Ray inRay)
 	    {
 	     Vector D=(new Vector(inRay.getDirection())).normalizationOfVector();//creating the direction Vector
 	     Vector epsVector = new Vector(normal.normalizationOfVector());//a copy for the normal vector
@@ -203,6 +210,13 @@ public class Render {
 	    }
 	   
 	 
+	    /**
+	     * function for the construct ray for Refracted
+	     * @param geometry geomery where we calc the ray
+	     * @param point point where we calc the ray
+	     * @param  inRay ray that we get
+	     * @return Ray new ray we get
+	     */
 	    private Ray constructRefractedRay(Geometry geometry, Point3D point, Ray inRay)
 	    {
 	        Vector Normal = geometry.getNormal(point);
@@ -256,10 +270,10 @@ public class Render {
 		}
 		
 		for (Map.Entry<Geometry, List<Point3D>> entry: intersectionPoints.entrySet())
-			if(entry.getKey().getMaterial().getKt() == 0)
-			{
-				return true;
-				}
+		if(entry.getKey().getMaterial().getKt() == 0)
+		{
+			return true;
+		}
 		return false;
 	}
     /**
@@ -389,20 +403,19 @@ public class Render {
 	private Color calcSpecularComp(double _ks, Vector _V, Vector _Norm, Vector _L, int _n, Color _Il)
 	{
 	
-		_L = _L.normalizationOfVector();//L.normalize()
-		_Norm = _Norm.normalizationOfVector();//Norm.normalize()
-		_V = _V.normalizationOfVector();//V.normalize()
+		_L = _L.normalizationOfVector();
+		_Norm = _Norm.normalizationOfVector();
+		_V = _V.normalizationOfVector();
 	
-		Vector tmp = new Vector(_Norm);//copy of Norm
-		Vector R = new Vector(_L);//copy of L
+		Vector tmp = new Vector(_Norm);
+		Vector R = new Vector(_L);
 		tmp = tmp.scalarMultiplication(-2 * _L.scalarMultiplication(_Norm));//tmp = -2 * Norm * (L * Norm)
-		R = new Vector(R.addVector(tmp).normalizationOfVector());//R = (R +tmp).normalize()
+		R = new Vector(R.addVector(tmp).normalizationOfVector());//R = (R +tmp).normalizationOfVector()
 		double multiColor=0;
         if(_V.scalarMultiplication(R)>0)
         	multiColor=_ks*(Math.pow((_V.scalarMultiplication(R)),_n));//getting the scaling factor of the color including shininess
 		
         return new Color(SpecinCol(_Il.getRed(),multiColor),SpecinCol(_Il.getGreen(),multiColor),SpecinCol(_Il.getBlue(),multiColor));
-		//returning the scaled color
 	}
 	
 	/**

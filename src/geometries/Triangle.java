@@ -123,44 +123,10 @@ public class Triangle extends Geometry implements FlatGeometry{
 	}
 	
 	// ***************** Operations ******************** // 
-	/*
-	/* (non-Javadoc)
-	 * @see Geometries.Geometry#findIntersections(primitives.Ray)
-	 *//*
-	@Override
-	public List<Point3D> findIntersections(Ray r) {
-		
-		List<Point3D> returnList = new ArrayList<Point3D>();
-		//to check if there is a point of intersection on the plane the triangle is on
-		
-		//TODO: check -> auto fixed
-		returnList.addAll((Collection<? extends Point3D>) new Plane(_p1.subtract(_p2).CrossProductVector(_p1.subtract(_p3)), _p1).findIntersections(r));
-		//if there isn't, then there is definitely no intersection in the triangle
-		if(returnList.isEmpty())
-		{
-			return returnList;
 
-		}
-		//if there is a point of intersection, we need to see if it is also on the triangle
-		Vector v1 = this._p1.subtract(r.getPOO());
-		Vector v2 = this._p2.subtract(r.getPOO());
-		Vector v3 = this._p3.subtract(r.getPOO());
-		Vector N1 = v2.CrossProductVector(v1).normalizationOfVector();
-		Vector N2 = v3.CrossProductVector(v2).normalizationOfVector();
-		Vector N3 = v1.CrossProductVector(v3).normalizationOfVector();
-		Vector v = returnList.get(0).subtract(r.getPOO());
-		//the point is in the same position relative to the "triangles" built by the vectors N1, N2, N3 (three triangles - the sides of a tetrahedron with base "this" and head of P0), meaning it must be on the triangle 
-		if(Math.signum(v.scalarMultiplication(N1)) == Math.signum(v.scalarMultiplication(N2)) && Math.signum(v.scalarMultiplication(N2)) == Math.signum(v.scalarMultiplication(N3)))
-		{
-			return returnList;
-		}
-		//no intersection points
-		else
-		{
-			returnList.clear();
-			return returnList;
-		}
-	}*/
+	/* (non-Javadoc)
+	 * @see geometries.Intersectable#findIntersections(primitives.Ray)
+	 */
 	public List<Point3D> findIntersections(Ray ray) {
 
 	    List<Point3D> intersections = new ArrayList<Point3D>();
@@ -196,6 +162,9 @@ public class Triangle extends Geometry implements FlatGeometry{
 	    return intersections;
 	}
 
+	/* (non-Javadoc)
+	 * @see geometries.Geometry#getNormal(primitives.Point3D)
+	 */
 	@Override
 	public Vector getNormal(Point3D point) {
 		Vector v1 = this._p2.subtract(this._p1);

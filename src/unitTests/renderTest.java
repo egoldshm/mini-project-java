@@ -18,6 +18,9 @@ import java.util.List;
 
 public class renderTest {
 
+	/**
+	 * Test 1 for recursive Test for the file "RecursiveTest11"
+	 */
 	@Test
 	public void recursiveTest()
        {
@@ -37,6 +40,9 @@ public class renderTest {
 	}
 	
 	
+	/**
+	 * Test 2 for recursive Test for the file "RecursiveTest2"
+	 */
 	@Test
 	public void recursiveTest2(){
 		
@@ -70,6 +76,9 @@ public class renderTest {
 		
 	}
 	
+	/**
+	 * Test 3 for recursive Test for the file "RecursiveTest3"
+	 */
 	@Test
 	public void recursiveTest3(){
 				
@@ -103,6 +112,9 @@ public class renderTest {
 	}
 	
 	
+	/**
+	 * Test for shadow. for the file "shadowTestFarTriangleFarLight.jpg"
+	 */
 	@Test
 	public void shadowTest(){
 		
@@ -157,6 +169,9 @@ public class renderTest {
 		render.get_imageWriter().writeToimage();
 	}
 	
+	/**
+	 * Test for four triangles and a sphere without colors for the file "blackAndWhiteTest"
+	 */
 	@Test
 	public void basicRenderTest() {
 		//four triangles and a sphere without colors
@@ -175,10 +190,11 @@ public class renderTest {
 		render.get_imageWriter().writeToimage();
 	}
 
+	/**
+	 * Test for four triangles and a sphere with colors for the file "colorTest"
+	 */
 	@Test
 	public void colorRenderTest() {
-		//four triangles and a sphere with colors
-		//file "colorTest"
 		List<Geometry> geometries = new ArrayList<Geometry>();
 		geometries.add(new Triangle(new Color(106,206,0),new Material(),new Point3D( 100, 0, 149),new Point3D(  0, 100, 149),new Point3D( 100, 100, 149)));
 		geometries.add(new Sphere(new Color(50,50,50),new Material(),50,new Point3D(0, 0, 150)));
@@ -193,6 +209,9 @@ public class renderTest {
 		render.get_imageWriter().writeToimage();
 	}
 
+	/**
+	 * 4 Test for spec And Dif
+	 */
 	@Test
 	public void specAndDifTest() {
 		//two triangles and a pointlight
