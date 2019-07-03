@@ -255,9 +255,9 @@ public class Render {
 		for (Map.Entry<Geometry, List<Point3D>> entry: intersectionPoints.entrySet())
 			if(entry.getKey().getMaterial().getKt() == 0)
 			{
-				return true;
+				return false;
 				}
-		return false;
+		return true;
 	}
     /**
      * A function that get two colors is summed together logically.

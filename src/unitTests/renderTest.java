@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class renderTest {
-/*
+
 	@Test
 	public void recursiveTest()
        {
@@ -35,7 +35,7 @@ public class renderTest {
 		render.renderImage();
 		render.get_imageWriter().writeToimage();
 	}
-	*/
+	
 	
 	@Test
 	public void recursiveTest2(){
@@ -102,7 +102,7 @@ public class renderTest {
 
 	}
 	
-	/*
+	
 	@Test
 	public void shadowTest(){
 		
@@ -250,7 +250,7 @@ public class renderTest {
 		render.get_imageWriter().writeToimage();
 		
 	
- }*/
+ }
 	
  }
 
