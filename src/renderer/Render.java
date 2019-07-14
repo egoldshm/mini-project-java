@@ -343,33 +343,49 @@ public class Render {
 		//Passes each pixel in the image, and checks which color should be put, if it has a cut point - finds using the calColor function. If not - painting with the color of the background.
 		for (int i = 0; i < _imageWriter.getNx(); i++) {
 			for (int j = 0; j < _imageWriter.getNy(); j++) {
-				Ray r = new Ray(_scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(),
+				List<Ray> rays = new ArrayList<Ray>(_scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(),
 						i, j, _scene.getScreenDistance(), _imageWriter.getWidth(), _imageWriter.getHeight()));
-				Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(r);
-				// if no intersection Points - put background color
-				if (intersectionPoints.isEmpty())
+				List<Color> listColor = new ArrayList<Color>();
+				for(Ray r : rays)
 				{
-					_imageWriter.writePixel(i, j, _scene.getBackground());
-				}
-				else
+					Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(r);
+					// if no intersection Points - put background color
+					if (intersectionPoints.isEmpty())
 					{
-					//find the closest point
-					Map<Geometry, Point3D> closestPoint = getClosestPoint(intersectionPoints);
-					Set<Entry<Geometry, Point3D>> it = closestPoint.entrySet();
-					//check if point exist
-					if(it.iterator().hasNext())
-					{
-						Entry<Geometry, Point3D> a = it.iterator().next();
-						Geometry g = a.getKey();
-						Point3D p = a.getValue();
-						_imageWriter.writePixel(i, j, this.calcColor(g,p, r));
+						listColor.add(_scene.getBackground());
 					}
 					else
-					{
-						// if no intersection Points - put background color
-						_imageWriter.writePixel(i, j, _scene.getBackground());
-					}
+						{
+						//find the closest point
+						Map<Geometry, Point3D> closestPoint = getClosestPoint(intersectionPoints);
+						Set<Entry<Geometry, Point3D>> it = closestPoint.entrySet();
+						//check if point exist
+						if(it.iterator().hasNext())
+						{
+							Entry<Geometry, Point3D> a = it.iterator().next();
+							Geometry g = a.getKey();
+							Point3D p = a.getValue();
+							listColor.add(this.calcColor(g,p, r));
+						}
+						else
+						{
+							// if no intersection Points - put background color
+							listColor.add(_scene.getBackground());
+						}
+					
 				}
+				
+				}
+				int r=0,g=0,b=0;
+				for(Color c : listColor)
+				{
+					r+=c.getRed();
+					g+=c.getGreen();
+					b+=c.getBlue();
+
+				}
+				this.get_imageWriter().writePixel(i, j,this.addColors(new Color(0,0,0), new Color(r/rays.size(), g/rays.size(), b/rays.size())));
+				
 			}
 		}
 	}
