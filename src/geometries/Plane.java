@@ -1,13 +1,15 @@
 /** *
  */
 package geometries;
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import primitives.*;
+import primitives.Material;
+import primitives.Point3D;
+import primitives.Ray;
+import primitives.Util;
+import primitives.Vector;
 /**
  * @author egoldshm and sarieldov
  * @info

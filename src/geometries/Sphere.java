@@ -1,13 +1,14 @@
 package geometries;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
-import primitives.*;
+import primitives.Material;
+import primitives.Point3D;
+import primitives.Ray;
+import primitives.Vector;
 
 /**
  * @author eitan A class to represent Sphere. realizes Geometry and inherits

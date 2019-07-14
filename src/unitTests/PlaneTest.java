@@ -1,13 +1,12 @@
 package unitTests;
-import primitives.*;
-
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import geometries.*;
+import geometries.Plane;
+import primitives.Point3D;
+import primitives.Ray;
+import primitives.Vector;
 /**
  * test cases for plane
  */

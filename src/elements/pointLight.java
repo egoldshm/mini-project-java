@@ -6,7 +6,6 @@ package elements;
 import java.awt.Color;
 
 import primitives.Point3D;
-import primitives.Util;
 import primitives.Vector;
 
 /**

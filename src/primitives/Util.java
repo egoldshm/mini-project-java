@@ -1,9 +1,5 @@
 package primitives;
 
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Collection;
-
 /**
  * @author sasegal
  *

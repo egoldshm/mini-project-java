@@ -4,11 +4,9 @@
 package geometries;
 
 import java.awt.Color;
-import java.util.*;
 
 import primitives.Material;
 import primitives.Point3D;
-import primitives.Ray;
 import primitives.Vector;
 
 /**

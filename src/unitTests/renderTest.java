@@ -1,13 +1,10 @@
 package unitTests;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import primitives.*;
 import renderer.ImageWriter;
 import renderer.Render;
-import renderer.Render.*;
 import scene.*;
 import elements.*;
 import geometries.*;

@@ -1,7 +1,5 @@
 package primitives;
 
-import java.util.HashMap;
-
 /**
  * class for material
  */

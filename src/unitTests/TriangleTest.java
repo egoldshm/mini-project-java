@@ -1,16 +1,15 @@
 package unitTests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 
-import geometries.*;
-import primitives.*;
+import geometries.Triangle;
 import primitives.Point3D;
+import primitives.Ray;
+import primitives.Vector;
 /**
  * Test cases for triangle 
  */

@@ -1,13 +1,9 @@
 package geometries;
 
-import java.awt.*;
-import java.util.List;
-import java.util.Map;
+import java.awt.Color;
 import java.util.Objects;
 
 import primitives.Material;
-import primitives.Point3D;
-import primitives.Ray;
 
 
 
