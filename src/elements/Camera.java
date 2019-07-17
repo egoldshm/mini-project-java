@@ -150,55 +150,28 @@ public class Camera {
 	//constructRayThroughPixel
 	{
 		List<Ray> list= new ArrayList<Ray>();
-		//find the width and height for one pixel
-		double Rx= screenWidth/Nx;
-		double Ry= screenHeight/Ny;
-		
-		Vector vto=this.getVTo().normalizationOfVector().scalarMultiplication(screenDist);
-		//find the vector vTo
-		Point3D pc=this.getPO().add(vto);
-		//find the Point3D in the middle of view plane 
-		
-		//calculate the vector that we search 
-		double nx=(double)Nx/2;
-		double ny=(double)Ny/2;
-		double dright= (x-nx)*Rx+(Rx/2.0d);
-		double dup= (y-ny)*Ry+(Ry/2.0d);
-		Vector vright= this.getVRight().scalarMultiplication(dright);;
-		Vector vup=this.getVUp().scalarMultiplication(dup);
-		Point3D pc2=pc.add(vright);
-		
-		Point3D RU=pc2.subtract(vup.getHead()).getHead();
-		Vector vend= new Vector(new Point3D(RU)).normalizationOfVector();
-		Ray r1=new Ray(RU,vend );
-		r1.setDirection(r1.getDirection().normalizationOfVector());
+		Point3D Pc = _PO.add(_vTo.scalarMultiplication(screenDist));
+		_vRight = _vTo.CrossProductVector(_vUp);
+		double Rx = (screenWidth / Nx);
+		double Ry = (screenHeight / Ny);
+		Point3D P1,P2,P3,P4,P5;
+		P1 = Pc.add(_vRight.scalarMultiplication((x - (Nx / 2.0d)) * Rx - (Rx / 2.0d))
+				.subtractVector(_vUp.scalarMultiplication(Ry * (y - Ny / 2.0d) - Ry / 2.0d)));
+		P2 = Pc.add(_vRight.scalarMultiplication((x - (Nx / 2.0d)) * Rx )
+				.subtractVector(_vUp.scalarMultiplication(Ry * (y - Ny / 2.0d) - Ry )));
+		P3 = Pc.add(_vRight.scalarMultiplication((x - (Nx / 2.0d)) * Rx - (Rx ))
+				.subtractVector(_vUp.scalarMultiplication(Ry * (y - Ny / 2.0d) )));
+		P4 = Pc.add(_vRight.scalarMultiplication((x - (Nx / 2.0d)) * Rx )
+				.subtractVector(_vUp.scalarMultiplication(Ry * (y - Ny / 2.0d))));
+		P5 = Pc.add(_vRight.scalarMultiplication((x - (Nx / 2.0d)) * Rx - (Rx))
+				.subtractVector(_vUp.scalarMultiplication(Ry * (y - Ny / 2.0d) - Ry)));
+		list.add(new Ray(_PO, P1.subtract(_PO).normalizationOfVector()));
+		list.add(new Ray(_PO, P2.subtract(_PO).normalizationOfVector()));
+		list.add(new Ray(_PO, P3.subtract(_PO).normalizationOfVector()));
+		list.add(new Ray(_PO, P4.subtract(_PO).normalizationOfVector()));
+		list.add(new Ray(_PO, P5.subtract(_PO).normalizationOfVector()));
 		
 		
-		Point3D p1= new Point3D(RU.getX().subtract(new Coordinate(Rx/2)),RU.getY().add(new Coordinate(Ry/2)),RU.getZ());
-		Vector vp1= new Vector(new Point3D(p1)).normalizationOfVector();
-		Ray r2=new Ray(p1,vp1 );
-		r2.setDirection(r2.getDirection().normalizationOfVector());
-		
-		Point3D p2= new Point3D(RU.getX().add(new Coordinate(Rx/2)),RU.getY().add(new Coordinate(Ry/2)),RU.getZ());
-		Vector vp2= new Vector(new Point3D(p2)).normalizationOfVector();
-		Ray r3=new Ray(p2,vp2 );
-		r3.setDirection(r3.getDirection().normalizationOfVector());
-		
-		Point3D p3= new Point3D(RU.getX().add(new Coordinate(Rx/2)),RU.getY().subtract(new Coordinate(Ry/2)),RU.getZ());
-		Vector vp3= new Vector(new Point3D(p3)).normalizationOfVector();
-		Ray r4=new Ray(p3,vp3 );
-		r4.setDirection(r4.getDirection().normalizationOfVector());
-		
-		Point3D p4= new Point3D(RU.getX().subtract(new Coordinate(Rx/2)),RU.getY().subtract(new Coordinate(Ry/2)),RU.getZ());
-		Vector vp4= new Vector(new Point3D(p4)).normalizationOfVector();
-		Ray r5=new Ray(p4,vp4);
-		r5.setDirection(r5.getDirection().normalizationOfVector());
-		
-		list.add(r1);
-		list.add(r2);
-		list.add(r3);
-		list.add(r4);
-		list.add(r5);
 
 		return list;
 		

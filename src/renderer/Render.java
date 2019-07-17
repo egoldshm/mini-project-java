@@ -18,7 +18,7 @@ public class Render {
 
 	private Scene _scene;
 	private ImageWriter _imageWriter;
-	private final int RECURSION_LEVEL = 3;
+	private final int RECURSION_LEVEL = 2;
 
 	// ***************** Constructors ********************** //
 
