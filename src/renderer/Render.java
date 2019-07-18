@@ -443,24 +443,11 @@ public class Render {
 		double multiColor=0;
         if(_V.scalarMultiplication(R)>0 )
         	multiColor=_ks*(Math.pow((_V.scalarMultiplication(R)),_n));//getting the scaling factor of the color including shininess
-		if (multiColor>0)multiColor*=0;
+		if (multiColor>0)multiColor=0;
 		
         return new Color(SpecinCol(_Il.getRed(),multiColor),SpecinCol(_Il.getGreen(),multiColor),SpecinCol(_Il.getBlue(),multiColor));
 	}
-	/*private Color calcSpecularComp(double ks,Vector V,Vector normal,Vector L,double shine,Color Il)
-	//calculate Specular 
-	{
-		Vector V1=V.normalize();
-		Vector normal1=normal.normalize();
-		Vector L1= L.normalize();
-		double dot = (L1.dotProduct(normal1))*2;
-		//	if(dot>0)dot=0;
-		Vector R = L1.substrct(normal1.scale(dot)).normalize();
-		double temp = ks * Math.pow(V1.normalize().dotProduct(R), shine);
-		double scelar = Math.abs(temp);
-		return ColorScale(Il,scelar);
-	}
-	 */
+	
 	/**
 	 * Auxiliary function multiply number by intensity (for light)
 	 */
