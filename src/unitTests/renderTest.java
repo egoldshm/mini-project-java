@@ -117,10 +117,10 @@ public class renderTest {
 		
 		//test where the triangle is further away from the sphere
 		List<Geometry> geometries = new ArrayList<Geometry>();
-		Sphere sphere = new Sphere(new Color(0,0,100), new Material(1,1,20) , 500, new Point3D(0.0, 0.0, -1000));
+		Sphere sphere = new Sphere(new Color(0,0,100), new Material(1,1,19) , 500, new Point3D(0.0, 0.0, -1000));
 		
 		
-		Triangle triangle = new Triangle(new Color(0, 0, 100), new Material(1, 1, 20), new Point3D( -125, -225, -260),
+		Triangle triangle = new Triangle(new Color(0, 0, 100), new Material(1,1, 19), new Point3D( -125, -225, -260),
 							 new Point3D( -225, -125, -260),
 				 						 new Point3D(  -225, -225, -270));
 		geometries.add(sphere);
@@ -164,6 +164,7 @@ public class renderTest {
 		
 		render.renderImage();
 		render.get_imageWriter().writeToimage();
+		
 	}
 	
 	/**

@@ -340,9 +340,22 @@ public class Render {
 	 * A function that creates the scene given the geometries and shapes into an image file.
 	 */
 	public void renderImage() {
+		int idodo;
 		//Passes each pixel in the image, and checks which color should be put, if it has a cut point - finds using the calColor function. If not - painting with the color of the background.
 		for (int i = 0; i < _imageWriter.getNx(); i++) {
 			for (int j = 0; j < _imageWriter.getNy(); j++) {
+				if (i== 557 && j == 256)
+				{
+					idodo=0;
+					
+				}
+				if (i== 590 && j == 262)
+				{
+					idodo=0;
+					
+					
+		
+				}
 				List<Ray> rays = new ArrayList<Ray>(_scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(),
 						i, j, _scene.getScreenDistance(), _imageWriter.getWidth(), _imageWriter.getHeight()));
 				List<Color> listColor = new ArrayList<Color>();
@@ -428,12 +441,26 @@ public class Render {
 		tmp = tmp.scalarMultiplication(-2 * _L.scalarMultiplication(_Norm));//tmp = -2 * Norm * (L * Norm)
 		R = new Vector(R.addVector(tmp).normalizationOfVector());//R = (R +tmp).normalizationOfVector()
 		double multiColor=0;
-        if(_V.scalarMultiplication(R)>0)
+        if(_V.scalarMultiplication(R)>0 )
         	multiColor=_ks*(Math.pow((_V.scalarMultiplication(R)),_n));//getting the scaling factor of the color including shininess
+		if (multiColor>0)multiColor*=0;
 		
         return new Color(SpecinCol(_Il.getRed(),multiColor),SpecinCol(_Il.getGreen(),multiColor),SpecinCol(_Il.getBlue(),multiColor));
 	}
-	
+	/*private Color calcSpecularComp(double ks,Vector V,Vector normal,Vector L,double shine,Color Il)
+	//calculate Specular 
+	{
+		Vector V1=V.normalize();
+		Vector normal1=normal.normalize();
+		Vector L1= L.normalize();
+		double dot = (L1.dotProduct(normal1))*2;
+		//	if(dot>0)dot=0;
+		Vector R = L1.substrct(normal1.scale(dot)).normalize();
+		double temp = ks * Math.pow(V1.normalize().dotProduct(R), shine);
+		double scelar = Math.abs(temp);
+		return ColorScale(Il,scelar);
+	}
+	 */
 	/**
 	 * Auxiliary function multiply number by intensity (for light)
 	 */
