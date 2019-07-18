@@ -124,16 +124,8 @@ public class Camera {
 
 	/**
 	 * Returns the Ray from the camera passing through a certain point
-	 * 
-	 * @param Nx
-	 * @param Ny
-	 * @param x
-	 * @param y
-	 * @param screenDistance
-	 * @param screenWidth
-	 * @param screenHeight
 	 */
-	public Ray constructRayThroughPixelSingle(int Nx, int Ny, double x, double y, double screenDistance, double screenWidth,
+	public List<Ray> constructRayThroughPixelSingle(int Nx, int Ny, double x, double y, double screenDistance, double screenWidth,
 			double screenHeight) {
 		Point3D Pc = _PO.add(_vTo.scalarMultiplication(screenDistance));
 		_vRight = _vTo.CrossProductVector(_vUp);
@@ -142,11 +134,15 @@ public class Camera {
 		Point3D P;
 		P = Pc.add(_vRight.scalarMultiplication((x - (Nx / 2.0d)) * Rx - (Rx / 2.0d))
 				.subtractVector(_vUp.scalarMultiplication(Ry * (y - Ny / 2.0d) - Ry / 2.0d)));
-		
-		return new Ray(_PO, P.subtract(_PO).normalizationOfVector());
+		List<Ray> list = new ArrayList<Ray>();
+		list.add(new Ray(_PO, P.subtract(_PO).normalizationOfVector()));
+		return list;
 	}
-	
-	public List<Ray> constructRayThroughPixel(int Nx, int Ny, double x, double y, double screenDist, double screenWidth, double screenHeight)
+	/**
+	 * Returns the 5 Rays from the camera passing through a certain point
+	 */
+	public List<Ray> constructRayThroughPixel(int Nx, int Ny, double x, double y,
+			double screenDist, double screenWidth, double screenHeight)
 	//constructRayThroughPixel
 	{
 		List<Ray> list= new ArrayList<Ray>();
@@ -170,11 +166,7 @@ public class Camera {
 		list.add(new Ray(_PO, P3.subtract(_PO).normalizationOfVector()));
 		list.add(new Ray(_PO, P4.subtract(_PO).normalizationOfVector()));
 		list.add(new Ray(_PO, P5.subtract(_PO).normalizationOfVector()));
-		
-		
-
 		return list;
-		
 	}
 
 	// ***************** Admin ********************** //

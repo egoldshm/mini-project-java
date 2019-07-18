@@ -340,22 +340,9 @@ public class Render {
 	 * A function that creates the scene given the geometries and shapes into an image file.
 	 */
 	public void renderImage() {
-		int idodo;
 		//Passes each pixel in the image, and checks which color should be put, if it has a cut point - finds using the calColor function. If not - painting with the color of the background.
 		for (int i = 0; i < _imageWriter.getNx(); i++) {
 			for (int j = 0; j < _imageWriter.getNy(); j++) {
-				if (i== 557 && j == 256)
-				{
-					idodo=0;
-					
-				}
-				if (i== 590 && j == 262)
-				{
-					idodo=0;
-					
-					
-		
-				}
 				List<Ray> rays = new ArrayList<Ray>(_scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(),
 						i, j, _scene.getScreenDistance(), _imageWriter.getWidth(), _imageWriter.getHeight()));
 				List<Color> listColor = new ArrayList<Color>();
