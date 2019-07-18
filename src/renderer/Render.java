@@ -443,7 +443,7 @@ public class Render {
 		double multiColor=0;
         if(_V.scalarMultiplication(R)>0 )
         	multiColor=_ks*(Math.pow((_V.scalarMultiplication(R)),_n));//getting the scaling factor of the color including shininess
-		if (multiColor>0)multiColor=0;
+		if (multiColor>0)multiColor*=0;
 		
         return new Color(SpecinCol(_Il.getRed(),multiColor),SpecinCol(_Il.getGreen(),multiColor),SpecinCol(_Il.getBlue(),multiColor));
 	}
